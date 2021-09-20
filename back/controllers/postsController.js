@@ -3,10 +3,16 @@ const Post = require("../models/Post");
 class PostsController {
 
     getAll(req, res, next) {
-        Post.find({}, (err, response) => {
-            if (err) return next(err);
-            res.status(200).send(response);
-        })
+        let { isPost } = req.body;
+        (isPost != undefined) ?
+            Post.find({ isPost }).populate('_user').exec((err, response) => {
+                if (err) return next(err);
+                res.status(200).send(response);
+            }) :
+            Post.find({}).populate('_user').exec((err, response) => {
+                if (err) return next(err);
+                res.status(200).send(response);
+            });
     }
 
     get(req, res, next) {
@@ -27,8 +33,9 @@ class PostsController {
     }
 
     put(req, res, next) {
-        let { id } = res.params;
+        let { id } = req.params;
         let body = req.body;
+        console.log({ id, body });
         Post.updateOne({ _id: id }, {
             $set: body
         }, (err, response) => {
@@ -38,7 +45,7 @@ class PostsController {
     }
 
     delete(req, res, next) {
-        let { id } = res.params;
+        let { id } = req.params;
         Post.deleteOne({ _id: id }, (err, response) => {
             if (err) return next(err)
             res.status(200).send(response);

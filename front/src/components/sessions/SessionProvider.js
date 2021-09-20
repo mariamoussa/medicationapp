@@ -6,7 +6,10 @@ import API from '../../API';
 export default function SessionProvider({ children }) {
 
     const [session, updateSession] = useState({
-        user: {}
+        user: {
+            _id: getCookie('_id'),
+            token: getCookie('token')
+        }
     });
 
     function setSession(nextState) {
@@ -15,11 +18,11 @@ export default function SessionProvider({ children }) {
             ...nextState
         }));
     }
-    
+
     async function signOut() {
 
         let _id = getCookie('_id');
-        await API.post(`signOut`, { _id });
+        await API.post('signOut', { _id });
 
         setSession({ user: {} });
         removeCookie('_id');

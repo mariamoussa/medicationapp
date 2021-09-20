@@ -1,0 +1,12 @@
+{
+  "name": "medication",
+  "version": "0.1.0",
+  "scripts": {
+    "back": "cd back && npm start",
+    "front": "cd front && npm start",
+    "start": "concurrently --kill-others-on-fail --names 'back,front' 'npm run back' 'npm run front'"
+  },
+  "dependencies": {
+    "concurrently": "^6.2.1"
+  }
+}

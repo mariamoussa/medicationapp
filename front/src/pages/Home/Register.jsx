@@ -3,21 +3,20 @@ import API from "../../API";
 import { setCookie } from "../../cookie";
 import SessionContext from "../../components/sessions/SessionContext";
 
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   root: {
-    background: 'red',
-    color: 'white'
+    background: "red",
+    color: "white",
   },
 });
 
 export default function Register() {
-
-  const classes=useStyles();
+  const classes = useStyles();
   const [state, updateState] = useState({
-    firstname: "",
-    lastname: "",
+    firstName: "",
+    lastName: "",
     email: "",
     phone: "",
     gender: "Male",
@@ -43,31 +42,62 @@ export default function Register() {
     setState({ [name]: value });
   }
 
+  function handleChangeUsername(val) {
+    let value = val.replace(/\s/g, "");
+    setState({ username: value });
+  }
+
+  function handleChangePassword(val) {
+    let value = val.replace(/\s/g, "");
+    setState({ password: value });
+  }
+
   let {
     actions: { setSession },
   } = useContext(SessionContext);
 
   async function handleRegister(e) {
     e.preventDefault();
+
+    let reqBody = {
+      firstName: state.firstName.trim(),
+      lastName: state.lastName.trim(),
+      email: state.email.trim(),
+      phone: state.phone.trim(),
+      gender: state.gender,
+      address: state.address.trim(),
+      birthdate: state.birthdate,
+      username: state.username,
+      password: state.password,
+    };
+
     if (state.password == state.conPass) {
-      await API.post("signUp", state).then((res) => {
-        console.log(res.data);
-        const success = res.data.success;
-        if (success) {
-          const result = res.data.result;
+      if (
+        reqBody.firstName != "" &&
+        reqBody.lastName != "" &&
+        reqBody.email != "" &&
+        reqBody.phone != "" &&
+        reqBody.address != ""
+      ) {
+        await API.post("signUp", reqBody).then((res) => {
+          console.log(res.data);
+          const success = res.data.success;
+          if (success) {
+            const result = res.data.result;
 
-          setCookie("_id", result._id, 30);
-          setCookie("token", result.token, 30);
+            setCookie("_id", result._id, 30);
+            setCookie("token", result.token, 30);
 
-          setSession({
-            user: {
-              _id: result._id,
-              role_id: result.role_id,
-              token: result.token,
-            },
-          });
-        }
-      });
+            setSession({
+              user: {
+                _id: result._id,
+                role_id: result.role_id,
+                token: result.token,
+              },
+            });
+          }
+        });
+      }
     } else {
       setState({ err: "password incorect" });
     }
@@ -80,8 +110,8 @@ export default function Register() {
           <th>First Name</th>
           <td>
             <input
-              name="firstname"
-              value={state.firstname}
+              name="firstName"
+              value={state.firstName}
               placeholder="First Name"
               onChange={handleChange}
               className={classes.root}
@@ -93,8 +123,8 @@ export default function Register() {
           <th>Last Name</th>
           <td>
             <input
-              name="lastname"
-              value={state.lastname}
+              name="lastName"
+              value={state.lastName}
               placeholder="Last Name"
               onChange={handleChange}
             />
@@ -180,7 +210,7 @@ export default function Register() {
               name="username"
               value={state.username}
               placeholder="Username"
-              onChange={handleChange}
+              onChange={(e) => handleChangeUsername(e.target.value)}
             />
           </td>
         </tr>
@@ -193,9 +223,10 @@ export default function Register() {
               name="password"
               value={state.password}
               placeholder="Password"
-              onChange={handleChange}
+              onChange={(e) => handleChangePassword(e.target.value)}
             />
             <button
+              type="button"
               onClick={() => {
                 setState({ show: !state.show });
               }}
@@ -216,6 +247,7 @@ export default function Register() {
               onChange={handleChange}
             />
             <button
+              type="button"
               onClick={() => {
                 setState({ show: !state.show });
               }}

@@ -1,25 +1,19 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { useHistory, useParams } from "react-router";
 import API from "../../../API";
-import { useHistory } from "react-router-dom";
 
-import SessionContext from "../../../components/sessions/SessionContext";
-
-export default function Add_Post() {
-  const history = useHistory();
-
-  let {
-    session: {
-      user: { _id },
-    },
-  } = useContext(SessionContext);
+export default function Edit_Post() {
+  let history = useHistory();
+  let { id } = useParams();
 
   const [state, updateState] = useState({
     medicationName: "",
     medicationType: "",
-    quantity: 1,
+    quantity: "",
     description: "",
     image: "",
-    isPost: "Post",
+    isPost: "",
+    isActive: "",
   });
 
   function setState(nextState) {
@@ -34,7 +28,7 @@ export default function Add_Post() {
     setState({ [name]: value });
   }
 
-  async function handleSave(e) {
+  function handleSave(e) {
     e.preventDefault();
 
     let reqBody = {
@@ -43,16 +37,33 @@ export default function Add_Post() {
       quantity: state.quantity,
       description: state.description,
       image: state.image,
-      date: new Date(),
       isPost: state.isPost == "Post" ? true : false,
-      isActive: true,
-      _user: _id,
+      isActive: state.isActive == "Active" ? true : false,
     };
 
-    await API.post(`posts`, reqBody).then(
+    API.put(`posts/${id}`, reqBody).then(
       history.push({ pathname: "/list/myposts" })
     );
   }
+
+  useEffect(() => {
+    function fetchData() {
+      API.get(`posts/${id}`).then((res) => {
+        const data = res.data;
+
+        setState({
+          medicationName: data.medicationName,
+          medicationType: data.medicationType,
+          quantity: data.quantity,
+          description: data.description,
+          image: data.image,
+          isPost: data.isPost ? "Post" : "Request",
+          isActive: data.isActive ? "Active" : "Closed",
+        });
+      });
+    }
+    fetchData();
+  }, []);
 
   return (
     <form onSubmit={handleSave}>
@@ -65,7 +76,6 @@ export default function Add_Post() {
               value={state.medicationName}
               placeholder="Medication Name"
               onChange={handleChange}
-              //   className={classes.root}
             />
           </td>
         </tr>
@@ -101,7 +111,6 @@ export default function Add_Post() {
               value={state.quantity}
               placeholder="Quantity"
               onChange={handleChange}
-              //   className={classes.root}
             />
           </td>
         </tr>
@@ -113,7 +122,6 @@ export default function Add_Post() {
               value={state.description}
               placeholder="Description"
               onChange={handleChange}
-              //   className={classes.root}
             />
           </td>
         </tr>
@@ -125,7 +133,6 @@ export default function Add_Post() {
               value={state.image}
               placeholder="Image"
               onChange={handleChange}
-              //   className={classes.root}
             />
           </td>
         </tr>
@@ -152,8 +159,31 @@ export default function Add_Post() {
             </form>
           </td>
         </tr>
+        <tr>
+          <th>Status</th>
+          <td>
+            <form name="isActive" onChange={handleChange}>
+              <input
+                type="radio"
+                id="active"
+                name="isActive"
+                value="Active"
+                checked={state.isActive === "Active"}
+              />
+              <label for="active">Active</label>
+              <input
+                type="radio"
+                id="closed"
+                name="isActive"
+                value="Closed"
+                checked={state.isActive === "Closed"}
+              />
+              <label for="closed">Closed</label>
+            </form>
+          </td>
+        </tr>
       </table>
-      <button type="submit">Post</button>
+      <button type="submit">update</button>
     </form>
   );
 }

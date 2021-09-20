@@ -45,8 +45,6 @@ class AuthController {
         });
     }
 
-
-
     async signIn(req, res, next) {
         let { username, password } = req.body;
         User.find({ username }, async (err, result) => {

@@ -27,7 +27,7 @@ class RequestsController {
     }
 
     put(req, res, next) {
-        let { id } = res.params;
+        let { id } = req.params;
         let body = req.body;
         Request.updateOne({ _id: id }, {
             $set: body
@@ -38,7 +38,7 @@ class RequestsController {
     }
 
     delete(req, res, next) {
-        let { id } = res.params;
+        let { id } = req.params;
         Request.deleteOne({ _id: id }, (err, response) => {
             if (err) return next(err)
             res.status(200).send(response);
