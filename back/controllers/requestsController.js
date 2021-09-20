@@ -1,9 +1,11 @@
 const Request = require("../models/Request");
+const Post = require("../models/Post");
+const mongoose = require('mongoose');
 
 class RequestsController {
 
     getAll(req, res, next) {
-        Request.find({}, (err, response) => {
+        Request.find({}).populate('_post').populate('_user').exec((err, response) => {
             if (err) return next(err);
             res.status(200).send(response);
         })
@@ -17,10 +19,43 @@ class RequestsController {
         })
     }
 
-    post(req, res, next) {
+    getBySenderId(req, res, next) {
+        let { userId } = req.params;
+        Request
+            .find({ senderId: mongoose.Types.ObjectId(userId) })
+            .populate('receiverId')
+            .populate('_post')
+            .exec((err, response) => {
+                if (err) return next(err);
+                res.status(200).send(response);
+            })
+    }
+
+    getByReceiverId(req, res, next) {
+        let { userId } = req.params;
+        Request
+            .find({ receiverId: mongoose.Types.ObjectId(userId) })
+            .populate('senderId')
+            .populate('_post')
+            .exec((err, response) => {
+                if (err) return next(err);
+                res.status(200).send(response);
+            })
+    }
+
+    async post(req, res, next) {
+
         let body = req.body;
-        let user = new Request(body);
-        user.save((err, response) => {
+        let { _user: senderId, _post: postId } = body;
+        let { _user: receiverId } = await Post.findById(postId);
+
+        let request = new Request({
+            _post: postId,
+            senderId,
+            receiverId
+        });
+
+        request.save((err, response) => {
             if (err) return next(err);
             res.status(200).send(response);
         })

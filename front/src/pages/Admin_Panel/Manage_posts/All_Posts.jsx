@@ -2,11 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import API from "../../../API";
 
-export default function List_Posts() {
+export default function All_Post() {
   let history = useHistory();
   const [posts, setPosts] = useState([]);
   const [isTrue, setIsTrue] = useState(true);
 
+  function handleDelete(id) {
+    API.delete(`posts/${id}`);
+  }
+  
   useEffect(() => {
     async function fetchData() {
       await API.post(`isPost`, { isPost: isTrue }).then((res) => {
@@ -44,13 +48,7 @@ export default function List_Posts() {
               {post._user.firstName} {post._user.lastName}
             </th>
             <td>
-              <button
-                onClick={() =>
-                  history.push({ pathname: `/get/post/${post._id}` })
-                }
-              >
-                View
-              </button>
+              <button onClick={() => handleDelete(post._id)}>edit</button>
             </td>
           </tr>
         ))}

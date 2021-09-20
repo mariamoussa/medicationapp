@@ -1,10 +1,18 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useHistory, useParams } from "react-router";
 import API from "../../../API";
+import SessionContext from "../../../components/sessions/SessionContext";
 
 export default function PostInfo() {
+
   let history = useHistory();
   let { id } = useParams();
+
+  let {
+    session: {
+      user: { _id },
+    },
+  } = useContext(SessionContext);
 
   const [state, updateState] = useState({
     medicationName: "",
@@ -22,6 +30,14 @@ export default function PostInfo() {
       ...previousState,
       ...nextState,
     }));
+  }
+
+  function handleRequest() {
+    let reqBody = {
+      _user: _id,
+      _post: id,
+    };
+    API.post('requests',reqBody).then(history.push({pathname:'/my/request'}))
   }
 
   useEffect(() => {
@@ -78,14 +94,7 @@ export default function PostInfo() {
           <td>{state._user}</td>
         </tr>
       </table>
-      <button
-        type="submit"
-        onClick={() =>
-          history.push({ pathname: `/get/contactinfo/${state._user}` })
-        }
-      >
-        Request Contact infos
-      </button>
+      <button onClick={handleRequest}>Send Request</button>
     </form>
   );
 }

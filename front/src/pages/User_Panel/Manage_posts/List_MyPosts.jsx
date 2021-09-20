@@ -43,7 +43,6 @@ export default function List_MyPosts() {
       <button onClick={() => setIsTrue(true)}>Available Medications</button>
       <button onClick={() => setIsTrue(false)}>Needed Medications</button>
 
-
       <table>
         <tr>
           <th>Name</th>
@@ -76,15 +75,6 @@ export default function List_MyPosts() {
               </td>
               <td>
                 <button onClick={() => deletePost(post._id)}>Delete</button>
-              </td>
-              <td>
-                <button
-                  onClick={() =>
-                    history.push({ pathname: `/get/post/${post._id}` })
-                  }
-                >
-                  view
-                </button>
               </td>
             </tr>
           ) : null

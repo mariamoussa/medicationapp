@@ -40,7 +40,7 @@ app.get('/', (req, res) => {
 
 app.use(authRouter);
 app.use('/users', usersRouter);
-app.use('/requests', requestsRouter);
+app.use(requestsRouter);
 app.use(reportsRouter);
 app.use(postsRouter);
 

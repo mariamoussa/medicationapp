@@ -8,18 +8,19 @@ import Register from "../pages/Home/Register";
 import User_Panel from '../pages/User_Panel/User_Panel';
 import Admin_Panel from '../pages/Admin_Panel/Admin_Panel';
 
+import All_Posts from "../pages/Admin_Panel/Manage_posts/All_Posts";
+
 import Add_Post from '../pages/User_Panel/Manage_posts/Add_Post';
 import List_Post from '../pages/User_Panel/Manage_posts/List_Posts';
 import List_MyPosts from '../pages/User_Panel/Manage_posts/List_MyPosts';
-
-import SessionContext from "./sessions/SessionContext";
-
 import Edit_Post from "../pages/User_Panel/Manage_posts/Edit_Post";
 import PostInfo from "../pages/User_Panel/Manage_posts/PostInfo";
 import Get_Post_User from "../pages/User_Panel/Manage_posts/Get_Post_User";
 
-import List_Posts from "../pages/Admin_Panel/Manage_posts/List_Posts";
+import List_Requests from "../pages/Admin_Panel/Manage_Requests/List_Requests";
+import My_Requests from "../pages/User_Panel/Manage_requests/My_Request";
 
+import SessionContext from "./sessions/SessionContext";
 
 function PrivateRouteAdmin({ user, component: Comp, ...props }) {
     return (
@@ -31,7 +32,6 @@ function PrivateRouteAdmin({ user, component: Comp, ...props }) {
 }
 
 function PrivateRouteUser({ user, component: Comp, ...props }) {
-    console.log((user.token && user.role_id == "user"));
     return (
         <Route {...props} render={props => (user.token && user.role_id == "user") ?
             <Comp {...props} /> :
@@ -41,8 +41,9 @@ function PrivateRouteUser({ user, component: Comp, ...props }) {
 }
 
 function PrivateRoute({ user, component: Comp, ...props }) {
+    console.log(user);
     return (
-        <Route {...props} render={props => (user.token && (user.role_id == "admin" || user.role_id == "user")) ?
+        <Route {...props} render={props => (user.token) ?
             <Comp {...props} /> :
             <Redirect to='/' />
         } />
@@ -67,7 +68,8 @@ export default function Routes(props) {
             <PublicRoute user={user} path="/register" component={Register} {...props} />
 
             <PrivateRouteAdmin user={user} path="/admin/panel" component={Admin_Panel} {...props} />
-            <PrivateRouteAdmin user={user} path="/list/post" component={List_Posts} {...props} />
+            <PrivateRouteAdmin user={user} path="/all/post" component={All_Posts} {...props} />
+            <PrivateRouteAdmin user={user} path='/list/requests' component={List_Requests} {...props} />
 
             <PrivateRouteUser user={user} path="/user/panel" component={User_Panel} {...props} />
 
@@ -77,6 +79,9 @@ export default function Routes(props) {
             <PrivateRoute user={user} path="/list/myposts" component={List_MyPosts} {...props} />
             <PrivateRoute user={user} path="/get/post/:id" component={PostInfo} {...props} />
             <PrivateRoute user={user} path="/get/contactinfo/:id" component={Get_Post_User} {...props} />
+
+            <PrivateRoute user={user} path="/my/request" component={My_Requests} {...props} />
+
         </Switch>
     )
 }
