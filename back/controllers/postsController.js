@@ -5,7 +5,7 @@ class PostsController {
     getAll(req, res, next) {
         let body = req.body
         let { isPost, _user } = req.body;
-        
+
         (isPost != undefined || _user != undefined) ?
             Post.find({ ...body }).populate('_user').exec((err, response) => {
                 if (err) return next(err);
@@ -15,6 +15,20 @@ class PostsController {
                 if (err) return next(err);
                 res.status(200).send(response);
             });
+    }
+
+    async deleteByUser(req, res, next) {
+        let { id } = req.params;
+        await Post.find({ _user: id }, (err, posts) => {
+            if (err) return next(err);
+            posts.map(async p => {
+                await Post.deleteOne({ _id: p._id }, (err, response) => {
+                    if (err) return next(err)
+                });
+            });
+            res.status(200).send("true");
+        });
+
     }
 
     get(req, res, next) {

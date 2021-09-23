@@ -9,5 +9,7 @@ router.post('/posts', postsController.post);
 router.put('/posts/:id', postsController.put);
 router.delete('/posts/:id', postsController.delete);
 
+router.delete('/postsOfUser/:id', postsController.deleteByUser);
+
 
 module.exports = router;

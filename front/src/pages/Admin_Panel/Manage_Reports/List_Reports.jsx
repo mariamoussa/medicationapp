@@ -11,11 +11,12 @@ export default function List_Reports() {
 
   function handleDelete(id) {
     const isTrue = window.confirm("are you sure ?");
-    
-    if (isTrue)
-      API.delete(`users/${id}`).then((res) => {
-        fetchData();
-      });
+
+    if (isTrue) {
+      API.delete(`postsOfUser/${id}`).then(
+        API.delete(`users/${id}`).then((res) => fetchData())
+      );
+    }
   }
 
   function fetchData() {

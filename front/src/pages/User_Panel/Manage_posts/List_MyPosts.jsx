@@ -44,12 +44,12 @@ export default function List_MyPosts() {
 
       <table>
         <tr>
-          <th>Name</th>
+          <th>Medication Name</th>
           <th>Type</th>
           <th>Quantity</th>
-          <th>description</th>
-          <th>date</th>
-          <th>user</th>
+          <th>Description</th>
+          <th>Date Posted</th>
+          {/* <th>user</th> */}
           <th>Manage</th>
         </tr>
         {posts.map((post) => (
@@ -59,9 +59,9 @@ export default function List_MyPosts() {
             <th>{post.quantity}</th>
             <th>{post.description}</th>
             <th>{post.date}</th>
-            <th>
+            {/* <th>
               {post._user.firstName} {post._user.lastName}
-            </th>
+            </th> */}
             <td>
               <button
                 onClick={() =>

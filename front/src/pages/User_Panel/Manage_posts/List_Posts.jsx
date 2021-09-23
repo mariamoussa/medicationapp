@@ -37,6 +37,7 @@ export default function List_Posts() {
           <th>Manage</th>
         </tr>
         {posts.map((post) => (
+          post._user?
           <tr>
             <th>{post.medicationName}</th>
             <th>{post.medicationType}</th>
@@ -56,7 +57,7 @@ export default function List_Posts() {
                 View
               </button>
             </td>
-          </tr>
+          </tr> : null
         ))}
       </table>
     </>
