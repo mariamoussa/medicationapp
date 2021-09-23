@@ -87,6 +87,7 @@ export default function Register() {
 
             setCookie("_id", result._id, 30);
             setCookie("token", result.token, 30);
+            setCookie("role_id", result.role_id, 30);
 
             setSession({
               user: {

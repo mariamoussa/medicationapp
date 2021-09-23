@@ -17,21 +17,20 @@ export default function List_MyPosts() {
   async function deletePost(id) {
     try {
       await API.delete(`posts/${id}`);
-      let filter = [...posts].filter((posts) => posts.id !== id);
-      setPosts(filter);
     } catch (e) {
       console.log(e);
     }
-    window.location.reload();
+    await fetchData();
+  }
+
+  async function fetchData() {
+    await API.post(`isPost`, { isPost: isTrue, _user: _id }).then((res) => {
+      let data = res.data;
+      setPosts(data);
+    });
   }
 
   useEffect(() => {
-    async function fetchData() {
-      await API.post(`isPost`, { isPost: isTrue }).then((res) => {
-        let data = res.data;
-        setPosts(data);
-      });
-    }
     fetchData();
   }, [isTrue]);
 
@@ -53,32 +52,30 @@ export default function List_MyPosts() {
           <th>user</th>
           <th>Manage</th>
         </tr>
-        {posts.map((post) =>
-          post._user._id === _id ? (
-            <tr>
-              <th>{post.medicationName}</th>
-              <th>{post.medicationType}</th>
-              <th>{post.quantity}</th>
-              <th>{post.description}</th>
-              <th>{post.date}</th>
-              <th>
-                {post._user.firstName} {post._user.lastName}
-              </th>
-              <td>
-                <button
-                  onClick={() =>
-                    history.push({ pathname: `/edit/post/${post._id}` })
-                  }
-                >
-                  edit
-                </button>
-              </td>
-              <td>
-                <button onClick={() => deletePost(post._id)}>Delete</button>
-              </td>
-            </tr>
-          ) : null
-        )}
+        {posts.map((post) => (
+          <tr>
+            <th>{post.medicationName}</th>
+            <th>{post.medicationType}</th>
+            <th>{post.quantity}</th>
+            <th>{post.description}</th>
+            <th>{post.date}</th>
+            <th>
+              {post._user.firstName} {post._user.lastName}
+            </th>
+            <td>
+              <button
+                onClick={() =>
+                  history.push({ pathname: `/edit/post/${post._id}` })
+                }
+              >
+                edit
+              </button>
+            </td>
+            <td>
+              <button onClick={() => deletePost(post._id)}>Delete</button>
+            </td>
+          </tr>
+        ))}
       </table>
     </>
   );

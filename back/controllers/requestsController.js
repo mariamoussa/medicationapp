@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 class RequestsController {
 
     getAll(req, res, next) {
-        Request.find({}).populate('_post').populate('_user').exec((err, response) => {
+        Request.find({}).populate('_post').populate('senderId').populate('receiverId').exec((err, response) => {
             if (err) return next(err);
             res.status(200).send(response);
         })

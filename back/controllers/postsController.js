@@ -3,9 +3,11 @@ const Post = require("../models/Post");
 class PostsController {
 
     getAll(req, res, next) {
-        let { isPost } = req.body;
-        (isPost != undefined) ?
-            Post.find({ isPost }).populate('_user').exec((err, response) => {
+        let body = req.body
+        let { isPost, _user } = req.body;
+        
+        (isPost != undefined || _user != undefined) ?
+            Post.find({ ...body }).populate('_user').exec((err, response) => {
                 if (err) return next(err);
                 res.status(200).send(response);
             }) :

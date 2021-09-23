@@ -19,8 +19,11 @@ export default function List_Posts() {
 
   return (
     <>
-      <button onClick={() => setIsTrue(true)}>Available M</button>
+      <button onClick={() => history.push({ pathname: `/add/post` })}>
+        Add Post
+      </button>
 
+      <button onClick={() => setIsTrue(true)}>Available M</button>
       <button onClick={() => setIsTrue(false)}>Needed M</button>
 
       <table>
@@ -41,7 +44,8 @@ export default function List_Posts() {
             <th>{post.description}</th>
             <th>{post.date}</th>
             <th>
-              {post._user.firstName} {post._user.lastName}
+              {post._user && post._user.firstName}{" "}
+              {post._user && post._user.lastName}
             </th>
             <td>
               <button

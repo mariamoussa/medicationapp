@@ -22,11 +22,12 @@ export default function List_Requests() {
     isSent
       ? API.get(`getBySenderId/${_id}`).then((res) => {
           const data = res.data;
-          console.log({data});
+          console.log({ data });
           if (data.length) setRequests(data);
         })
       : API.get(`getByReceiverId/${_id}`).then((res) => {
           const data = res.data;
+          console.log(data);
           if (data.length) setRequests(data);
         });
   }
@@ -34,6 +35,7 @@ export default function List_Requests() {
   function handleAccept(id) {
     API.put(`requests/${id}`, { status: "Accepted" }).then(fetchData());
   }
+
   function handleReject(id) {
     API.put(`requests/${id}`, { status: "Rejected" }).then(fetchData());
   }
@@ -60,9 +62,17 @@ export default function List_Requests() {
 
             {isSent ? (
               request.status == "Accepted" ? (
-                <button>View contact info</button>
+                <button
+                  onClick={() =>
+                    history.push({
+                      pathname: `/get/contactinfo/${request.receiverId._id}`,
+                    })
+                  }
+                >
+                  View contact info
+                </button>
               ) : null
-            ) : (
+            ) : request.status == "Waiting" ? (
               <>
                 <button onClick={() => handleAccept(request._id)}>
                   Accept
@@ -71,7 +81,7 @@ export default function List_Requests() {
                   reject
                 </button>
               </>
-            )}
+            ) : null}
           </div>
         ))
       )}

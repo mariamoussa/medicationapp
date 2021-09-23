@@ -16,6 +16,7 @@ export default function List_Requests() {
   function fetchData() {
     API.get(`requests`).then((res) => {
       let data = res.data;
+      console.log(data);
       if (data.length) {
         setRequests(data);
       }
@@ -31,10 +32,27 @@ export default function List_Requests() {
   ) : (
     requests.map((request) => (
       <div>
-        <h1>{request._user}</h1>
-        <h1>{request._post}</h1>
-        <h1>{request.status}</h1>
-        <button onClick={() => handleDelete(request._id)}>Delete</button>
+        <table>
+          <tr>
+            <th>Description</th>
+            <th>Medication Name</th>
+            <th>Medication Type</th>
+            <th>Receiver ID</th>
+            <th>Sender ID</th>
+            <th>Status</th>
+            <th>Qty</th>
+          </tr>
+          <tr>
+            <td>{request._post.description}</td>
+            <td>{request._post.medicationName}</td>
+            <td>{request._post.medicationType}</td>
+            <td>{request.receiverId.username}</td>
+            <td>{request.senderId.username}</td>
+            <td>{request.status}</td>
+            <td>{request._post.quantity}</td>
+            <button onClick={() => handleDelete(request._id)}>Delete</button>
+          </tr>
+        </table>
       </div>
     ))
   );

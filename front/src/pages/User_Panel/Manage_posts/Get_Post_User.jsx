@@ -37,9 +37,33 @@ export default function Get_Post_User() {
   }, []);
 
   return (
-    <>
-      <h1>hi {id}</h1>
-      <h1>{state.firstName}</h1>
-    </>
+    <form>
+      <table>
+        <tr>
+          <th>Contact Infos</th>
+        </tr>
+        <tr>
+          <th>First Name:</th>
+          <td>{state.firstName}</td>
+        </tr>
+        <tr>
+          <th>Last Name:</th>
+          <td>{state.lastName}</td>
+        </tr>
+        <tr>
+          <th>Address:</th>
+          <td>{state.address}</td>
+        </tr>
+        <tr>
+          <th>Phone:</th>
+          <td>{state.phone}</td>
+        </tr>
+        <button
+          onClick={() => history.push({ pathname: `/report/user/${id}` })}
+        >
+          Report
+        </button>
+      </table>
+    </form>
   );
 }

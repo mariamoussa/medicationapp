@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 class UsersController {
 
     getAll(req, res, next) {
-        User.find({}, (err, response) => {
+        User.find({ role_id: "user" }, (err, response) => {
             if (err) return next(err);
             res.status(200).send(response);
         })

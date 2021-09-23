@@ -21,6 +21,10 @@ import List_Requests from "../pages/Admin_Panel/Manage_Requests/List_Requests";
 import My_Requests from "../pages/User_Panel/Manage_requests/My_Request";
 
 import SessionContext from "./sessions/SessionContext";
+import Report_User from "../pages/User_Panel/Manage_reports/Report_User";
+import List_Users from "../pages/Admin_Panel/Manage_users/List_Users";
+import List_Reports from "../pages/Admin_Panel/Manage_Reports/List_Reports";
+import User_Reports from "../pages/Admin_Panel/Manage_Reports/User_Reports";
 
 function PrivateRouteAdmin({ user, component: Comp, ...props }) {
     return (
@@ -36,7 +40,8 @@ function PrivateRouteUser({ user, component: Comp, ...props }) {
         <Route {...props} render={props => (user.token && user.role_id == "user") ?
             <Comp {...props} /> :
             <Redirect {...props} to="/" />
-        } />
+        } 
+        />
     )
 }
 
@@ -71,16 +76,22 @@ export default function Routes(props) {
             <PrivateRouteAdmin user={user} path="/all/post" component={All_Posts} {...props} />
             <PrivateRouteAdmin user={user} path='/list/requests' component={List_Requests} {...props} />
 
+            <PrivateRouteAdmin user={user} path='/list/users' component={List_Users} {...props} />
+            <PrivateRouteAdmin user={user} path='/list/reports' component={List_Reports} {...props} />
+            <PrivateRouteAdmin user={user} path='/user/reports/:_Reported' component={User_Reports} {...props} />
+
+
             <PrivateRouteUser user={user} path="/user/panel" component={User_Panel} {...props} />
 
-            <PrivateRoute user={user} path="/add/post" component={Add_Post} {...props} />
-            <PrivateRoute user={user} path="/list/post" component={List_Post} {...props} />
-            <PrivateRoute user={user} path="/edit/post/:id" component={Edit_Post} {...props} />
-            <PrivateRoute user={user} path="/list/myposts" component={List_MyPosts} {...props} />
-            <PrivateRoute user={user} path="/get/post/:id" component={PostInfo} {...props} />
-            <PrivateRoute user={user} path="/get/contactinfo/:id" component={Get_Post_User} {...props} />
+            <PrivateRouteUser user={user} path="/add/post" component={Add_Post} {...props} />
+            <PrivateRouteUser user={user} path="/list/post" component={List_Post} {...props} />
+            <PrivateRouteUser user={user} path="/edit/post/:id" component={Edit_Post} {...props} />
+            <PrivateRouteUser user={user} path="/list/myposts" component={List_MyPosts} {...props} />
+            <PrivateRouteUser user={user} path="/get/post/:id" component={PostInfo} {...props} />
+            <PrivateRouteUser user={user} path="/get/contactinfo/:id" component={Get_Post_User} {...props} />
 
-            <PrivateRoute user={user} path="/my/request" component={My_Requests} {...props} />
+            <PrivateRouteUser user={user} path="/myrequests" component={My_Requests} {...props} />
+            <PrivateRouteUser user={user} path="/report/user/:id" component={Report_User} {...props} />
 
         </Switch>
     )

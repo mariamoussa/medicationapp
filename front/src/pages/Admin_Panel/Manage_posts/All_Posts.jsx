@@ -10,7 +10,7 @@ export default function All_Post() {
   function handleDelete(id) {
     API.delete(`posts/${id}`);
   }
-  
+
   useEffect(() => {
     async function fetchData() {
       await API.post(`isPost`, { isPost: isTrue }).then((res) => {
@@ -45,10 +45,11 @@ export default function All_Post() {
             <th>{post.description}</th>
             <th>{post.date}</th>
             <th>
-              {post._user.firstName} {post._user.lastName}
+              {post._user && post._user.firstName}{" "}
+              {post._user && post._user.lastName}
             </th>
             <td>
-              <button onClick={() => handleDelete(post._id)}>edit</button>
+              <button onClick={() => handleDelete(post._id)}>Delete</button>
             </td>
           </tr>
         ))}

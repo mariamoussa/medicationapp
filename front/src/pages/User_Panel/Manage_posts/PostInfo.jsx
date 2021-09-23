@@ -37,7 +37,7 @@ export default function PostInfo() {
       _user: _id,
       _post: id,
     };
-    API.post('requests',reqBody).then(history.push({pathname:'/my/request'}))
+    API.post('requests',reqBody).then(history.push({pathname:'/myrequests'}))
   }
 
   useEffect(() => {

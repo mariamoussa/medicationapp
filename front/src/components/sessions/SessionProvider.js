@@ -8,7 +8,8 @@ export default function SessionProvider({ children }) {
     const [session, updateSession] = useState({
         user: {
             _id: getCookie('_id'),
-            token: getCookie('token')
+            token: getCookie('token'),
+            role_id: getCookie('role_id'),
         }
     });
 
@@ -27,6 +28,7 @@ export default function SessionProvider({ children }) {
         setSession({ user: {} });
         removeCookie('_id');
         removeCookie('token');
+        removeCookie('role_id');
     }
 
     useEffect(() => {
