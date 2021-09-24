@@ -41,11 +41,13 @@ class PostsController {
 
     post(req, res, next) {
         let body = req.body;
-        let user = new Post(body);
-        user.save((err, response) => {
-            if (err) return next(err);
-            res.status(200).send(response);
-        })
+        body['image'] = req.file && req.file.filename;
+        console.log(body.image);
+        // let user = new Post(body);
+        // user.save((err, response) => {
+        //     if (err) return next(err);
+        //     res.status(200).send(response);
+        // })
     }
 
     put(req, res, next) {
