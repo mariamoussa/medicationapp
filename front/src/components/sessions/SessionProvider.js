@@ -46,7 +46,7 @@ export default function SessionProvider({ children }) {
                     .then(res => {
                         const success = res.data.success;
                         const data = res.data.result;
-                        if (success) {
+                        if (success && data) {
                             updateSession({
                                 user: {
                                     _id: data._id,

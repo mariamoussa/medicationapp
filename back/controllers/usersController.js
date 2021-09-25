@@ -42,7 +42,12 @@ class UsersController {
     async delete(req, res, next) {
         let { id } = req.params;
 
-        await Request.find({ senderId: id, receiverId: id }, (err, requests) => {
+        await Request.find({
+            $or: [
+                { senderId: id },
+                { receiverId: id }
+            ]
+        }, (err, requests) => {
             if (err) return next(err);
             requests.map(async r => {
                 await Request.deleteOne({ _id: r._id }, (err, response) => {
@@ -60,10 +65,15 @@ class UsersController {
             });
         });
 
-        await Report.find({ _Reporter: id, _Reported: id }, (err, reports) => {
+        await Report.find({
+            $or: [
+                { _Reporter: id },
+                { _Reported: id }
+            ]
+        }, (err, reports) => {
             if (err) return next(err);
             reports.map(async r => {
-                await Post.deleteOne({ _id: r._id }, (err, response) => {
+                await Report.deleteOne({ _id: r._id }, (err, response) => {
                     if (err) return next(err)
                 });
             });

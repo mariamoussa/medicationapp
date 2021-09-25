@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import API from "../../../API";
 import { useHistory } from "react-router-dom";
-
+import { get } from "lodash";
 import SessionContext from "../../../components/sessions/SessionContext";
 
 export default function List_Requests() {
@@ -42,14 +42,15 @@ export default function List_Requests() {
             <th>Status</th>
             <th>Qty</th>
           </tr>
+          
           <tr>
-            <td>{request._post.description}</td>
-            <td>{request._post.medicationName}</td>
-            <td>{request._post.medicationType}</td>
-            <td>{request.receiverId.username}</td>
-            <td>{request.senderId.username}</td>
+            <td>{get(request._post, "description")}</td>
+            <td>{get(request._post, "medicationName")}</td>
+            <td>{get(request._post, "medicationType")}</td>
+            <td>{get(request.receiverId, "username")}</td>
+            <td>{get(request.senderId, "username")}</td>
             <td>{request.status}</td>
-            <td>{request._post.quantity}</td>
+            <td>{get(request._post, "quantity")}</td>
             <button onClick={() => handleDelete(request._id)}>Delete</button>
           </tr>
         </table>

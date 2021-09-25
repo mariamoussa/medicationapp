@@ -6,6 +6,9 @@ export default function User_Panel() {
   const history = useHistory();
 
   let {
+    session: {
+      user: { _id },
+    },
     actions: { signOut },
   } = useContext(SessionContext);
 
@@ -21,6 +24,9 @@ export default function User_Panel() {
       </button>
       <button onClick={() => history.push({ pathname: `/myrequests` })}>
         My Requests
+      </button>
+      <button onClick={() => history.push({ pathname: `/myprofile/${_id}` })}>
+        My Profile
       </button>
     </>
   );

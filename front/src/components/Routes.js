@@ -25,6 +25,8 @@ import Report_User from "../pages/User_Panel/Manage_reports/Report_User";
 import List_Users from "../pages/Admin_Panel/Manage_users/List_Users";
 import List_Reports from "../pages/Admin_Panel/Manage_Reports/List_Reports";
 import User_Reports from "../pages/Admin_Panel/Manage_Reports/User_Reports";
+import My_Profile from "../pages/User_Panel/Manage_User/My_Profile";
+import Change_Password from "../pages/User_Panel/Manage_User/Change_Password";
 
 function PrivateRouteAdmin({ user, component: Comp, ...props }) {
     return (
@@ -92,6 +94,10 @@ export default function Routes(props) {
 
             <PrivateRouteUser user={user} path="/myrequests" component={My_Requests} {...props} />
             <PrivateRouteUser user={user} path="/report/user/:id" component={Report_User} {...props} />
+
+
+            <PrivateRouteUser user={user} path="/myprofile/:id" component={My_Profile} {...props} />
+            <PrivateRouteUser user={user} path="/changepassword/:id" component={Change_Password} {...props} />
 
         </Switch>
     )

@@ -1,4 +1,6 @@
 const Post = require("../models/Post");
+const Request = require("../models/Request");
+const fs = require('fs');
 
 class PostsController {
 
@@ -10,7 +12,7 @@ class PostsController {
                 .find({ isPost, _user })
                 .populate('_user')
                 .exec((err, response) => {
-                    if (err) return next(err);
+                    if (err) return next(err);  ``
                     res.status(200).send(response);
                 })
             :
@@ -64,7 +66,12 @@ class PostsController {
     async delete(req, res, next) {
         let { id } = req.params;
 
-        await Request.find({ _post: id }, (err, requests) => {
+        await Request.find({
+            $or: [
+                { senderId: id },
+                { receiverId: id }
+            ]
+        }, (err, requests) => {
             if (err) return next(err);
             requests.map(async r => {
                 await Request.deleteOne({ _id: r._id }, (err, response) => {
