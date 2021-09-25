@@ -1,7 +1,7 @@
 const Request = require("../models/Request");
 const Post = require("../models/Post");
 const mongoose = require('mongoose');
-
+ 
 class RequestsController {
 
     getAll(req, res, next) {
@@ -79,6 +79,7 @@ class RequestsController {
             res.status(200).send(response);
         });
     }
+
 }
 
 const requestsController = new RequestsController();

@@ -34,57 +34,58 @@ export default function Add_Post() {
     setState({ [name]: value });
   }
 
-  function handleImage(e) {
-    // const a = undefined;
-    // const b = a || "maria";
-    // console.log({ b }); // if a is undefined b=Maria else b = a;
+  // function handleImage(e) {
+  //   // const a = undefined;
+  //   // const b = a || "maria";
+  //   // console.log({ b }); // if a is undefined b=Maria else b = a;
 
-    // let a = [];
-    // console.log(a.length);
-    // a ? console.log("isArr") : console.log("isNotArr");
-    // a.length ? console.log("true") : console.log("fasle");
+  //   // let a = [];
+  //   // console.log(a.length);
+  //   // a ? console.log("isArr") : console.log("isNotArr");
+  //   // a.length ? console.log("true") : console.log("fasle");
 
-    let files = e.target.files;
-    if (!files.length) return;
-    setState({ image: files[0] });
-  }
+  //   // let files = e.target.files;
+  //   // if (!files.length) return;
+  //   // setState({ image: files[0] });
+  // }
 
   async function handleSave(e) {
     e.preventDefault();
 
-    // let reqBody = {
-    //   medicationName: state.medicationName,
-    //   medicationType: state.medicationType,
-    //   quantity: state.quantity,
-    //   description: state.description,
-    //   date: new Date(),
-    //   isPost: state.isPost == "Post" ? true : false,
-    //   isActive: true,
-    //   _user: _id,
-    //   fileSrc: { uri, name, type }
-    // };
+    let reqBody = {
+      medicationName: state.medicationName,
+      medicationType: state.medicationType,
+      quantity: state.quantity,
+      description: state.description,
+      date: new Date(),
+      isPost: state.isPost == "Post" ? true : false,
+      isActive: true,
+      _user: _id,
+      image: state.image,
+      // fileSrc: { uri, name, type }
+    };
 
-    let reqBody = new FormData();
-    reqBody.append("medicationName", state.medicationName);
-    reqBody.append("medicationType", state.medicationType);
-    reqBody.append("quantity", state.quantity);
-    reqBody.append("description", state.description);
-    reqBody.append("date", new Date());
-    reqBody.append("isPost", state.isPost == "Post" ? true : false);
-    reqBody.append("isActive", true);
-    reqBody.append("_user", _id);
+    // let reqBody = new FormData();
+    // reqBody.append("medicationName", state.medicationName);
+    // reqBody.append("medicationType", state.medicationType);
+    // reqBody.append("quantity", state.quantity);
+    // reqBody.append("description", state.description);
+    // reqBody.append("date", new Date());
+    // reqBody.append("isPost", state.isPost == "Post" ? true : false);
+    // reqBody.append("isActive", true);
+    // reqBody.append("_user", _id);
 
-    let uri = URL.createObjectURL(state.image);
-    let name = uri.split("/").pop();
-    let match = /.(\w+)$/.exec(name);
-    let type = match ? `image/${match[1]}` : `image`;
+    // let uri = URL.createObjectURL(state.image);
+    // let name = uri.split("/").pop();
+    // let match = /.(\w+)$/.exec(name);
+    // let type = match ? `image/${match[1]}` : `image`;
 
-    reqBody.append("fileSrc", { uri, name, type });
+    // reqBody.append("fileSrc", { uri, name, type });
 
     console.log(reqBody);
-    // await API.post(`posts`, reqBody).then(
-    //   history.push({ pathname: "/list/myposts" })
-    // );
+    await API.post(`posts`, reqBody).then(
+      history.push({ pathname: "/list/myposts" })
+    );
   }
 
   return (
@@ -150,12 +151,12 @@ export default function Add_Post() {
             />
           </td>
         </tr>
-        <tr>
+        {/* <tr>
           <th>Image</th>
           <td>
             <input type="file" onChange={handleImage} />
           </td>
-        </tr>
+        </tr> */}
         <tr>
           <th>Post Type</th>
           <td>

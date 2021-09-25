@@ -27,6 +27,8 @@ export default function List_MyPosts() {
     await API.post(`isPost`, { isPost: isTrue, _user: _id }).then((res) => {
       let data = res.data;
       setPosts(data);
+      console.log({ isPost: isTrue, _user: _id });
+      console.log(data);
     });
   }
 

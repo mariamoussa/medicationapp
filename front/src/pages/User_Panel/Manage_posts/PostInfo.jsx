@@ -4,7 +4,6 @@ import API from "../../../API";
 import SessionContext from "../../../components/sessions/SessionContext";
 
 export default function PostInfo() {
-
   let history = useHistory();
   let { id } = useParams();
 
@@ -37,7 +36,9 @@ export default function PostInfo() {
       _user: _id,
       _post: id,
     };
-    API.post('requests',reqBody).then(history.push({pathname:'/myrequests'}))
+    API.post("requests", reqBody).then(
+      history.push({ pathname: "/myrequests" })
+    );
   }
 
   useEffect(() => {
@@ -94,7 +95,9 @@ export default function PostInfo() {
           <td>{state._user}</td>
         </tr>
       </table>
-      <button onClick={handleRequest}>Send Request</button>
+      {state._user == _id ? null : (
+        <button onClick={handleRequest}>Send Request</button>
+      )}
     </form>
   );
 }

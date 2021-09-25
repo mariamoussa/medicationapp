@@ -1,8 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+
 import { useHistory } from "react-router-dom";
 import API from "../../../API";
+import SessionContext from "../../../components/sessions/SessionContext";
 
 export default function List_Posts() {
+  let {
+    session: {
+      user: { _id },
+    },
+  } = useContext(SessionContext);
+
   let history = useHistory();
   const [posts, setPosts] = useState([]);
   const [isTrue, setIsTrue] = useState(true);
@@ -23,8 +31,22 @@ export default function List_Posts() {
         Add Post
       </button>
 
-      <button onClick={() => setIsTrue(true)}>Available M</button>
-      <button onClick={() => setIsTrue(false)}>Needed M</button>
+      <button
+        onClick={() => {
+          setIsTrue(true);
+          setPosts([]);
+        }}
+      >
+        Available M
+      </button>
+      <button
+        onClick={() => {
+          setIsTrue(false);
+          setPosts([]);
+        }}
+      >
+        Needed M
+      </button>
 
       <table>
         <tr>
@@ -36,29 +58,42 @@ export default function List_Posts() {
           <th>user</th>
           <th>Manage</th>
         </tr>
-        {posts.map((post) => (
-          post._user?
-          <tr>
-            <th>{post.medicationName}</th>
-            <th>{post.medicationType}</th>
-            <th>{post.quantity}</th>
-            <th>{post.description}</th>
-            <th>{post.date}</th>
-            <th>
-              {post._user && post._user.firstName}{" "}
-              {post._user && post._user.lastName}
-            </th>
-            <td>
-              <button
-                onClick={() =>
-                  history.push({ pathname: `/get/post/${post._id}` })
-                }
-              >
-                View
-              </button>
-            </td>
-          </tr> : null
-        ))}
+        {posts.map((post) =>
+          post._user ? (
+            <tr>
+              <th>{post.medicationName}</th>
+              <th>{post.medicationType}</th>
+              <th>{post.quantity}</th>
+              <th>{post.description}</th>
+              <th>{post.date}</th>
+              <th>
+                {post._user && post._user.firstName}{" "}
+                {post._user && post._user.lastName}
+              </th>
+              <td>
+                {isTrue ? (
+                  <button
+                    onClick={() =>
+                      history.push({ pathname: `/get/post/${post._id}` })
+                    }
+                  >
+                    View
+                  </button>
+                ) : post._user._id == _id ? null : (
+                  <button
+                    onClick={() =>
+                      history.push({
+                        pathname: `/get/contactinfo/${post._user._id}`,
+                      })
+                    }
+                  >
+                    contact us
+                  </button>
+                )}
+              </td>
+            </tr>
+          ) : null
+        )}
       </table>
     </>
   );

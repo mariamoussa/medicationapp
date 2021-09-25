@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import API from "../../../API";
+import {get} from "lodash";
 
 import { useHistory } from "react-router-dom";
 
@@ -15,7 +16,7 @@ export default function List_Requests() {
   } = useContext(SessionContext);
 
   const [requests, setRequests] = useState([]);
-  const [isSent, setIsSent] = useState(true);
+  const [isSent, setIsSent] = useState(true); 
 
   function fetchData() {
     setRequests([]);
@@ -54,11 +55,14 @@ export default function List_Requests() {
       ) : (
         requests.map((request) => (
           <div key={request._id}>
-            <h1>{request.senderId.username}</h1>
-            <h1>{request._post.description}</h1>
-            <h1>{request.status}</h1>
-            <h1>{request._post.medicationName}</h1>
-            <h1>{request._post.medicationType}</h1>
+            <h1>Username: 
+              {isSent?get(request.receiverId,"username"):get(request.senderId,"username")}
+              </h1>
+            <h1>Description: {get(request._post,"description","No description")}</h1>
+            {/* <h1>{request._post && request._post.description}</h1> */}
+            <h1>Status: {get(request,"status")}</h1>
+            <h1>Medication Name: {get(request._post,"medicationName")}</h1>
+            <h1>Medication Type: {get(request._post,"medicationType")}</h1>
 
             {isSent ? (
               request.status == "Accepted" ? (

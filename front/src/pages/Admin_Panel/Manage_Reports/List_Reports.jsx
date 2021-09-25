@@ -13,8 +13,10 @@ export default function List_Reports() {
     const isTrue = window.confirm("are you sure ?");
 
     if (isTrue) {
-      API.delete(`postsOfUser/${id}`).then(
-        API.delete(`users/${id}`).then((res) => fetchData())
+      API.delete(`requestsOfUser/${id}`).then(
+        API.delete(`postsOfUser/${id}`).then(
+          API.delete(`users/${id}`).then((res) => fetchData())
+        )
       );
     }
   }

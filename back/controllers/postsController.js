@@ -3,32 +3,30 @@ const Post = require("../models/Post");
 class PostsController {
 
     getAll(req, res, next) {
-        let body = req.body
         let { isPost, _user } = req.body;
 
-        (isPost != undefined || _user != undefined) ?
-            Post.find({ ...body }).populate('_user').exec((err, response) => {
-                if (err) return next(err);
-                res.status(200).send(response);
-            }) :
-            Post.find({}).populate('_user').exec((err, response) => {
-                if (err) return next(err);
-                res.status(200).send(response);
-            });
-    }
-
-    async deleteByUser(req, res, next) {
-        let { id } = req.params;
-        await Post.find({ _user: id }, (err, posts) => {
-            if (err) return next(err);
-            posts.map(async p => {
-                await Post.deleteOne({ _id: p._id }, (err, response) => {
-                    if (err) return next(err)
+        (isPost != undefined && _user != undefined) ?
+            Post
+                .find({ isPost, _user })
+                .populate('_user')
+                .exec((err, response) => {
+                    if (err) return next(err);
+                    res.status(200).send(response);
+                })
+            :
+            (isPost != undefined) ?
+                Post
+                    .find({ isPost })
+                    .populate('_user')
+                    .exec((err, response) => {
+                        if (err) return next(err);
+                        res.status(200).send(response);
+                    })
+                :
+                Post.find({}).populate('_user').exec((err, response) => {
+                    if (err) return next(err);
+                    res.status(200).send(response);
                 });
-            });
-            res.status(200).send("true");
-        });
-
     }
 
     get(req, res, next) {
@@ -41,13 +39,13 @@ class PostsController {
 
     post(req, res, next) {
         let body = req.body;
-        body['image'] = req.file && req.file.filename;
-        console.log(body.image);
-        // let user = new Post(body);
-        // user.save((err, response) => {
-        //     if (err) return next(err);
-        //     res.status(200).send(response);
-        // })
+        // body['image'] = req.file && req.file.filename;
+        // console.log(body.image);
+        let user = new Post(body);
+        user.save((err, response) => {
+            if (err) return next(err);
+            res.status(200).send(response);
+        })
     }
 
     put(req, res, next) {
@@ -62,9 +60,20 @@ class PostsController {
         });
     }
 
-    delete(req, res, next) {
+
+    async delete(req, res, next) {
         let { id } = req.params;
-        Post.deleteOne({ _id: id }, (err, response) => {
+
+        await Request.find({ _post: id }, (err, requests) => {
+            if (err) return next(err);
+            requests.map(async r => {
+                await Request.deleteOne({ _id: r._id }, (err, response) => {
+                    if (err) return next(err)
+                });
+            });
+        });
+
+        await Post.deleteOne({ _id: id }, (err, response) => {
             if (err) return next(err)
             res.status(200).send(response);
         });
