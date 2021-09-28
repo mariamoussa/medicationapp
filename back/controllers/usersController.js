@@ -6,6 +6,30 @@ const bcrypt = require("bcryptjs");
 
 class UsersController {
 
+    isValidUsername(req, res, next) {
+        let { username } = req.body;
+        User.find({ username }, (err, response) => {
+            if (err) return next(err);
+            res.status(200).send(response);
+        });
+    }
+
+    isValidPhone(req, res, next) {
+        let { phone } = req.body;
+        User.find({ phone }, (err, response) => {
+            if (err) return next(err);
+            res.status(200).send(response);
+        })
+    }
+
+    isValidEmail(req, res, next) {
+        let { email } = req.body;
+        User.find({ email }, (err, response) => {
+            if (err) return next(err);
+            res.status(200).send(response);
+        })
+    }
+
     getAll(req, res, next) {
         User.find({ role_id: "user" }, (err, response) => {
             if (err) return next(err);

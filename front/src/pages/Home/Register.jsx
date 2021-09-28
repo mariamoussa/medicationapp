@@ -28,6 +28,12 @@ export default function Register() {
 
     show: false,
     err: "",
+
+    isValidPass: false,
+
+    existingEmail: false,
+    existingPhone: false,
+    existingUsername: false,
   });
 
   function setState(nextState) {
@@ -50,6 +56,9 @@ export default function Register() {
   function handleChangePassword(val) {
     let value = val.replace(/\s/g, "");
     setState({ password: value });
+    value.length < 8
+      ? setState({ isValidPass: false })
+      : setState({ isValidPass: true });
   }
 
   let {
@@ -77,27 +86,48 @@ export default function Register() {
         reqBody.lastName != "" &&
         reqBody.email != "" &&
         reqBody.phone != "" &&
-        reqBody.address != ""
+        reqBody.address != "" &&
+        state.isValidPass
       ) {
-        await API.post("signUp", reqBody).then((res) => {
-          console.log(res.data);
-          const success = res.data.success;
-          if (success) {
-            const result = res.data.result;
-
-            setCookie("_id", result._id, 30);
-            setCookie("token", result.token, 30);
-            setCookie("role_id", result.role_id, 30);
-
-            setSession({
-              user: {
-                _id: result._id,
-                role_id: result.role_id,
-                token: result.token,
-              },
-            });
-          }
+        let emails = await API.post(`isemail`, { email: reqBody.email });
+        let phones = await API.post(`isphone`, { phone: reqBody.phone });
+        let usernames = await API.post(`isusername`, {
+          username: reqBody.username,
         });
+
+        console.log(emails.data);
+        console.log(phones.data);
+        console.log(usernames.data);
+
+        if (emails.data.length) setState({ existingEmail: true });
+        if (phones.data.length) setState({ existingPhone: true });
+        if (usernames.data.length) setState({ existingUsername: true });
+
+        if (
+          !emails.data.length &&
+          !phones.data.length &&
+          !usernames.data.length
+        ) {
+          await API.post("signUp", reqBody).then((res) => {
+            console.log(res.data);
+            const success = res.data.success;
+            if (success) {
+              const result = res.data.result;
+
+              setCookie("_id", result._id, 30);
+              setCookie("token", result.token, 30);
+              setCookie("role_id", result.role_id, 30);
+
+              setSession({
+                user: {
+                  _id: result._id,
+                  role_id: result.role_id,
+                  token: result.token,
+                },
+              });
+            }
+          });
+        }
       }
     } else {
       setState({ err: "password incorect" });
@@ -163,10 +193,14 @@ export default function Register() {
               name="email"
               value={state.email}
               placeholder="Email"
-              onChange={handleChange}
+              onChange={(e) => {
+                setState({ existingEmail: false });
+                handleChange(e);
+              }}
             />
           </td>
         </tr>
+        {state.existingEmail ? <p>already exist</p> : null}
 
         <tr>
           <th>Phone Number</th>
@@ -175,10 +209,14 @@ export default function Register() {
               name="phone"
               value={state.phone}
               placeholder="Phone Number"
-              onChange={handleChange}
+              onChange={(e) => {
+                setState({ existingPhone: false });
+                handleChange(e);
+              }}
             />
           </td>
         </tr>
+        {state.existingPhone ? <p>already exist</p> : null}
 
         <tr>
           <th>Birth Date</th>
@@ -211,10 +249,14 @@ export default function Register() {
               name="username"
               value={state.username}
               placeholder="Username"
-              onChange={(e) => handleChangeUsername(e.target.value)}
+              onChange={(e) => {
+                setState({ existingUsername: false });
+                handleChangeUsername(e.target.value);
+              }}
             />
           </td>
         </tr>
+        {state.existingUsername ? <p>already exist</p> : null}
 
         <tr>
           <th>Password</th>
@@ -234,11 +276,14 @@ export default function Register() {
             >
               {state.show ? "Hide" : "Show"}
             </button>
+            {!state.isValidPass && state.password != "" ? (
+              <span>{"password<8"}</span>
+            ) : null}
           </td>
         </tr>
 
         <tr>
-          <th>Confirm Password</th>
+          <th>Re-Type Password</th>
           <td>
             <input
               type={state.show ? "text" : "password"}

@@ -1,12 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import API from "../../../API";
 import SessionContext from "../../../components/sessions/SessionContext";
 import { get } from "lodash";
+import moment from "moment";
 
 export default function My_Profile() {
   let history = useHistory();
-  let { id } = useParams();
+
+  let {
+    session: {
+      user: { _id },
+    },
+  } = useContext(SessionContext);
 
   const [state, updateState] = useState({
     firstName: "",
@@ -19,6 +25,8 @@ export default function My_Profile() {
     birthdate: "",
     address: "",
     gender: "",
+
+    isEdit: false,
   });
 
   function setState(nextState) {
@@ -48,13 +56,11 @@ export default function My_Profile() {
       gender: state.gender,
     };
 
-    API.put(`users/${id}`, reqBody).then(
-      history.push({ pathname: `/myprofile/${id}` })
-    );
+    API.put(`users/${_id}`, reqBody).then(setState({ isEdit: false }));
   }
 
   async function fetchData() {
-    await API.get(`users/${id}`).then((res) => {
+    await API.get(`users/${_id}`).then((res) => {
       const data = res.data;
       setState({
         firstName: data.firstName,
@@ -64,7 +70,7 @@ export default function My_Profile() {
         password: data.password,
         email: data.email,
         phone: data.phone,
-        birthdate: data.birthdate,
+        birthdate: moment(data.birthdate).format("YYYY-MM-DD"),
         address: data.address,
         gender: data.gender,
       });
@@ -82,113 +88,152 @@ export default function My_Profile() {
           <tr>
             <th>FirstName</th>
             <td>
-              <input
-                name="firstName"
-                value={state.firstName}
-                placeholder="First Name"
-                onChange={handleChange}
-              />
+              {state.isEdit ? (
+                <input
+                  name="firstName"
+                  value={state.firstName}
+                  placeholder="First Name"
+                  onChange={handleChange}
+                />
+              ) : (
+                state.firstName
+              )}
             </td>
           </tr>
+
           <tr>
             <th>Lastname</th>
             <td>
-              <input
-                name="firstName"
-                value={state.lastName}
-                placeholder="Last Name"
-                onChange={handleChange}
-              />
+              {state.isEdit ? (
+                <input
+                  name="firstName"
+                  value={state.lastName}
+                  placeholder="Last Name"
+                  onChange={handleChange}
+                />
+              ) : (
+                state.lastName
+              )}
             </td>
           </tr>
-          <tr>
-            <th>Role</th>
-            <td>{state.role_id}</td>
-          </tr>
+
           <tr>
             <th>Username</th>
             <td>
-              <input
-                name="Username"
-                value={state.username}
-                placeholder="username"
-                onChange={handleChange}
-              />
+              {state.isEdit ? (
+                <input
+                  name="username"
+                  value={state.username}
+                  placeholder="username"
+                  onChange={handleChange}
+                />
+              ) : (
+                state.username
+              )}
             </td>
           </tr>
+
           <tr>
             <th>Email</th>
             <td>
-              <input
-                name="email"
-                value={state.email}
-                placeholder="email"
-                onChange={handleChange}
-              />
+              {state.isEdit ? (
+                <input
+                  name="email"
+                  value={state.email}
+                  placeholder="email"
+                  onChange={handleChange}
+                />
+              ) : (
+                state.email
+              )}
             </td>
           </tr>
+
           <tr>
             <th>Phone</th>
             <td>
-              <input
-                name="phone"
-                value={state.phone}
-                placeholder="phone"
-                onChange={handleChange}
-              />
+              {state.isEdit ? (
+                <input
+                  name="phone"
+                  value={state.phone}
+                  placeholder="phone"
+                  onChange={handleChange}
+                />
+              ) : (
+                state.phone
+              )}
             </td>
           </tr>
           <tr>
             <th>Birthdate</th>
             <td>
-              <input
-                type="date"
-                name="birthdate"
-                value={state.birthdate}
-                placeholder="Birthdate"
-                onChange={handleChange}
-              />
+              {state.isEdit ? (
+                <input
+                  type="date"
+                  name="birthdate"
+                  value={state.birthdate}
+                  placeholder="Birthdate"
+                  onChange={handleChange}
+                />
+              ) : (
+                moment(state.birthdate).format("D   MMMM   YYYY")
+              )}
             </td>
           </tr>
           <tr>
             <th>Address</th>
             <td>
-              <input
-                name="address"
-                value={state.address}
-                placeholder="Address"
-                onChange={handleChange}
-              />
+              {state.isEdit ? (
+                <input
+                  name="address"
+                  value={state.address}
+                  placeholder="Address"
+                  onChange={handleChange}
+                />
+              ) : (
+                state.username
+              )}
             </td>
           </tr>
           <tr>
             <th>Gender</th>
             <td>
-              <form name="gender" onChange={handleChange}>
-                <input
-                  type="radio"
-                  id="Male"
-                  name="gender"
-                  value="Male"
-                  checked={state.gender === "Male"}
-                />
-                <label for="Male">Male</label>
-                <input
-                  type="radio"
-                  id="Female"
-                  name="gender"
-                  value="Female"
-                  checked={state.gender === "Female"}
-                />
-                <label for="Female">Female</label>
-              </form>
+              {state.isEdit ? (
+                <form name="gender" onChange={handleChange}>
+                  <input
+                    type="radio"
+                    id="Male"
+                    name="gender"
+                    value="Male"
+                    checked={state.gender === "Male"}
+                  />
+                  <label for="Male">Male</label>
+                  <input
+                    type="radio"
+                    id="Female"
+                    name="gender"
+                    value="Female"
+                    checked={state.gender === "Female"}
+                  />
+                  <label for="Female">Female</label>
+                </form>
+              ) : (
+                state.gender
+              )}
             </td>
           </tr>
         </table>
-        <button type="submit">update profile</button>
+        {state.isEdit ? <button type="submit">update profile</button> : null}
       </form>
-      <button onClick={() => history.push({ pathname: `/changepassword/${id}` })}>Change Password</button>
+      <button onClick={() => history.push({ pathname: `/changepassword` })}>
+        Change Password
+      </button>
+
+      {state.isEdit ? null : (
+        <button type="button" onClick={() => setState({ isEdit: true })}>
+          edit
+        </button>
+      )}
     </>
   );
 }
-

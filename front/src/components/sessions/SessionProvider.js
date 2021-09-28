@@ -51,7 +51,8 @@ export default function SessionProvider({ children }) {
                                 user: {
                                     _id: data._id,
                                     role_id: data.role_id,
-                                    token: data.token
+                                    token: data.token,
+                                    username: data.username
                                 }
                             });
                         }
@@ -59,7 +60,7 @@ export default function SessionProvider({ children }) {
             }
         }
         initializeUser()
-    }, [])
+    }, [JSON.stringify(session.user)])
 
     let context = { session, actions: { setSession, signOut } }
 

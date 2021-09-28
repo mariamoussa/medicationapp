@@ -96,8 +96,8 @@ export default function Routes(props) {
             <PrivateRouteUser user={user} path="/report/user/:id" component={Report_User} {...props} />
 
 
-            <PrivateRouteUser user={user} path="/myprofile/:id" component={My_Profile} {...props} />
-            <PrivateRouteUser user={user} path="/changepassword/:id" component={Change_Password} {...props} />
+            <PrivateRouteUser user={user} path="/myprofile" component={My_Profile} {...props} />
+            <PrivateRouteUser user={user} path="/changepassword" component={Change_Password} {...props} />
 
         </Switch>
     )
