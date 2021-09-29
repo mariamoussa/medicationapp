@@ -36,7 +36,9 @@ export default function Report_User() {
       _Reported: id,
       description: state.description,
     };
-    await API.post(`report`, reqBody).then(history.push({ pathname: "/" }));
+    await API.post(`report`, reqBody).then(() => {
+      history.push({ pathname: "/" })
+    });
   }
 
   function handleChange(e) {

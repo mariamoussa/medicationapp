@@ -36,9 +36,9 @@ export default function PostInfo() {
       _user: _id,
       _post: id,
     };
-    API.post("requests", reqBody).then(
+    API.post("requests", reqBody).then(() => {
       history.push({ pathname: "/myrequests" })
-    );
+    });
   }
 
   useEffect(() => {

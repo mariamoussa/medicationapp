@@ -1,14 +1,15 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom'
 import SessionProvider from './components/sessions/SessionProvider';
 import Routes from './components/Routes';
+import { withRouter } from 'react-router-dom';
+import './App.css';
 
-export default function App() {
+function App(props) {
   return (
     <SessionProvider>
-      <Router>
-        <Routes />
-      </Router>
+      <Routes {...props} />
     </SessionProvider>
   );
 }
+
+export default withRouter(App)

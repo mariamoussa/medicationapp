@@ -5,8 +5,104 @@ import SessionContext from "../../../components/sessions/SessionContext";
 import { get } from "lodash";
 import moment from "moment";
 
+// import { injectStyle } from "react-toastify/dist/inject-style"
+// import { toast } from "react-toastify"
+
+import {
+  FormControl,
+  Avatar,
+  Button,
+  CssBaseline,
+  TextField,
+  FormControlLabel,
+  Grid,
+  Typography,
+  makeStyles,
+  Container,
+  RadioGroup,
+  FormLabel,
+  Radio,
+} from "@material-ui/core";
+
+import { Person } from "@material-ui/icons";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& label.Mui-focused": {
+      color: theme.palette.primary.main,
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: theme.palette.primary.main,
+    },
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: theme.palette.primary.main,
+      },
+      "&:hover fieldset": {
+        borderColor: theme.palette.primary.main,
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: theme.palette.primary.main,
+      },
+    },
+    marginBottom: 15,
+  },
+  paper: {
+    marginTop: theme.spacing(3),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.primary.main,
+    color: "white !important",
+  },
+  form: {
+    width: "100%",
+    marginTop: theme.spacing(4),
+  },
+  submit: {
+    width: 120,
+    marginBottom: 20,
+    marginTop: 20,
+  },
+  container: {
+    backgroundColor: "white",
+    paddingBottom: "10px",
+    marginBottom: "70px",
+    borderRadius: "5px",
+  },
+  FormLabel: {
+    textAlign: "center",
+    marginTop: 12,
+  },
+  flexDiv: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around",
+  },
+  FormControl: {
+    display: "flex",
+    flexFlow: "row",
+    marginLeft: 20,
+    "& .radioR2": {
+      display: "flex",
+      flexFlow: "row",
+      marginLeft: 75,
+      "& .MuiFormControlLabel-root:nth-child(2)": {
+        marginLeft: 25,
+      },
+    },
+    marginBottom: 15,
+  },
+}));
+
 export default function My_Profile() {
   let history = useHistory();
+
+  const classes = useStyles();
 
   let {
     session: {
@@ -82,158 +178,228 @@ export default function My_Profile() {
   }, []);
 
   return (
-    <>
-      <form onSubmit={handleSave}>
-        <table>
-          <tr>
-            <th>FirstName</th>
-            <td>
-              {state.isEdit ? (
-                <input
-                  name="firstName"
-                  value={state.firstName}
-                  placeholder="First Name"
-                  onChange={handleChange}
-                />
-              ) : (
-                state.firstName
-              )}
-            </td>
-          </tr>
+    <Container component="main" maxWidth="xs" className={classes.container}>
+      <Typography
+        variant="h3"
+        align="center"
+        className="titlePage"
+      ></Typography>
 
-          <tr>
-            <th>Lastname</th>
-            <td>
-              {state.isEdit ? (
-                <input
-                  name="firstName"
-                  value={state.lastName}
-                  placeholder="Last Name"
-                  onChange={handleChange}
-                />
-              ) : (
-                state.lastName
-              )}
-            </td>
-          </tr>
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <Person />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Update Profile
+        </Typography>
+        <form className={classes.form} onSubmit={handleSave}>
+          <Grid item xs={12}>
+            {state.isEdit ? (
+              <TextField
+                fullWidth
+                variant="outlined"
+                label="Firstname"
+                name="firstName"
+                value={state.firstName}
+                onChange={handleChange}
+                className={classes.root}
+              />
+            ) : (
+              state.firstName
+            )}
+          </Grid>
+          <Grid item xs={12}>
+            {state.isEdit ? (
+              <TextField
+                fullWidth
+                variant="outlined"
+                label="Lastname"
+                name="lastname"
+                value={state.lastName}
+                onChange={handleChange}
+                className={classes.root}
+              />
+            ) : (
+              state.lastName
+            )}
+          </Grid>
+          <Grid item xs={12}>
+            {state.isEdit ? (
+              <TextField
+                fullWidth
+                variant="outlined"
+                label="Email"
+                name="email"
+                value={state.email}
+                onChange={handleChange}
+                className={classes.root}
+              />
+            ) : (
+              state.isEdit
+            )}
+          </Grid>
+          <Grid item xs={12}>
+            {state.isEdit ? (
+              <TextField
+                fullWidth
+                variant="outlined"
+                label="Username"
+                name="username"
+                value={state.username}
+                onChange={handleChange}
+                className={classes.root}
+              />
+            ) : (
+              state.username
+            )}
+          </Grid>
+          <Grid item xs={12}>
+            {state.isEdit ? (
+              <TextField
+                fullWidth
+                variant="outlined"
+                label="Email"
+                name="email"
+                value={state.email}
+                onChange={handleChange}
+                className={classes.root}
+              />
+            ) : (
+              state.email
+            )}
+          </Grid>
+          <Grid item xs={12}>
+            {state.isEdit ? (
+              <TextField
+                required
+                fullWidth
+                type="number"
+                variant="outlined"
+                label="Phone Number"
+                name="phone"
+                value={state.phone}
+                onChange={handleChange}
+                className={classes.root}
+              />
+            ) : (
+              state.phone
+            )}
+          </Grid>
 
-          <tr>
-            <th>Username</th>
-            <td>
-              {state.isEdit ? (
-                <input
-                  name="username"
-                  value={state.username}
-                  placeholder="username"
+          <Grid item xs={12}>
+            {state.isEdit ? (
+              <TextField
+                fullWidth
+                variant="outlined"
+                label="Birthdate"
+                name="birthdate"
+                value={state.birthdate}
+                onChange={handleChange}
+                className={classes.root}
+              />
+            ) : (
+              moment(state.birthdate).format("D   MMMM   YYYY")
+            )}
+          </Grid>
+          <Grid item xs={12}>
+            {state.isEdit ? (
+              <TextField
+                required
+                fullWidth
+                variant="outlined"
+                label="Address"
+                name="address"
+                value={state.address}
+                onChange={handleChange}
+                className={classes.root}
+              />
+            ) : (
+              state.address
+            )}
+          </Grid>
+          <Grid item xs={12}>
+            {state.isEdit ? (
+              <FormControl className={classes.FormControl}>
+                <FormLabel xs={4} className={classes.FormLabel}>
+                  Gender
+                </FormLabel>
+                <RadioGroup
+                  name="gender"
+                  value={state.gender}
                   onChange={handleChange}
-                />
-              ) : (
-                state.username
-              )}
-            </td>
-          </tr>
-
-          <tr>
-            <th>Email</th>
-            <td>
-              {state.isEdit ? (
-                <input
-                  name="email"
-                  value={state.email}
-                  placeholder="email"
-                  onChange={handleChange}
-                />
-              ) : (
-                state.email
-              )}
-            </td>
-          </tr>
-
-          <tr>
-            <th>Phone</th>
-            <td>
-              {state.isEdit ? (
-                <input
-                  name="phone"
-                  value={state.phone}
-                  placeholder="phone"
-                  onChange={handleChange}
-                />
-              ) : (
-                state.phone
-              )}
-            </td>
-          </tr>
-          <tr>
-            <th>Birthdate</th>
-            <td>
-              {state.isEdit ? (
-                <input
-                  type="date"
-                  name="birthdate"
-                  value={state.birthdate}
-                  placeholder="Birthdate"
-                  onChange={handleChange}
-                />
-              ) : (
-                moment(state.birthdate).format("D   MMMM   YYYY")
-              )}
-            </td>
-          </tr>
-          <tr>
-            <th>Address</th>
-            <td>
-              {state.isEdit ? (
-                <input
-                  name="address"
-                  value={state.address}
-                  placeholder="Address"
-                  onChange={handleChange}
-                />
-              ) : (
-                state.username
-              )}
-            </td>
-          </tr>
-          <tr>
-            <th>Gender</th>
-            <td>
-              {state.isEdit ? (
-                <form name="gender" onChange={handleChange}>
-                  <input
-                    type="radio"
-                    id="Male"
-                    name="gender"
+                  className="radioR2"
+                >
+                  <FormControlLabel
+                    xs={4}
                     value="Male"
-                    checked={state.gender === "Male"}
+                    control={<Radio />}
+                    label="Male"
                   />
-                  <label for="Male">Male</label>
-                  <input
-                    type="radio"
-                    id="Female"
-                    name="gender"
+                  <FormControlLabel
+                    xs={4}
                     value="Female"
-                    checked={state.gender === "Female"}
+                    control={<Radio />}
+                    label="Female"
                   />
-                  <label for="Female">Female</label>
-                </form>
-              ) : (
-                state.gender
-              )}
-            </td>
-          </tr>
-        </table>
-        {state.isEdit ? <button type="submit">update profile</button> : null}
-      </form>
-      <button onClick={() => history.push({ pathname: `/changepassword` })}>
-        Change Password
-      </button>
+                </RadioGroup>
+              </FormControl>
+            ) : (
+              state.gender
+            )}
+          </Grid>
 
-      {state.isEdit ? null : (
-        <button type="button" onClick={() => setState({ isEdit: true })}>
-          edit
-        </button>
-      )}
-    </>
+          <div className={classes.flexDiv}>
+            {state.isEdit ? (
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+              >
+                Update Profile
+              </Button>
+            ) : null}
+
+            <Button
+              type="button"
+              variant="contained"
+              className={classes.submit}
+              onClick={() => history.push({ pathname: "/patient/panel" })}
+            >
+              Cancel
+            </Button>
+
+            <Button
+              type="button"
+              variant="contained"
+              className={classes.submit}
+              onClick={() => history.push({ pathname: "/changepassword" })}
+            >
+              Change Password
+            </Button>
+            {state.isEdit ? null : (
+              <Button
+                type="button"
+                variant="contained"
+                className={classes.submit}
+                onClick={() => setState({ isEdit: true })}
+              >
+                Edit
+              </Button>
+            )}
+          </div>
+        </form>
+        {/* <button onClick={() => history.push({ pathname: `/changepassword` })}>
+          Change Password
+        </button> */}
+        {/* 
+        {state.isEdit ? null : (
+          <button type="button" onClick={() => setState({ isEdit: true })}>
+            edit
+          </button>
+        )} */}
+      </div>
+    </Container>
   );
 }

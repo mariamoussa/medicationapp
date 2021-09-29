@@ -6,11 +6,31 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
 
+//for upload image
+var multer = require('multer')
+
+
 require('dotenv').config();
 
 var bodyParser = require("body-parser");
 
 var mongoose = require('mongoose');
+
+//for upload image
+//multer
+const multerStorage = multer.diskStorage({
+  destination: path.join(__dirname, './public/uploads'),
+  filename: (req, file, cb) => {
+    const date = Date.now();
+    const image = date + path.extname(file.originalname)
+    cb(null, image);
+  }
+})
+const upload = multer({ storage: multerStorage });
+
+
+
+
 
 // const MongoClient = require('mongodb').MongoClient;
 // const url = 'mongodb://127.0.0.1:27017';
@@ -20,7 +40,8 @@ var authRouter = require('./routes/auth');
 var usersRouter = require('./routes/users');
 var requestsRouter = require('./routes/requests');
 var reportsRouter = require('./routes/reports');
-var postsRouter = require('./routes/posts');
+var postsRouter = require('./routes/posts')(upload);
+//here we added upload because this is where we need to upload image
 
 var app = express();
 

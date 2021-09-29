@@ -64,9 +64,9 @@ export default function Change_Password() {
     if (!isMatch) setState({ isValidPass: false });
 
     if (isMatch && state.isValidNew && state.isValidConf) {
-      API.put(`users/${_id}`, { password: state.newPass }).then(
+      API.put(`users/${_id}`, { password: state.newPass }).then(() => {
         history.push(`/myprofile`)
-      );
+      });
     }
   }
 

@@ -9,16 +9,16 @@ class PostsController {
 
         (isPost != undefined && _user != undefined) ?
             Post
-                .find({ isPost, _user })
+                .find({ isPost, _user, isActive: true })
                 .populate('_user')
                 .exec((err, response) => {
-                    if (err) return next(err);  ``
+                    if (err) return next(err); ``
                     res.status(200).send(response);
                 })
             :
             (isPost != undefined) ?
                 Post
-                    .find({ isPost })
+                    .find({ isPost, isActive: true })
                     .populate('_user')
                     .exec((err, response) => {
                         if (err) return next(err);
@@ -29,6 +29,16 @@ class PostsController {
                     if (err) return next(err);
                     res.status(200).send(response);
                 });
+    }
+
+    getFiltration(req, res, next) {
+        let { name } = req.body;
+        Post.find({
+            medicationName: { $regex: new RegExp(name) }, isActive: true
+        }).populate('_User').exec((err, result) => {
+            if (err) return next(err);
+            res.json({ success: true, result });
+        });
     }
 
     get(req, res, next) {
@@ -50,15 +60,51 @@ class PostsController {
         })
     }
 
-    put(req, res, next) {
+    // post(req, res, next) {
+    //     let body = req.body;
+    //     let image = [req.file.filename].toString();
+    //     let post = new Post({ ...body, image });
+    //     post.save((err, response) => {
+    //         if (err) return next(err);
+    //         res.status(200).send(response);
+    //     });
+    // }
+
+    // put(req, res, next) {
+    //     let { id } = req.params;
+    //     let body = req.body;
+    //     console.log({ id, body });
+    //     Post.updateOne({ _id: id }, {
+    //         $set: body
+    //     }, (err, response) => {
+    //         if (err) return next(err)
+    //         res.status(200).send(response);
+    //     });
+    // }
+
+    async put(req, res, next) {
         let { id } = req.params;
-        let body = req.body;
-        console.log({ id, body });
-        Post.updateOne({ _id: id }, {
+
+        if (req.file === undefined) {
+            var image = null
+
+        } else {
+            var image = [req.file.filename].toString();
+
+        }
+        await Post.findById(id, (err, response) => {
+            if (err) return next(err);
+            console.log("response", response);
+            if (image === null) {
+                image = response.image;
+            }
+        })
+        let body = { ...req.body, image };
+        await Post.updateOne({ _id: id }, {
             $set: body
         }, (err, response) => {
-            if (err) return next(err)
-            res.status(200).send(response);
+            if (err) return next(err);
+            res.status(200).send(response)
         });
     }
 
