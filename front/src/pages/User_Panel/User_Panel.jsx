@@ -11,6 +11,7 @@ import {
   TableHead,
   TableBody,
   TableCell,
+  Grid,
   TableRow,
   Container,
   Paper,
@@ -30,8 +31,39 @@ import { ArrowDropUp, ArrowDropDown } from "@material-ui/icons";
 const useStyles = makeStyles((theme) => ({
   container: {
     width: "100%",
-    margin: 5,
-    marginBottom: 30,
+    backgroundColor: "white",
+    paddingBottom: "10px",
+    borderRadius: "5px",
+  },
+    bigPaper: {
+    width: "80%",
+    height: 140,
+    backgroundColor: "#FFFFFF",
+    margin: 15,
+  },
+  smallPaper: {
+    width: "30%",
+    height: "50%",
+    backgroundColor: "#A2B29F",
+    position: "relative",
+    top: -70,
+    left: -15,
+  },
+  smallPaperText: {
+    width: "80%",
+    height: "50%",
+    backgroundColor: "#A2B29F",
+    position: "relative",
+    top: 40,
+    left: "10%",
+  },
+  smallPaperInside: {
+    width: "50%",
+    height: "30%",
+    backgroundColor: "#A2B29F",
+    position: "relative",
+    top: 60,
+    left: "40%",
   },
   paperFilter: {
     backgroundColor: "#FFFFFF",
@@ -39,7 +71,19 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 10,
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
+  },
+  textstyle:{
+    color:"#FFFFFF",
+    fontSize:25,
+    paddingTop:20
+  },
+  titlePage:{
+    color: "#FFFFFF",
+    fontWeight: "bold",
+    fontSize: 40,
+    paddingTop:10,
+    paddingBottom:10,
   },
   root: {
     "& label.Mui-focused": {
@@ -59,91 +103,8 @@ const useStyles = makeStyles((theme) => ({
         borderColor: theme.palette.primary.main,
       },
     },
+    marginBottom: 15,
   },
-  ddBoxIconBtn: {
-    width: 160,
-    padding: 6,
-    paddingBottom: 10,
-    margin: 10,
-    border: "2px solid transparent",
-    backgroundColor: "#FFFFFF",
-    color: "#A2B29F",
-    "&:hover": {
-      border: "2px solid #FFFFFF",
-      color: "#FFFFFF",
-      backgroundColor: "#A2B29F",
-    },
-  },
-  ddBoxIconBtnLink: {
-    marginTop: 30,
-    width: 160,
-    textDecoration: "none",
-    fontSize: 16,
-  },
-  ddBoxIcon: {
-    position: "relative",
-    top: 6,
-    right: 10,
-  },
-  widthBtn: {
-    width: 20,
-  },
-  editIcon: {
-    color: "#8BE3D9",
-    "&:hover": {
-      color: "#BEF4F4",
-    },
-  },
-  deleteIcon: {
-    color: "#ed4f1c",
-    "&:hover": {
-      color: "#e24414",
-    },
-  },
-  iconDownUp: {
-    position: "relative",
-    top: 6,
-    textDecoration: "none",
-    color: "#272727",
-  },
-  iconDU: {
-    fontSize: 26,
-  },
-  linkOrder: {
-    textDecoration: "none",
-    color: "#272727",
-  },
-  paginationDiv: {
-    marginTop: 10,
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    padding: 10,
-  },
-  btnPagination: {
-    display: "flex",
-    flexDirection: "row",
-    "& Button": {
-      marginLeft: 4,
-    },
-    "& .BtnPageActive": {
-      backgroundColor: "#BEF4F4",
-    },
-    "& .BtnPage": {
-      "&:hover": {
-        backgroundColor: "#e0e0e0",
-      },
-    },
-  },
-  buttonNextPrev: {
-    width: 100,
-    padding: 3,
-    fontWeight: "none",
-    fontSize: 12,
-  },
-  titlePage:{
-    color:"white",
-  }
 }));
 
 export default function User_Panel() {
@@ -160,45 +121,58 @@ export default function User_Panel() {
 
   return (
     <>
-      <Container className={classes.container}>
-      <Typography variant="h3" align="center" className={classes.titlePage}>Welcome {username}</Typography>          
-        <Link
-          to={`/list/post` }
-          className={classes.ddBoxIconBtnLink}
-        >
-          <Paper align="center" className={classes.ddBoxIconBtn}>
-            <AddBoxIcon className={classes.ddBoxIcon} />
-            All Posts
-          </Paper>
-        </Link>
-        <Link
-          to= {`/list/myposts` }
-          className={classes.ddBoxIconBtnLink}
-        >
-          <Paper align="center" className={classes.ddBoxIconBtn}>
-            <AddBoxIcon className={classes.ddBoxIcon} />
-            My Posts
-          </Paper>{" "}
-        </Link>
-        <Link
-         to={`/myrequests`}
-          className={classes.ddBoxIconBtnLink}
-        >
-          <Paper align="center" className={classes.ddBoxIconBtn}>
-            <AddBoxIcon className={classes.ddBoxIcon} />
-            My Requests
-          </Paper>{" "}
-        </Link>
-        <Link
-          to={`/myprofile` }
-          className={classes.ddBoxIconBtnLink}
-        >
-          <Paper align="center" className={classes.ddBoxIconBtn}>
-            <AddBoxIcon className={classes.ddBoxIcon} />
-            My Profile
-          </Paper>
-        </Link>
-      </Container>
+        <Typography variant="h3" align="center" className={classes.titlePage}>
+          Welcome {username}
+        </Typography>
+          <Grid container spacing={1}>
+            <Grid item xs={6}>
+              <Paper className={classes.bigPaper}>
+                <Paper className={classes.smallPaperText}>
+                  <Typography
+                    variant="h3"
+                    align="center"
+                    className={classes.textstyle}
+                  >Total Medications: 200</Typography>
+                </Paper>
+              </Paper>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Paper className={classes.bigPaper}>
+                <Paper className={classes.smallPaperText}>
+                  <Typography
+                    variant="h3"
+                    align="center"
+                    className={classes.textstyle}
+                  >Every Donation Counts!</Typography>
+                </Paper>
+              </Paper>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Paper className={classes.bigPaper}>
+                <Paper className={classes.smallPaperText}>
+                  <Typography
+                    variant="h3"
+                    align="center"
+                    className={classes.textstyle}
+                  >Let's Support Each other</Typography>
+                </Paper>
+              </Paper>
+            </Grid>
+
+           <Grid item xs={6}>
+              <Paper className={classes.bigPaper}>
+                <Paper className={classes.smallPaperText}>
+                  <Typography
+                    variant="h3"
+                    align="center"
+                    className={classes.textstyle}
+                  >Total Users: 150</Typography>
+                </Paper>
+              </Paper>
+            </Grid>
+          </Grid>
     </>
   );
 }

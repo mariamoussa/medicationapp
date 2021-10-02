@@ -205,7 +205,7 @@ export default function List_Posts() {
     <>
       <CssBaseline />
       <Typography variant="h3" align="center" className={classes.titlePage}>
-        NEEDED MEDICATIONS
+        AVAILABLE MEDICATIONS
       </Typography>
       <Container className={classes.container}>
         <div className={classes.stylebutton}>

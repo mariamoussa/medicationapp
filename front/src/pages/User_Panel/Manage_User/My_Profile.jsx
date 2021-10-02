@@ -56,13 +56,13 @@ const useStyles = makeStyles((theme) => ({
         borderColor: "#A2B29F",
       },
     },
-    marginTop: 15,
+    marginTop: 10,
   },
   rootItem: {
     "& label.Mui-focused": {
       color: "#A2B29F",
     },
-    marginTop: 15,
+    marginTop: 10,
     alignContent: "center",
     paddingTop: 8,
     paddingBottom: 3,
@@ -75,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   paper: {
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(1),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",

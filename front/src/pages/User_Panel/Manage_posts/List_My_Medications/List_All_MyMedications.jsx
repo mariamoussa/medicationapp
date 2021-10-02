@@ -214,7 +214,7 @@ export default function List_All_MyMedications() {
     <>
       <CssBaseline />
       <Typography variant="h3" align="center" className={classes.titlePage}>
-        ALL MEDICATIONS POSTS
+        MY MEDICATIONS POSTS
       </Typography>
       <Container className={classes.container}>
         <div className={classes.stylebutton}>

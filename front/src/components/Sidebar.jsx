@@ -14,13 +14,18 @@ import {
 
 import {
   List,
+  CallMissed,
+  CallMissedOutgoing,
   ExitToApp,
+  Report,
   Home,
   Person,
   Settings,
-  Group,
+  FlipCameraAndroid,
+    Group,
   Menu,
   ClearAll,
+  EnhancedEncryption
 } from "@material-ui/icons";
 
 import Logo from "../images/LOGO.png";
@@ -213,29 +218,29 @@ export default function Sidebar(props) {
               </Link>
 
               <Link to="/all/post" className={classes.item}>
-                <List className={classes.icon} />
-                <Typography className={classes.text}>POSTS</Typography>
+                <EnhancedEncryption className={classes.icon} />
+                <Typography className={classes.text}>MEDICATIONS</Typography>
               </Link>
 
-              <div>
+              {/* <div>
                 <Link to="/all/post" className={classes.options}>
                   <List className={classes.icon} />
                   <Typography className={classes.text}>POSTS</Typography>
                 </Link>
-              </div>
+              </div> */}
 
               <Link to="/list/requests" className={classes.item}>
-                <Group className={classes.icon} />
+                <CallMissedOutgoing className={classes.icon} />
                 <Typography className={classes.text}>REQUESTS</Typography>
               </Link>
 
               <Link to="/list/users" className={classes.item}>
-                <Person className={classes.icon} />
+                <Group className={classes.icon} />
                 <Typography className={classes.text}>USERS</Typography>
               </Link>
 
               <Link to="/list/reports" className={classes.item}>
-                <Home className={classes.icon} />
+                <Report className={classes.icon} />
                 <Typography className={classes.text}>REPORTS</Typography>
               </Link>
             </div>
@@ -249,41 +254,41 @@ export default function Sidebar(props) {
               </Link>
 
               <Link to="/list/post" className={classes.item}>
-                <List className={classes.icon} />
+                <EnhancedEncryption className={classes.icon} />
                 <Typography className={classes.text}>MEDICATIONS</Typography>
               </Link>
 
               <div style={{ marginLeft: 20 }}>
                 <Link to="/list/needed" className={classes.options}>
-                  <List className={classes.icon} />
+                  <CallMissed className={classes.icon} />
                   <Typography className={classes.text}>NEEDED</Typography>
                 </Link>
 
                 <Link to="/list/available" className={classes.options}>
-                  <List className={classes.icon} />
+                  <CallMissedOutgoing className={classes.icon} />
                   <Typography className={classes.text}>AVAILABLE</Typography>
                 </Link>
               </div>
 
               <Link to="/list/mymedications" className={classes.item}>
-                <List className={classes.icon} />
+                <EnhancedEncryption className={classes.icon} />
                 <Typography className={classes.text}>MY MEDICATIONS</Typography>
               </Link>
 
               <div style={{ marginLeft: 20 }}>
                 <Link to="/list/myposts" className={classes.options}>
-                  <List className={classes.icon} />
+                  <CallMissed className={classes.icon} />
                   <Typography className={classes.text}>POSTS</Typography>
                 </Link>
 
                 <Link to="/list/myrequests" className={classes.options}>
-                  <List className={classes.icon} />
+                  <CallMissedOutgoing className={classes.icon} />
                   <Typography className={classes.text}>REQUESTS</Typography>
                 </Link>
               </div>
 
               <Link to="/myrequests" className={classes.options}>
-                <Home className={classes.icon} />
+                <FlipCameraAndroid className={classes.icon} />
                 <Typography className={classes.text}>MY REQUESTS</Typography>
               </Link>
             </div>
