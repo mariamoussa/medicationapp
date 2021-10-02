@@ -29,7 +29,6 @@ import AddBoxIcon from "@material-ui/icons/AddBox";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 
-
 import { ArrowDropUp, ArrowDropDown } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
@@ -175,7 +174,7 @@ const useStyles = makeStyles((theme) => ({
     color: "black",
     fontWeight: "strong",
   },
-  ddBoxIconColor:{
+  ddBoxIconColor: {
     color: "#A2B29F",
   },
 }));
@@ -213,7 +212,7 @@ export default function List_MyPosts() {
   }, []);
 
   return (
-    <>
+    <div className="miniContainer">
       <CssBaseline />
       <Typography variant="h3" align="center" className={classes.titlePage}>
         MY AVAILABLE MEDICATIONS
@@ -296,7 +295,7 @@ export default function List_MyPosts() {
           </Table>
         </TableContainer>
       </Container>
-    </>
+    </div>
 
     // <>
     //   <CssBaseline />

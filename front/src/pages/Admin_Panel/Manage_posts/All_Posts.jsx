@@ -205,7 +205,8 @@ export default function All_Posts() {
   }, []);
 
   return (
-    <>
+    <div className="miniContainer">
+
       <CssBaseline />
       <Typography variant="h3" align="center" className={classes.titlePage}>
         ALL MEDICATIONS POSTS
@@ -291,6 +292,6 @@ export default function All_Posts() {
           </Table>
         </TableContainer>
       </Container>
-    </>
+    </div>
   );
 }

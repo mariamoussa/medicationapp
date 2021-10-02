@@ -202,7 +202,7 @@ export default function List_Posts() {
   }, []);
 
   return (
-    <>
+    <div className="miniContainer">
       <CssBaseline />
       <Typography variant="h3" align="center" className={classes.titlePage}>
         AVAILABLE MEDICATIONS
@@ -290,6 +290,6 @@ export default function List_Posts() {
           </Table>
         </TableContainer>
       </Container>
-    </>
+    </div>
   );
 }

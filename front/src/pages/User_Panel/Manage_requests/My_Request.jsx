@@ -254,6 +254,8 @@ export default function List_Requests() {
   }, [isSent]);
 
   return (
+    <div className="miniContainer">
+
     <Container>
       <Typography variant="h3" align="center" className={classes.titlePage}>
         My Requests
@@ -388,5 +390,7 @@ export default function List_Requests() {
         </TableContainer>
       </Container>
     </Container>
+    </div>
+
   );
 }

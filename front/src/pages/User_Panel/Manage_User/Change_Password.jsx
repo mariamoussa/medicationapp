@@ -6,7 +6,6 @@ import { Visibility, VisibilityOff } from "@material-ui/icons";
 
 import { Link } from "react-router-dom";
 
-
 import Image from "material-ui-image";
 
 import Person from "@material-ui/icons/Person";
@@ -15,7 +14,6 @@ import AddBoxIcon from "@material-ui/icons/AddBox";
 import { AddPhotoAlternate } from "@material-ui/icons";
 import PersonIcon from "@material-ui/icons/Person";
 import UNKNOWN from "../../../images/UNKNOWN.png";
-
 
 import {
   FormControl,
@@ -148,9 +146,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 const bcrypt = require("bcryptjs");
-
 
 export default function Change_Password() {
   const classes = useStyles();
@@ -230,170 +226,104 @@ export default function Change_Password() {
   }, []);
 
   return (
-    <Container component="main" className={classes.container}>
-      <Typography
-        variant="h3"
-        align="center"
-        className="titlePage"
-      ></Typography>
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <Person />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Change Password
-        </Typography>
-        <form className={classes.form} onSubmit={handleSubmit}>
-          <div className={classes.flexDiv}>
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                variant="outlined"
-                label="Current Password"
-                name="password"
-                value={state.password}
-                onChange={handleChange}
-                className={classes.root}
-              />
-              {state.isValidPass ? null : <span>Password Incorrect</span>}
-              <button
-                type="button"
-                onClick={() => setState({ showPas: !state.showPas })}
-              >
-                {state.showPas ? "Hide" : "Show"}
-              </button>
-            </Grid>
+    <div className="miniContainer">
+      <Container component="main" className={classes.container}>
+        <Typography
+          variant="h3"
+          align="center"
+          className="titlePage"
+        ></Typography>
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <Person />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Change Password
+          </Typography>
+          <form className={classes.form} onSubmit={handleSubmit}>
+            <div className={classes.flexDiv}>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  variant="outlined"
+                  label="Current Password"
+                  name="password"
+                  value={state.password}
+                  onChange={handleChange}
+                  className={classes.root}
+                />
+                {state.isValidPass ? null : <span>Password Incorrect</span>}
+                <button
+                  type="button"
+                  onClick={() => setState({ showPas: !state.showPas })}
+                >
+                  {state.showPas ? "Hide" : "Show"}
+                </button>
+              </Grid>
             </div>
             <div className={classes.flexDiv}>
-
-
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                variant="outlined"
-                label="New Password"
-                name="newPass"
-                value={state.newPass}
-                onChange={(e) => handleChangeNewPassword(e.target.value)}
-                className={classes.root}
-              />
-              {state.isValidPass ? null : (
-                <span>Password must be at least 8 characters</span>
-              )}
-              <button
-                type="button"
-                onClick={() => setState({ showNew: !state.showNew })}
-              >
-                {state.showNew ? "Hide" : "Show"}
-              </button>
-            </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  variant="outlined"
+                  label="New Password"
+                  name="newPass"
+                  value={state.newPass}
+                  onChange={(e) => handleChangeNewPassword(e.target.value)}
+                  className={classes.root}
+                />
+                {state.isValidPass ? null : (
+                  <span>Password must be at least 8 characters</span>
+                )}
+                <button
+                  type="button"
+                  onClick={() => setState({ showNew: !state.showNew })}
+                >
+                  {state.showNew ? "Hide" : "Show"}
+                </button>
+              </Grid>
             </div>
             <div className={classes.flexDiv}>
-
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                variant="outlined"
-                label="Re-Type New Password"
-                name="confNewPass"
-                value={state.confNewPass}
-                onChange={(e) => handleChangeConfirm(e.target.value)}
-                className={classes.root}
-              />
-              {state.isValidPass ? null : <span>Passwords didn't match</span>}
-              <button
-                type="button"
-                onClick={() => setState({ showCon: !state.showCon })}
-              >
-                {state.showCon ? "Hide" : "Show"}
-              </button>
-            </Grid></div>
-            {/* <table>
-        <h1>Change Password</h1>
-        <tr>
-          <th>Current Password</th>
-          <td>
-            <input
-              type={state.showPas ? "text" : "password"}
-              name="password"
-              value={state.password}
-              placeholder="Password"
-              onChange={handleChange}
-            />
-            {state.isValidPass ? null : <span>Password Incorrect</span>}
-            <button
-              type="button"
-              onClick={() => setState({ showPas: !state.showPas })}
-            >
-              {state.showPas ? "Hide" : "Show"}
-            </button>
-          </td>
-        </tr>
-        <tr> */}
-            {/* <th>New Password</th>
-          <td>
-            <input
-              type={state.showNew ? "text" : "password"}
-              name="newPass"
-              value={state.newPass}
-              placeholder="Password"
-              onChange={(e) => handleChangeNewPassword(e.target.value)}
-            />
-            {state.isValidNew ? null : (
-              <span>Password must be at least 8 characters</span>
-            )}
-            <button
-              type="button"
-              onClick={() => setState({ showNew: !state.showNew })}
-            >
-              {state.showNew ? "Hide" : "Show"}
-            </button>
-          </td>
-        </tr> */}
-            {/* <tr>
-          <th>Re-Type New Password</th>
-          <td>
-            <input
-              type={state.showCon ? "text" : "password"}
-              name="confNewPass"
-              value={state.confNewPass}
-              placeholder="Confirm Password"
-              onChange={(e) => handleChangeConfirm(e.target.value)}
-            />
-            {state.isValidConf ? null : <span>Passwords didn't match</span>}
-
-            <button
-              type="button"
-              onClick={() => {
-                setState({ showCon: !state.showCon });
-              }}
-            >
-              {state.showCon ? "Hide" : "Show"}
-            </button>
-          </td>
-        </tr>
-      </table> */}
-                <div className={classes.flexDiv}>
-                <div className={classes.stylebutton}>
-            <Link
-              to={`/myprofile`}
-              type="submit"
-              className={classes.ddBoxIconBtnLink}
-            >
-              <Paper align="center" className={classes.ddBoxIconBtn}>
-                <AddBoxIcon className={classes.ddBoxIcon} />
-                Change Password
-              </Paper>
-            </Link>
-          </div>
-            {/* <button type="submit">Change Password</button> */}
-          </div>
-        </form>
-      </div>
-    </Container>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  variant="outlined"
+                  label="Re-Type New Password"
+                  name="confNewPass"
+                  value={state.confNewPass}
+                  onChange={(e) => handleChangeConfirm(e.target.value)}
+                  className={classes.root}
+                />
+                {state.isValidPass ? null : <span>Passwords didn't match</span>}
+                <button
+                  type="button"
+                  onClick={() => setState({ showCon: !state.showCon })}
+                >
+                  {state.showCon ? "Hide" : "Show"}
+                </button>
+              </Grid>
+            </div>
+            <div className={classes.flexDiv}>
+              <div className={classes.stylebutton}>
+                <Link
+                  to={`/myprofile`}
+                  type="submit"
+                  className={classes.ddBoxIconBtnLink}
+                >
+                  <Paper align="center" className={classes.ddBoxIconBtn}>
+                    <AddBoxIcon className={classes.ddBoxIcon} />
+                    Change Password
+                  </Paper>
+                </Link>
+              </div>
+            </div>
+          </form>
+        </div>
+      </Container>
+    </div>
   );
 }

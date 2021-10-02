@@ -303,217 +303,223 @@ export default function Register() {
   }
 
   return (
-    <Container component="main" maxWidth="xs" className={classes.container}>
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlined />
-        </Avatar>
-        <Typography component="h1" variant="h5" className={classes.titlecolor}>
-          Sign up
-        </Typography>
-        <form className={classes.form} onSubmit={handleRegister}>
-          <Grid container spacing={1}>
-            <Grid item xs={6}>
-              <TextField
-                required
-                fullWidth
-                variant="outlined"
-                label="FirstName"
-                name="firstName"
-                value={state.firstName}
-                onChange={handleChange}
-                className={classes.root}
-              />
-            </Grid>
-
-            <Grid item xs={6}>
-              <TextField
-                required
-                fullWidth
-                variant="outlined"
-                label="LastName"
-                name="lastName"
-                value={state.lastName}
-                onChange={handleChange}
-                className={classes.root}
-              />
-            </Grid>
-
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                variant="outlined"
-                label="Username"
-                name="username"
-                value={state.username}
-                onChange={(e) => {
-                  setState({ existingUsername: false });
-                  handleChangeUsername(e.target.value);
-                }}
-                className={classes.root}
-              />
-            </Grid>
-            {state.existingUsername ? <p>already exist</p> : null}
-
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                variant="outlined"
-                label="Email"
-                name="email"
-                value={state.email}
-                onChange={(e) => {
-                  setState({ existingEmail: false });
-                  handleChange(e);
-                }}
-                className={classes.root}
-              />
-            </Grid>
-            {state.existingEmail ? <p>already exist</p> : null}
-
-            <Grid item xs={6}>
-              <TextField
-                required
-                fullWidth
-                variant="outlined"
-                label="Address"
-                name="address"
-                value={state.address}
-                onChange={handleChange}
-                className={classes.root}
-              />
-            </Grid>
-
-            <Grid item xs={6}>
-              <TextField
-                required
-                fullWidth
-                type="number"
-                variant="outlined"
-                label="Phone Number"
-                name="phone"
-                value={state.phone}
-                onChange={(e) => {
-                  setState({ existingPhone: false });
-                  handleChange(e);
-                }}
-                className={classes.root}
-              />
-            </Grid>
-            {state.existingPhone ? <p>already exist</p> : null}
-
-            <Grid item xs={12}>
-              <MuiPickersUtilsProvider utils={MomentUtils}>
-                <KeyboardDatePicker
-                  fullWidth
+    <div className="miniContainer">
+      <Container component="main" maxWidth="xs" className={classes.container}>
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlined />
+          </Avatar>
+          <Typography
+            component="h1"
+            variant="h5"
+            className={classes.titlecolor}
+          >
+            Sign up
+          </Typography>
+          <form className={classes.form} onSubmit={handleRegister}>
+            <Grid container spacing={1}>
+              <Grid item xs={6}>
+                <TextField
                   required
-                  label="Date Of Birth"
+                  fullWidth
                   variant="outlined"
-                  inputVariant="outlined"
-                  format="YYYY/MM/DD"
-                  value={state.birthdate}
-                  onChange={(date) => handleDateChange(date)}
-                  KeyboardButtonProps={{
-                    "aria-label": "change date",
+                  label="FirstName"
+                  name="firstName"
+                  value={state.firstName}
+                  onChange={handleChange}
+                  className={classes.root}
+                />
+              </Grid>
+
+              <Grid item xs={6}>
+                <TextField
+                  required
+                  fullWidth
+                  variant="outlined"
+                  label="LastName"
+                  name="lastName"
+                  value={state.lastName}
+                  onChange={handleChange}
+                  className={classes.root}
+                />
+              </Grid>
+
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  variant="outlined"
+                  label="Username"
+                  name="username"
+                  value={state.username}
+                  onChange={(e) => {
+                    setState({ existingUsername: false });
+                    handleChangeUsername(e.target.value);
                   }}
                   className={classes.root}
                 />
-              </MuiPickersUtilsProvider>
-            </Grid>
+              </Grid>
+              {state.existingUsername ? <p>already exist</p> : null}
 
-            <Grid item xs={12}>
-              <FormControl fullWidth className={classes.FormControl}>
-                <FormLabel className={classes.FormLabel}>Gender</FormLabel>
-                <RadioGroup
-                  name="gender"
-                  value={state.gender}
-                  onChange={handleChange}
-                  className="radioR1"
-                >
-                  <FormControlLabel
-                    value="Male"
-                    control={<Radio />}
-                    label="Male"
-                  />
-                  <FormControlLabel
-                    value="Female"
-                    control={<Radio />}
-                    label="Female"
-                  />
-                </RadioGroup>
-              </FormControl>
-            </Grid>
-
-            <Grid item xs={12}>
-              <FormControl
-                fullWidth
-                variant="outlined"
-                className={classes.root}
-              >
-                <InputLabel>Password</InputLabel>
-                <OutlinedInput
-                  type={state.show ? "text" : "password"}
-                  name="password"
-                  value={state.password}
-                  onChange={(e) => handleChangePassword(e.target.value)}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton onClick={handleShow}>
-                        {state.show ? <Visibility /> : <VisibilityOff />}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                  labelWidth={70}
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  variant="outlined"
+                  label="Email"
+                  name="email"
+                  value={state.email}
+                  onChange={(e) => {
+                    setState({ existingEmail: false });
+                    handleChange(e);
+                  }}
+                  className={classes.root}
                 />
-                {/* {!state.isValidPass && state.password != "" ? (
+              </Grid>
+              {state.existingEmail ? <p>already exist</p> : null}
+
+              <Grid item xs={6}>
+                <TextField
+                  required
+                  fullWidth
+                  variant="outlined"
+                  label="Address"
+                  name="address"
+                  value={state.address}
+                  onChange={handleChange}
+                  className={classes.root}
+                />
+              </Grid>
+
+              <Grid item xs={6}>
+                <TextField
+                  required
+                  fullWidth
+                  type="number"
+                  variant="outlined"
+                  label="Phone Number"
+                  name="phone"
+                  value={state.phone}
+                  onChange={(e) => {
+                    setState({ existingPhone: false });
+                    handleChange(e);
+                  }}
+                  className={classes.root}
+                />
+              </Grid>
+              {state.existingPhone ? <p>already exist</p> : null}
+
+              <Grid item xs={12}>
+                <MuiPickersUtilsProvider utils={MomentUtils}>
+                  <KeyboardDatePicker
+                    fullWidth
+                    required
+                    label="Date Of Birth"
+                    variant="outlined"
+                    inputVariant="outlined"
+                    format="YYYY/MM/DD"
+                    value={state.birthdate}
+                    onChange={(date) => handleDateChange(date)}
+                    KeyboardButtonProps={{
+                      "aria-label": "change date",
+                    }}
+                    className={classes.root}
+                  />
+                </MuiPickersUtilsProvider>
+              </Grid>
+
+              <Grid item xs={12}>
+                <FormControl fullWidth className={classes.FormControl}>
+                  <FormLabel className={classes.FormLabel}>Gender</FormLabel>
+                  <RadioGroup
+                    name="gender"
+                    value={state.gender}
+                    onChange={handleChange}
+                    className="radioR1"
+                  >
+                    <FormControlLabel
+                      value="Male"
+                      control={<Radio />}
+                      label="Male"
+                    />
+                    <FormControlLabel
+                      value="Female"
+                      control={<Radio />}
+                      label="Female"
+                    />
+                  </RadioGroup>
+                </FormControl>
+              </Grid>
+
+              <Grid item xs={12}>
+                <FormControl
+                  fullWidth
+                  variant="outlined"
+                  className={classes.root}
+                >
+                  <InputLabel>Password</InputLabel>
+                  <OutlinedInput
+                    type={state.show ? "text" : "password"}
+                    name="password"
+                    value={state.password}
+                    onChange={(e) => handleChangePassword(e.target.value)}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton onClick={handleShow}>
+                          {state.show ? <Visibility /> : <VisibilityOff />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    labelWidth={70}
+                  />
+                  {/* {!state.isValidPass && state.password != "" ? (
                   <span>{"password<8"}</span>
                 ) : null} */}
-              </FormControl>
+                </FormControl>
+              </Grid>
+
+              <Grid item xs={12}>
+                <FormControl
+                  fullWidth
+                  variant="outlined"
+                  className={classes.root}
+                >
+                  <InputLabel>Confirm Password</InputLabel>
+                  <OutlinedInput
+                    type={state.show ? "text" : "password"}
+                    name="conPass"
+                    value={state.conPass}
+                    onChange={handleChange}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton onClick={handleShow}>
+                          {state.show ? <Visibility /> : <VisibilityOff />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    labelWidth={135}
+                  />
+                </FormControl>
+              </Grid>
             </Grid>
 
-            <Grid item xs={12}>
-              <FormControl
-                fullWidth
-                variant="outlined"
-                className={classes.root}
-              >
-                <InputLabel>Confirm Password</InputLabel>
-                <OutlinedInput
-                  type={state.show ? "text" : "password"}
-                  name="conPass"
-                  value={state.conPass}
-                  onChange={handleChange}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton onClick={handleShow}>
-                        {state.show ? <Visibility /> : <VisibilityOff />}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                  labelWidth={135}
-                />
-              </FormControl>
-            </Grid>
-          </Grid>
+            <LinkNative
+              onClick={handleRegister}
+              to="/login"
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.ddBoxIconBtnLink}
+            >
+              <Paper align="center" className={classes.ddBoxIconBtn}>
+                <LockOpenIcon className={classes.ddBoxIcon}></LockOpenIcon>Sign
+                Up
+              </Paper>
+            </LinkNative>
 
-          <LinkNative
-            onClick={handleRegister}
-            to="/login"
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.ddBoxIconBtnLink}
-          >
-            <Paper align="center" className={classes.ddBoxIconBtn}>
-              <LockOpenIcon className={classes.ddBoxIcon}></LockOpenIcon>Sign Up
-            </Paper>
-          </LinkNative>
-
-          {/* <Button
+            {/* <Button
             fullWidth
             type="submit"
             variant="contained"
@@ -523,189 +529,17 @@ export default function Register() {
             Sign Up
           </Button> */}
 
-          <Grid container justifyContent="center">
-            <Grid item className={classes.linkTo}>
-              Already have an account?
-              <Link to="/login" className="linkSing">
-                Sign in
-              </Link>
+            <Grid container justifyContent="center">
+              <Grid item className={classes.linkTo}>
+                Already have an account?
+                <Link to="/login" className="linkSing">
+                  Sign in
+                </Link>
+              </Grid>
             </Grid>
-          </Grid>
-        </form>
-      </div>
-    </Container>
-
-    // <form onSubmit={handleRegister}>
-    //   <table>
-    //     <tr>
-    //       <th>First Name</th>
-    //       <td>
-    //         <input
-    //           name="firstName"
-    //           value={state.firstName}
-    //           placeholder="First Name"
-    //           onChange={handleChange}
-    //           className={classes.root}
-    //         />
-    //       </td>
-    //     </tr>
-
-    //     <tr>
-    //       <th>Last Name</th>
-    //       <td>
-    //         <input
-    //           name="lastName"
-    //           value={state.lastName}
-    //           placeholder="Last Name"
-    //           onChange={handleChange}
-    //         />
-    //       </td>
-    //     </tr>
-
-    //     <tr>
-    //       <th>Gender</th>
-    //       <td>
-    //         <form name="gender" onChange={handleChange}>
-    //           <input
-    //             type="radio"
-    //             id="Male"
-    //             name="gender"
-    //             value="Male"
-    //             checked={state.gender === "Male"}
-    //           />
-    //           <label for="Male">Male</label>
-    //           <input
-    //             type="radio"
-    //             id="Female"
-    //             name="gender"
-    //             value="Female"
-    //             checked={state.gender === "Female"}
-    //           />
-    //           <label for="Female">Female</label>
-    //         </form>
-    //       </td>
-    //     </tr>
-
-    //     <tr>
-    //       <th>Email</th>
-    //       <td>
-    //         <input
-    //           name="email"
-    //           value={state.email}
-    //           placeholder="Email"
-    //           onChange={(e) => {
-    //             setState({ existingEmail: false });
-    //             handleChange(e);
-    //           }}
-    //         />
-    //       </td>
-    //     </tr>
-    //     {state.existingEmail ? <p>already exist</p> : null}
-
-    //     <tr>
-    //       <th>Phone Number</th>
-    //       <td>
-    //         <input
-    //           name="phone"
-    //           value={state.phone}
-    //           placeholder="Phone Number"
-    //           onChange={(e) => {
-    //             setState({ existingPhone: false });
-    //             handleChange(e);
-    //           }}
-    //         />
-    //       </td>
-    //     </tr>
-    //     {state.existingPhone ? <p>already exist</p> : null}
-
-    //     <tr>
-    //       <th>Birth Date</th>
-    //       <td>
-    //         <input
-    //           type="date"
-    //           name="birthdate"
-    //           value={state.birthdate}
-    //           onChange={handleChange}
-    //         />
-    //       </td>
-    //     </tr>
-
-    //     <tr>
-    //       <th>Address</th>
-    //       <td>
-    //         <input
-    //           name="address"
-    //           value={state.address}
-    //           placeholder="Address"
-    //           onChange={handleChange}
-    //         />
-    //       </td>
-    //     </tr>
-
-    //     <tr>
-    //       <th>Username</th>
-    //       <td>
-    //         <input
-    //           name="username"
-    //           value={state.username}
-    //           placeholder="Username"
-    //           onChange={(e) => {
-    //             setState({ existingUsername: false });
-    //             handleChangeUsername(e.target.value);
-    //           }}
-    //         />
-    //       </td>
-    //     </tr>
-    //     {state.existingUsername ? <p>already exist</p> : null}
-
-    //     <tr>
-    //       <th>Password</th>
-    //       <td>
-    //         <input
-    //           type={state.show ? "text" : "password"}
-    //           name="password"
-    //           value={state.password}
-    //           placeholder="Password"
-    //           onChange={(e) => handleChangePassword(e.target.value)}
-    //         />
-    //         <button
-    //           type="button"
-    //           onClick={() => {
-    //             setState({ show: !state.show });
-    //           }}
-    //         >
-    //           {state.show ? "Hide" : "Show"}
-    //         </button>
-    //         {!state.isValidPass && state.password != "" ? (
-    //           <span>{"password<8"}</span>
-    //         ) : null}
-    //       </td>
-    //     </tr>
-
-    //     <tr>
-    //       <th>Re-Type Password</th>
-    //       <td>
-    //         <input
-    //           type={state.show ? "text" : "password"}
-    //           name="conPass"
-    //           value={state.conPass}
-    //           placeholder="Confirm Password"
-    //           onChange={handleChange}
-    //         />
-    //         <button
-    //           type="button"
-    //           onClick={() => {
-    //             setState({ show: !state.show });
-    //           }}
-    //         >
-    //           {state.show ? "Hide" : "Show"}
-    //         </button>
-    //       </td>
-    //     </tr>
-    //   </table>
-    //   {state.err}
-
-    //   <button type="submit">Sign Up</button>
-    // </form>
+          </form>
+        </div>
+      </Container>
+    </div>
   );
 }

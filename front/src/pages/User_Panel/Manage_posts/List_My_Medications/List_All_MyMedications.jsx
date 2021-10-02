@@ -27,7 +27,7 @@ import {
 import Image from "material-ui-image";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import EditIcon from "@material-ui/icons/Edit";
-import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteIcon from "@material-ui/icons/Delete";
 import { ArrowDropUp, ArrowDropDown } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
@@ -173,7 +173,7 @@ const useStyles = makeStyles((theme) => ({
     color: "black",
     fontWeight: "strong",
   },
-  ddBoxIconColor:{
+  ddBoxIconColor: {
     color: "#A2B29F",
   },
 }));
@@ -211,7 +211,7 @@ export default function List_All_MyMedications() {
   }, []);
 
   return (
-    <>
+    <div className="miniContainer">
       <CssBaseline />
       <Typography variant="h3" align="center" className={classes.titlePage}>
         MY MEDICATIONS POSTS
@@ -277,8 +277,14 @@ export default function List_All_MyMedications() {
                       {post.date}
                     </TableCell>
                     <TableCell align="center">
-                      <Link to={`/edit/post/${post._id}`}><EditIcon  className={classes.ddBoxIconColor}></EditIcon></Link>{"     "}
-                      <LinkNative onClick={() => deletePost(post._id)}><DeleteIcon  className={classes.ddBoxIconColor}></DeleteIcon>
+                      <Link to={`/edit/post/${post._id}`}>
+                        <EditIcon className={classes.ddBoxIconColor}></EditIcon>
+                      </Link>
+                      {"     "}
+                      <LinkNative onClick={() => deletePost(post._id)}>
+                        <DeleteIcon
+                          className={classes.ddBoxIconColor}
+                        ></DeleteIcon>
                       </LinkNative>
                     </TableCell>
                   </TableRow>
@@ -288,53 +294,6 @@ export default function List_All_MyMedications() {
           </Table>
         </TableContainer>
       </Container>
-    </>
-
-    // <>
-    //   <CssBaseline />
-    //   <Typography variant="h3" align="center" className="titlePage">
-    //     Posts
-    //   </Typography>
-    //   <Container className={classes.container}>
-    //     <Link to={`/add/post`} className={classes.ddBoxIconBtnLink}>
-    //       <Paper align="center" className={classes.ddBoxIconBtn}>
-    //         <AddBoxIcon className={classes.ddBoxIcon} />
-    //         Add Post
-    //       </Paper>
-    //     </Link>
-    //     <TableContainer component={Paper}>
-    //       <Table>
-    //         <TableHead>
-    //           <TableRow>
-    //             <TableCell align="center">Medication Name</TableCell>
-    //             <TableCell align="center">Type</TableCell>
-    //             <TableCell align="center">Quantity</TableCell>
-    //             <TableCell align="center">Description</TableCell>
-    //             <TableCell align="center">Date Posted</TableCell>
-    //             <TableCell align="center">Manage</TableCell>
-    //           </TableRow>
-    //         </TableHead>
-    //         <TableBody>
-    //           {posts.map((post) => (
-    //             <TableRow key={post.id}>
-    //               <TableCell align="center">{post.medicationName}</TableCell>
-    //               <TableCell align="center">{post.medicationType}</TableCell>
-    //               <TableCell align="center">{post.quantity}</TableCell>
-    //               <TableCell align="center">{post.description}</TableCell>
-    //               <TableCell align="center">{post.date}</TableCell>
-    //               <TableCell align="center">
-    //                 <Link to={`/edit/post/${post._id}`}>Edit</Link>
-    //                 <LinkNative onClick={() => deletePost(post._id)}>
-    //                   Delete
-    //                 </LinkNative >
-    //               </TableCell>
-    //             </TableRow>
-    //           ))}
-    //         </TableBody>
-    //       </Table>
-    //     </TableContainer>
-    //     {/* // <button onClick={() => deletePost(post._id)}>Delete</button> */}
-    //   </Container>
-    // </>
+    </div>
   );
 }

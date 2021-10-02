@@ -194,7 +194,8 @@ export default function User_Reports() {
   }, []);
 
   return (
-    <>
+    <div className="miniContainer">
+
       <CssBaseline />
       <Typography variant="h3" align="center" className={classes.titlePage}>
         Reports of User ID: {_Reported}
@@ -247,28 +248,6 @@ export default function User_Reports() {
           </Table>
         </TableContainer>
       </Container>
-    </>
+    </div>
 
-    // <div>
-    //   <table>
-    //     <tr>
-    //       <th>Reported</th>
-    //       <th>Reporter</th>
-    //       <th>Reason</th>
-    //       <th>Manage</th>
-    //     </tr>
-
-    //     {reports.map((report) => (
-    //       <tr key={report._id}>
-    //         <td>{get(report._Reported, "username", "unknown")}</td>
-    //         <td>{report._Reporter.username}</td>
-    //         <td>{report.description}</td>
-    //         <td>
-    //           <button onClick={() => handleDelete(report._id)}>Delete</button>
-    //         </td>
-    //       </tr>
-    //     ))}
-    //   </table>
-    // </div>
-  );
-}
+  )}

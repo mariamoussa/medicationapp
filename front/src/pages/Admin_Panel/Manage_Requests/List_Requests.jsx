@@ -196,7 +196,7 @@ export default function List_Requests() {
   }, []);
 
   return(
-    <>
+    <div className="miniContainer">
       <CssBaseline />
       <Typography variant="h3" align="center" className={classes.titlePage}>
         REQUESTS LIST
@@ -273,6 +273,6 @@ export default function List_Requests() {
           </Table>
         </TableContainer>
       </Container>
-    </>
+    </div>
   );
 }

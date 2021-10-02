@@ -236,288 +236,294 @@ export default function My_Profile() {
   }, []);
 
   return (
-    <Container component="main" className={classes.container}>
-      <Typography
-        variant="h3"
-        align="center"
-        className="titlePage"
-      ></Typography>
+    <div className="miniContainer">
+      <Container component="main" className={classes.container}>
+        <Typography
+          variant="h3"
+          align="center"
+          className="titlePage"
+        ></Typography>
 
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <Person />
-        </Avatar>
-        <Typography component="h1" variant="h5" className={classes.titlecolor}>
-          My Profile
-        </Typography>
-        <form className={classes.form}>
-          <div>
-            <Grid container spacing={1}>
-              <Grid item xs={6}>
-                {state.isEdit ? (
-                  <TextField
-                    fullWidth
-                    required
-                    variant="outlined"
-                    label="Firstname"
-                    name="firstName"
-                    value={state.firstName}
-                    onChange={handleChange}
-                    className={classes.root}
-                  />
-                ) : (
-                  <TextField
-                    fullWidth
-                    inputProps={{ readOnly: true }}
-                    variant="outlined"
-                    label="Firstname"
-                    value={state.firstName}
-                    className={classes.root}
-                  />
-                )}
-              </Grid>
-
-              <Grid item xs={6}>
-                {state.isEdit ? (
-                  <TextField
-                    fullWidth
-                    required
-                    variant="outlined"
-                    label="Lastname"
-                    name="lastName"
-                    value={state.lastName}
-                    onChange={handleChange}
-                    className={classes.root}
-                  />
-                ) : (
-                  <TextField
-                    fullWidth
-                    inputProps={{ readOnly: true }}
-                    variant="outlined"
-                    label="Lastname"
-                    value={state.lastName}
-                    className={classes.root}
-                  />
-                )}
-              </Grid>
-
-              <Grid item xs={6}>
-                {state.isEdit ? (
-                  <TextField
-                    required
-                    fullWidth
-                    variant="outlined"
-                    label="Email"
-                    name="email"
-                    value={state.email}
-                    onChange={handleChange}
-                    className={classes.root}
-                  />
-                ) : (
-                  <TextField
-                    fullWidth
-                    inputProps={{ readOnly: true }}
-                    variant="outlined"
-                    label="Email"
-                    value={state.email}
-                    className={classes.root}
-                  />
-                )}
-              </Grid>
-              <Grid item xs={6}>
-                {state.isEdit ? (
-                  <TextField
-                    required
-                    fullWidth
-                    variant="outlined"
-                    label="Username"
-                    name="username"
-                    value={state.username}
-                    onChange={handleChange}
-                    className={classes.root}
-                  />
-                ) : (
-                  <TextField
-                    fullWidth
-                    inputProps={{ readOnly: true }}
-                    variant="outlined"
-                    label="Username"
-                    value={state.username}
-                    className={classes.root}
-                  />
-                )}
-              </Grid>
-
-              <Grid item xs={6}>
-                {state.isEdit ? (
-                  <TextField
-                    required
-                    fullWidth
-                    type="number"
-                    variant="outlined"
-                    label="Phone Number"
-                    name="phone"
-                    value={state.phone}
-                    onChange={handleChange}
-                    className={classes.root}
-                  />
-                ) : (
-                  <TextField
-                    fullWidth
-                    inputProps={{ readOnly: true }}
-                    type="number"
-                    variant="outlined"
-                    label="Phone Number"
-                    value={state.phone}
-                    className={classes.root}
-                  />
-                )}
-              </Grid>
-
-              <Grid item xs={6}>
-                {state.isEdit ? (
-                  <MuiPickersUtilsProvider utils={MomentUtils}>
-                    <KeyboardDatePicker
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <Person />
+          </Avatar>
+          <Typography
+            component="h1"
+            variant="h5"
+            className={classes.titlecolor}
+          >
+            My Profile
+          </Typography>
+          <form className={classes.form}>
+            <div>
+              <Grid container spacing={1}>
+                <Grid item xs={6}>
+                  {state.isEdit ? (
+                    <TextField
                       fullWidth
                       required
-                      label="Date Of Birth"
                       variant="outlined"
-                      inputVariant="outlined"
-                      format="YYYY/MM/DD"
-                      value={moment(state.birthdate).format("YYYY-MM-DD")}
-                      onChange={(date) => handleDateChange(date)}
-                      KeyboardButtonProps={{
-                        "aria-label": "change date",
-                      }}
+                      label="Firstname"
+                      name="firstName"
+                      value={state.firstName}
+                      onChange={handleChange}
                       className={classes.root}
                     />
-                  </MuiPickersUtilsProvider>
-                ) : (
-                  <TextField
-                    fullWidth
-                    inputProps={{ readOnly: true }}
-                    variant="outlined"
-                    label="Birthdate"
-                    value={moment(state.birthdate).format("D   MMMM   YYYY")}
-                    className={classes.root}
-                  />
-                )}
-              </Grid>
+                  ) : (
+                    <TextField
+                      fullWidth
+                      inputProps={{ readOnly: true }}
+                      variant="outlined"
+                      label="Firstname"
+                      value={state.firstName}
+                      className={classes.root}
+                    />
+                  )}
+                </Grid>
 
-              <Grid item xs={6}>
-                {state.isEdit ? (
-                  <TextField
-                    required
-                    fullWidth
-                    variant="outlined"
-                    label="Address"
-                    name="address"
-                    value={state.address}
-                    onChange={handleChange}
-                    className={classes.root}
-                  />
-                ) : (
-                  <TextField
-                    fullWidth
-                    inputProps={{ readOnly: true }}
-                    variant="outlined"
-                    label="Address"
-                    value={state.address}
-                    className={classes.root}
-                  />
-                )}
-              </Grid>
+                <Grid item xs={6}>
+                  {state.isEdit ? (
+                    <TextField
+                      fullWidth
+                      required
+                      variant="outlined"
+                      label="Lastname"
+                      name="lastName"
+                      value={state.lastName}
+                      onChange={handleChange}
+                      className={classes.root}
+                    />
+                  ) : (
+                    <TextField
+                      fullWidth
+                      inputProps={{ readOnly: true }}
+                      variant="outlined"
+                      label="Lastname"
+                      value={state.lastName}
+                      className={classes.root}
+                    />
+                  )}
+                </Grid>
 
-              <Grid item xs={6}>
-                <div className={classes.rootItem}>
-                  <FormControl className={classes.FormControl}>
-                    <FormLabel xs={4} className={classes.FormLabel}>
-                      Gender
-                    </FormLabel>
-                    {state.isEdit ? (
-                      <RadioGroup
-                        name="gender"
-                        value={state.gender}
-                        onChange={handleChange}
-                        className="radioR2"
-                      >
-                        <FormControlLabel
-                          xs={4}
-                          value="Male"
-                          control={<Radio />}
-                          label="Male"
-                        />
-                        <FormControlLabel
-                          xs={4}
-                          value="Female"
-                          control={<Radio />}
-                          label="Female"
-                        />
-                      </RadioGroup>
-                    ) : (
-                      <RadioGroup
-                        name="gender"
-                        value={state.gender}
-                        className="radioR2"
-                      >
-                        <FormControlLabel
-                          xs={4}
-                          value="Male"
-                          control={<Radio />}
-                          label="Male"
-                        />
-                        <FormControlLabel
-                          xs={4}
-                          value="Female"
-                          control={<Radio />}
-                          label="Female"
-                        />
-                      </RadioGroup>
-                    )}
-                  </FormControl>
-                </div>
-              </Grid>
-            </Grid>
-          </div>
+                <Grid item xs={6}>
+                  {state.isEdit ? (
+                    <TextField
+                      required
+                      fullWidth
+                      variant="outlined"
+                      label="Email"
+                      name="email"
+                      value={state.email}
+                      onChange={handleChange}
+                      className={classes.root}
+                    />
+                  ) : (
+                    <TextField
+                      fullWidth
+                      inputProps={{ readOnly: true }}
+                      variant="outlined"
+                      label="Email"
+                      value={state.email}
+                      className={classes.root}
+                    />
+                  )}
+                </Grid>
+                <Grid item xs={6}>
+                  {state.isEdit ? (
+                    <TextField
+                      required
+                      fullWidth
+                      variant="outlined"
+                      label="Username"
+                      name="username"
+                      value={state.username}
+                      onChange={handleChange}
+                      className={classes.root}
+                    />
+                  ) : (
+                    <TextField
+                      fullWidth
+                      inputProps={{ readOnly: true }}
+                      variant="outlined"
+                      label="Username"
+                      value={state.username}
+                      className={classes.root}
+                    />
+                  )}
+                </Grid>
 
-          <div className={classes.flexDiv}>
-            {state.isEdit ? (
-              <LinkNative
-                onClick={handleSave}
-                className={classes.ddBoxIconBtnLink}
-              >
+                <Grid item xs={6}>
+                  {state.isEdit ? (
+                    <TextField
+                      required
+                      fullWidth
+                      type="number"
+                      variant="outlined"
+                      label="Phone Number"
+                      name="phone"
+                      value={state.phone}
+                      onChange={handleChange}
+                      className={classes.root}
+                    />
+                  ) : (
+                    <TextField
+                      fullWidth
+                      inputProps={{ readOnly: true }}
+                      type="number"
+                      variant="outlined"
+                      label="Phone Number"
+                      value={state.phone}
+                      className={classes.root}
+                    />
+                  )}
+                </Grid>
+
+                <Grid item xs={6}>
+                  {state.isEdit ? (
+                    <MuiPickersUtilsProvider utils={MomentUtils}>
+                      <KeyboardDatePicker
+                        fullWidth
+                        required
+                        label="Date Of Birth"
+                        variant="outlined"
+                        inputVariant="outlined"
+                        format="YYYY/MM/DD"
+                        value={moment(state.birthdate).format("YYYY-MM-DD")}
+                        onChange={(date) => handleDateChange(date)}
+                        KeyboardButtonProps={{
+                          "aria-label": "change date",
+                        }}
+                        className={classes.root}
+                      />
+                    </MuiPickersUtilsProvider>
+                  ) : (
+                    <TextField
+                      fullWidth
+                      inputProps={{ readOnly: true }}
+                      variant="outlined"
+                      label="Birthdate"
+                      value={moment(state.birthdate).format("D   MMMM   YYYY")}
+                      className={classes.root}
+                    />
+                  )}
+                </Grid>
+
+                <Grid item xs={6}>
+                  {state.isEdit ? (
+                    <TextField
+                      required
+                      fullWidth
+                      variant="outlined"
+                      label="Address"
+                      name="address"
+                      value={state.address}
+                      onChange={handleChange}
+                      className={classes.root}
+                    />
+                  ) : (
+                    <TextField
+                      fullWidth
+                      inputProps={{ readOnly: true }}
+                      variant="outlined"
+                      label="Address"
+                      value={state.address}
+                      className={classes.root}
+                    />
+                  )}
+                </Grid>
+
+                <Grid item xs={6}>
+                  <div className={classes.rootItem}>
+                    <FormControl className={classes.FormControl}>
+                      <FormLabel xs={4} className={classes.FormLabel}>
+                        Gender
+                      </FormLabel>
+                      {state.isEdit ? (
+                        <RadioGroup
+                          name="gender"
+                          value={state.gender}
+                          onChange={handleChange}
+                          className="radioR2"
+                        >
+                          <FormControlLabel
+                            xs={4}
+                            value="Male"
+                            control={<Radio />}
+                            label="Male"
+                          />
+                          <FormControlLabel
+                            xs={4}
+                            value="Female"
+                            control={<Radio />}
+                            label="Female"
+                          />
+                        </RadioGroup>
+                      ) : (
+                        <RadioGroup
+                          name="gender"
+                          value={state.gender}
+                          className="radioR2"
+                        >
+                          <FormControlLabel
+                            xs={4}
+                            value="Male"
+                            control={<Radio />}
+                            label="Male"
+                          />
+                          <FormControlLabel
+                            xs={4}
+                            value="Female"
+                            control={<Radio />}
+                            label="Female"
+                          />
+                        </RadioGroup>
+                      )}
+                    </FormControl>
+                  </div>
+                </Grid>
+              </Grid>
+            </div>
+
+            <div className={classes.flexDiv}>
+              {state.isEdit ? (
+                <LinkNative
+                  onClick={handleSave}
+                  className={classes.ddBoxIconBtnLink}
+                >
+                  <Paper align="center" className={classes.ddBoxIconBtn}>
+                    <LockIcon className={classes.ddBoxIcon} />
+                    Update Profile
+                  </Paper>
+                </LinkNative>
+              ) : (
+                <LinkNative
+                  onClick={() => setState({ isEdit: true })}
+                  className={classes.ddBoxIconBtnLink}
+                >
+                  <Paper align="center" className={classes.ddBoxIconBtn}>
+                    <EditIcon className={classes.ddBoxIcon} />
+                    Edit
+                  </Paper>
+                </LinkNative>
+              )}
+              <Link to={`/user/panel`} className={classes.ddBoxIconBtnLink}>
+                <Paper align="center" className={classes.ddBoxIconBtn}>
+                  <CancelIcon className={classes.ddBoxIcon} />
+                  Cancel
+                </Paper>
+              </Link>
+
+              <Link to={`/changepassword`} className={classes.ddBoxIconBtnLink}>
                 <Paper align="center" className={classes.ddBoxIconBtn}>
                   <LockIcon className={classes.ddBoxIcon} />
-                  Update Profile
+                  Change Password
                 </Paper>
-              </LinkNative>
-            ) : (
-              <LinkNative
-                onClick={() => setState({ isEdit: true })}
-                className={classes.ddBoxIconBtnLink}
-              >
-                <Paper align="center" className={classes.ddBoxIconBtn}>
-                  <EditIcon className={classes.ddBoxIcon} />
-                  Edit
-                </Paper>
-              </LinkNative>
-            )}
-            <Link to={`/user/panel`} className={classes.ddBoxIconBtnLink}>
-              <Paper align="center" className={classes.ddBoxIconBtn}>
-                <CancelIcon className={classes.ddBoxIcon} />
-                Cancel
-              </Paper>
-            </Link>
-
-            <Link to={`/changepassword`} className={classes.ddBoxIconBtnLink}>
-              <Paper align="center" className={classes.ddBoxIconBtn}>
-                <LockIcon className={classes.ddBoxIcon} />
-                Change Password
-              </Paper>
-            </Link>
-          </div>
-        </form>
-      </div>
-    </Container>
+              </Link>
+            </div>
+          </form>
+        </div>
+      </Container>
+    </div>
   );
 }

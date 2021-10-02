@@ -222,6 +222,8 @@ export default function Edit_Post() {
   }, []);
 
   return (
+    <div className="miniContainer">
+
     <Container component="main" className={classes.container}>
       <Typography
         variant="h3"
@@ -382,5 +384,6 @@ export default function Edit_Post() {
         </form>
       </div>
     </Container>
+    </div>
   );
 }

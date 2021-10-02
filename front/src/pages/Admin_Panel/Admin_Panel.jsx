@@ -120,7 +120,7 @@ export default function Admin_Panel() {
   } = useContext(SessionContext);
 
   return (
-    <>
+    <div className="miniContainer">
         <Typography variant="h3" align="center" className={classes.titlePage}>
           Welcome Admin {username}
         </Typography>
@@ -173,6 +173,6 @@ export default function Admin_Panel() {
               </Paper>
             </Grid>
           </Grid>
-    </>
+    </div>
   );
 }

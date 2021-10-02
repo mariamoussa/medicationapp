@@ -29,8 +29,8 @@ import Image from "material-ui-image";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import EditIcon from "@material-ui/icons/Edit";
 // import PreviewIcon from '@material-ui/icons/Preview';
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import ContactPhoneIcon from "@material-ui/icons/ContactPhone";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -128,9 +128,8 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#FFFFFF",
     },
   },
-  ddBoxIconColor:{
+  ddBoxIconColor: {
     color: "#A2B29F",
-
   },
   ddBoxIconBtnLink: {
     marginTop: 30,
@@ -152,21 +151,20 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     fontSize: 17,
   },
-  headercolor:{
-    backgroundColor:"#A2B29F"
+  headercolor: {
+    backgroundColor: "#A2B29F",
   },
-  titlePage:{
+  titlePage: {
     color: "#FFFFFF",
     fontWeight: "bold",
     fontSize: 40,
-    paddingTop:10,
-    paddingBottom:10,
+    paddingTop: 10,
+    paddingBottom: 10,
   },
-  bodycolor:{
-    color:"black",
+  bodycolor: {
+    color: "black",
     fontWeight: "strong",
-
-  }
+  },
 }));
 
 export default function List_Posts() {
@@ -192,7 +190,7 @@ export default function List_Posts() {
   }, []);
 
   return (
-    <>
+    <div className="miniContainer">
       <CssBaseline />
       <Typography variant="h3" align="center" className={classes.titlePage}>
         ALL MEDICATIONS POSTS
@@ -236,7 +234,7 @@ export default function List_Posts() {
                 </TableCell>
               </TableRow>
             </TableHead>
-            <TableBody >
+            <TableBody>
               {posts.map((post) =>
                 post._user ? (
                   <TableRow key={post.id}>
@@ -245,21 +243,38 @@ export default function List_Posts() {
                         src={`http://localhost:3000/uploads/${post.image}`}
                       />
                     </TableCell>
-                    <TableCell className={classes.bodycolor} align="center">{post.medicationName}</TableCell>
-                    <TableCell className={classes.bodycolor} align="center">{post.medicationType}</TableCell>
-                    <TableCell className={classes.bodycolor} align="center">{post.quantity}</TableCell>
-                    <TableCell className={classes.bodycolor} align="center">{post.description}</TableCell>
-                    <TableCell className={classes.bodycolor} align="center">{post.date}</TableCell>
+                    <TableCell className={classes.bodycolor} align="center">
+                      {post.medicationName}
+                    </TableCell>
+                    <TableCell className={classes.bodycolor} align="center">
+                      {post.medicationType}
+                    </TableCell>
+                    <TableCell className={classes.bodycolor} align="center">
+                      {post.quantity}
+                    </TableCell>
+                    <TableCell className={classes.bodycolor} align="center">
+                      {post.description}
+                    </TableCell>
+                    <TableCell className={classes.bodycolor} align="center">
+                      {post.date}
+                    </TableCell>
                     <TableCell className={classes.bodycolor} align="center">
                       {post._user && post._user.firstName}{" "}
                       {post._user && post._user.lastName}
                     </TableCell>
                     <TableCell className={classes.bodycolor} align="center">
                       {post.isPost ? (
-                        <Link to={`/get/post/${post._id}`}><VisibilityIcon className={classes.ddBoxIconColor}>View</VisibilityIcon></Link>
+                        <Link to={`/get/post/${post._id}`}>
+                          <VisibilityIcon className={classes.ddBoxIconColor}>
+                            View
+                          </VisibilityIcon>
+                        </Link>
                       ) : post._user._id == _id ? null : (
-                        <Link to={`/get/contactinfo/${post._user._id}`}><ContactPhoneIcon className={classes.ddBoxIconColor}>                          contact us
-                        </ContactPhoneIcon>
+                        <Link to={`/get/contactinfo/${post._user._id}`}>
+                          <ContactPhoneIcon className={classes.ddBoxIconColor}>
+                            {" "}
+                            contact us
+                          </ContactPhoneIcon>
                         </Link>
                       )}
                     </TableCell>
@@ -270,6 +285,6 @@ export default function List_Posts() {
           </Table>
         </TableContainer>
       </Container>
-    </>
+    </div>
   );
 }

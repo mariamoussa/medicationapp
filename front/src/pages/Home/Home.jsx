@@ -1,130 +1,150 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
-import { makeStyles } from '@material-ui/core/styles';
+import { useHistory, Link } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import Logo from "../../images/LOGO.png";
 
+import { Typography } from "@material-ui/core";
+import {
+  Facebook,
+  Instagram,
+  WhatsApp,
+  Email,
+  Favorite,
+} from "@material-ui/icons";
+
+import Image from "material-ui-image";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    "&:nth-child(1)": {
-      marginBottom: "20px",
-    },
-    "& label.Mui-focused": {
-      color: "#A2B29F",
-    },
-    "& .MuiInput-underline:after": {
-      borderBottomColor: "#A2B29F",
-    },
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": {
-        borderColor: "#A2B29F",
-      },
-      "&:hover fieldset": {
-        borderColor: "#A2B29F",
-      },
-      "&.Mui-focused fieldset": {
-        borderColor: "#A2B29F",
-      },
-    },
-    marginTop: 15,
-  },
-  paper: {
-    marginTop: theme.spacing(3),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  avatar: {
-    margin: theme.spacing(3),
-    backgroundColor: "#A2B29F",
-    color: "white !important",
-  },
-  form: {
+  pageStyle: {
+    backgroundColor: "#FFFFFF",
     width: "100%",
-    marginTop: theme.spacing(4),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
   },
-  submit: {
+  styleLogin: {
+    position: "absolute",
+    top: 20,
+    right: 25,
     width: 120,
-    marginBottom: 20,
-    marginTop: 50,
-  },
-  container: {
-    width: 500,
-    backgroundColor: "white",
-    paddingBottom: "10px",
-    borderRadius: "5px",
-  },
-  linkTo: {
-    margin: 10,
-    color: "#81917e",
+    textAlign: "center",
+    paddingTop: 15,
+    paddingBottom: 15,
     fontWeight: "bold",
     textDecoration: "none",
+    backgroundColor: "#839F85",
+    color: "#FFFFFF",
+    fontSize: 20,
+    borderRadius: 5,
     "&:hover": {
-      textDecoration: "underline",
-    },
-    "& .linkSing:hover": {
-      color: "red",
-    },
-    "& .linkSing": {
-      color: "#81917e",
-      textDecoration: "none",
-      fontWeight: "bold",
-      fontSize: 15,
+      backgroundColor: "transparent",
+      color: "#839F85",
+      width: 116,
+      paddingTop: 13,
+      paddingBottom: 13,
+      border: "2px solid #839F85",
     },
   },
-  flexDiv: {
+  logoStyle: {
+    width: "50%",
+    position: "absolute",
+    top: 100,
+    left: -10,
+  },
+  textstyle: {
+    color: "#839F85",
+    position: "absolute",
+    left: 200,
+    top: 350,
+    fontSize: 40,
+    fontWeight: "bold",
+  },
+  titleStyle: {
+    fontSize: 60,
+    fontWeight: "bold",
+    color: "#839F85",
+    marginLeft: 20,
+    marginBottom: 20,
+  },
+  contentStyle: {
+    fontSize: 24,
+    color: "#839F85",
+  },
+  styleDivText: {
+    width: "60%",
+    marginLeft: 100,
+    marginTop: 40,
+  },
+  styleFooter: {
+    paddingTop: 50,
+    paddingBottom: 20,
+    backgroundColor: "#839F85",
+    marginTop: 100,
+    width: "100%",
+    alignContent: "center",
+  },
+  styleSocialmedia: {
+    color: "#FFFFFF",
+    fontSize: 50,
+  },
+  styleIcons: {
+    width: "40%",
     display: "flex",
     flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
+    marginLeft: "auto",
+    marginRight: "auto",
   },
-  ddBoxIconBtn: {
-    width: 160,
-    padding: 6,
-    paddingBottom: 10,
-    margin: 10,
-    border: "2px solid transparent",
-    backgroundColor: "#A2B29F",
-    color: "#FFFFFF",
-    "&:hover": {
-      border: "2px solid #A2B29F",
-      color: "#A2B29F",
-      backgroundColor: "#FFFFFF",
-    },
+  styleAllContent: {
+    display: "flex",
+    flexDirection: "row",
   },
-  ddBoxIconBtnLink: {
-    marginTop: 30,
-    width: 160,
-    textDecoration: "none !important",
-    cursor: "pointer",
-    fontSize: 16,
-  },
-  ddBoxIcon: {
-    position: "relative",
-    top: 6,
-    right: 10,
-  },
-  titlecolor: {
-    color: "#A2B29F",
-    fontWeight: "bold",
-    fontSize: 30,
-  },
+  styleOfIcon:{
+    color:"#839F85",
+    position:"absolute",
+    marginTop:150,
+    fontSize:250,
+    right:100
+    
+  }
 }));
-
 
 export default function Home() {
   const history = useHistory();
-
   const classes = useStyles();
 
   return (
-    <>
-      <button onClick={() => history.push({ pathname: `/login` })}>
+    <div className={classes.pageStyle}>
+      <div class="bg-image"></div>
+      <img src={Logo} className={classes.logoStyle} />
+      <Link to="/login" className={classes.styleLogin}>
         Login
-      </button>
-      <h1>Home</h1>
-    </>
+      </Link>
+      <Typography className={classes.textstyle}>
+        Every Donation Counts
+      </Typography>
+      <div className={classes.styleAllContent}>
+        <div className={classes.styleDivText}>
+          <Typography className={classes.titleStyle}>Title</Typography>
+          <Typography className={classes.contentStyle}>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book. It has survived not
+            only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s
+            with the release of Letraset sheets containing Lorem Ipsum passages,
+            and more recently with desktop publishing software like Aldus
+            PageMaker including versions of Lorem Ipsum.
+          </Typography>
+        </div>
+        <Favorite className={classes.styleOfIcon} />
+      </div>
+      <div className={classes.styleFooter}>
+        <div className={classes.styleIcons}>
+          <Facebook className={classes.styleSocialmedia} />
+          <Instagram className={classes.styleSocialmedia} />
+          <WhatsApp className={classes.styleSocialmedia} />
+          <Email className={classes.styleSocialmedia} />
+        </div>
+      </div>
+    </div>
   );
 }

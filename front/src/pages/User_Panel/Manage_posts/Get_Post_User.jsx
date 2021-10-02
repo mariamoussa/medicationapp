@@ -127,6 +127,8 @@ export default function Get_Post_User() {
   }, []);
 
   return (
+    <div className="miniContainer">
+
     <Container component="main" className={classes.container}>
       <Typography
         variant="h3"
@@ -206,5 +208,6 @@ export default function Get_Post_User() {
         </form>
       </div>
     </Container>
+    </div>
   );
 }

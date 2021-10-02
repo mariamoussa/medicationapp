@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: "10px",
     borderRadius: "5px",
   },
-    bigPaper: {
+  bigPaper: {
     width: "80%",
     height: 140,
     backgroundColor: "#FFFFFF",
@@ -73,17 +73,17 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  textstyle:{
-    color:"#FFFFFF",
-    fontSize:25,
-    paddingTop:20
+  textstyle: {
+    color: "#FFFFFF",
+    fontSize: 25,
+    paddingTop: 20,
   },
-  titlePage:{
+  titlePage: {
     color: "#FFFFFF",
     fontWeight: "bold",
     fontSize: 40,
-    paddingTop:10,
-    paddingBottom:10,
+    paddingTop: 10,
+    paddingBottom: 10,
   },
   root: {
     "& label.Mui-focused": {
@@ -120,59 +120,67 @@ export default function User_Panel() {
   } = useContext(SessionContext);
 
   return (
-    <>
-        <Typography variant="h3" align="center" className={classes.titlePage}>
-          Welcome {username}
-        </Typography>
-          <Grid container spacing={1}>
-            <Grid item xs={6}>
-              <Paper className={classes.bigPaper}>
-                <Paper className={classes.smallPaperText}>
-                  <Typography
-                    variant="h3"
-                    align="center"
-                    className={classes.textstyle}
-                  >Total Medications: 200</Typography>
-                </Paper>
-              </Paper>
-            </Grid>
+    <div className="miniContainer">
+      <Typography variant="h3" align="center" className={classes.titlePage}>
+        Welcome {username}
+      </Typography>
+      <Grid container spacing={1}>
+        <Grid item xs={6}>
+          <Paper className={classes.bigPaper}>
+            <Paper className={classes.smallPaperText}>
+              <Typography
+                variant="h3"
+                align="center"
+                className={classes.textstyle}
+              >
+                Total Medications: 200
+              </Typography>
+            </Paper>
+          </Paper>
+        </Grid>
 
-            <Grid item xs={6}>
-              <Paper className={classes.bigPaper}>
-                <Paper className={classes.smallPaperText}>
-                  <Typography
-                    variant="h3"
-                    align="center"
-                    className={classes.textstyle}
-                  >Every Donation Counts!</Typography>
-                </Paper>
-              </Paper>
-            </Grid>
+        <Grid item xs={6}>
+          <Paper className={classes.bigPaper}>
+            <Paper className={classes.smallPaperText}>
+              <Typography
+                variant="h3"
+                align="center"
+                className={classes.textstyle}
+              >
+                Every Donation Counts!
+              </Typography>
+            </Paper>
+          </Paper>
+        </Grid>
 
-            <Grid item xs={6}>
-              <Paper className={classes.bigPaper}>
-                <Paper className={classes.smallPaperText}>
-                  <Typography
-                    variant="h3"
-                    align="center"
-                    className={classes.textstyle}
-                  >Let's Support Each other</Typography>
-                </Paper>
-              </Paper>
-            </Grid>
+        <Grid item xs={6}>
+          <Paper className={classes.bigPaper}>
+            <Paper className={classes.smallPaperText}>
+              <Typography
+                variant="h3"
+                align="center"
+                className={classes.textstyle}
+              >
+                Let's Support Each other
+              </Typography>
+            </Paper>
+          </Paper>
+        </Grid>
 
-           <Grid item xs={6}>
-              <Paper className={classes.bigPaper}>
-                <Paper className={classes.smallPaperText}>
-                  <Typography
-                    variant="h3"
-                    align="center"
-                    className={classes.textstyle}
-                  >Total Users: 150</Typography>
-                </Paper>
-              </Paper>
-            </Grid>
-          </Grid>
-    </>
+        <Grid item xs={6}>
+          <Paper className={classes.bigPaper}>
+            <Paper className={classes.smallPaperText}>
+              <Typography
+                variant="h3"
+                align="center"
+                className={classes.textstyle}
+              >
+                Total Users: 150
+              </Typography>
+            </Paper>
+          </Paper>
+        </Grid>
+      </Grid>
+    </div>
   );
 }

@@ -208,6 +208,8 @@ export default function PostInfo() {
   }, []);
 
   return (
+    <div className="miniContainer">
+
     <Container component="main" className={classes.container}>
       <Typography
         variant="h3"
@@ -349,5 +351,6 @@ export default function PostInfo() {
         </form>
       </div>
     </Container>
+    </div>
   );
 }

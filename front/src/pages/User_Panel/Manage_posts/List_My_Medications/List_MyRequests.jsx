@@ -174,7 +174,7 @@ const useStyles = makeStyles((theme) => ({
     color: "black",
     fontWeight: "strong",
   },
-  ddBoxIconColor:{
+  ddBoxIconColor: {
     color: "#A2B29F",
   },
 }));
@@ -212,7 +212,7 @@ export default function List_MyPosts() {
   }, []);
 
   return (
-    <>
+    <div className="miniContainer">
       <CssBaseline />
       <Typography variant="h3" align="center" className={classes.titlePage}>
         MY NEEDED MEDICATIONS
@@ -295,53 +295,6 @@ export default function List_MyPosts() {
           </Table>
         </TableContainer>
       </Container>
-    </>
-
-    // <>
-    //   <CssBaseline />
-    //   <Typography variant="h3" align="center" className="titlePage">
-    //     My Needed Medications
-    //   </Typography>
-    //   <Container className={classes.container}>
-    //     <Link to={`/add/post`} className={classes.ddBoxIconBtnLink}>
-    //       <Paper align="center" className={classes.ddBoxIconBtn}>
-    //         <AddBoxIcon className={classes.ddBoxIcon} />
-    //         Add Post
-    //       </Paper>
-    //     </Link>
-    //     <TableContainer component={Paper}>
-    //       <Table>
-    //         <TableHead>
-    //           <TableRow>
-    //             <TableCell align="center">Medication Name</TableCell>
-    //             <TableCell align="center">Type</TableCell>
-    //             <TableCell align="center">Quantity</TableCell>
-    //             <TableCell align="center">Description</TableCell>
-    //             <TableCell align="center">Date Posted</TableCell>
-    //             <TableCell align="center">Manage</TableCell>
-    //           </TableRow>
-    //         </TableHead>
-    //         <TableBody>
-    //           {posts.map((post) => (
-    //             <TableRow key={post.id}>
-    //               <TableCell align="center">{post.medicationName}</TableCell>
-    //               <TableCell align="center">{post.medicationType}</TableCell>
-    //               <TableCell align="center">{post.quantity}</TableCell>
-    //               <TableCell align="center">{post.description}</TableCell>
-    //               <TableCell align="center">{post.date}</TableCell>
-    //               <TableCell align="center">
-    //                 <Link to={`/edit/post/${post._id}`}>Edit</Link>
-    //                 <LinkNative onClick={() => deletePost(post._id)}>
-    //                   Delete
-    //                 </LinkNative>
-    //               </TableCell>
-    //             </TableRow>
-    //           ))}
-    //         </TableBody>
-    //       </Table>
-    //     </TableContainer>
-    //     {/* // <button onClick={() => deletePost(post._id)}>Delete</button> */}
-    //   </Container>
-    // </>
+    </div>
   );
 }

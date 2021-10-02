@@ -196,7 +196,8 @@ export default function List_Users() {
   }, []);
 
   return (
-    <>
+    <div className="miniContainer">
+
       <CssBaseline />
       <Typography variant="h3" align="center" className={classes.titlePage}>
         ALL Users
@@ -264,6 +265,6 @@ export default function List_Users() {
           </Table>
         </TableContainer>
       </Container>
-    </>
+    </div>
   );
 }

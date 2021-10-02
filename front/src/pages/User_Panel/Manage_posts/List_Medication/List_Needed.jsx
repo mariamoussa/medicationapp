@@ -28,8 +28,7 @@ import {
 import Image from "material-ui-image";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import EditIcon from "@material-ui/icons/Edit";
-import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
-
+import ContactPhoneIcon from "@material-ui/icons/ContactPhone";
 
 import { ArrowDropUp, ArrowDropDown } from "@material-ui/icons";
 
@@ -177,7 +176,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "strong",
   },
 
-  ddBoxIconColor:{
+  ddBoxIconColor: {
     color: "#A2B29F",
   },
 }));
@@ -205,7 +204,7 @@ export default function List_Posts() {
   }, []);
 
   return (
-    <>
+    <div className="miniContainer">
       <CssBaseline />
       <Typography variant="h3" align="center" className={classes.titlePage}>
         NEEDED MEDICATIONS
@@ -293,6 +292,6 @@ export default function List_Posts() {
           </Table>
         </TableContainer>
       </Container>
-    </>
+    </div>
   );
 }

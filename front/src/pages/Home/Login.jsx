@@ -193,78 +193,75 @@ export default function Login() {
   }
 
   return (
-    <Container component="main" maxWidth="xs" className={classes.container}>
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlined />
-        </Avatar>
-        <Typography component="h1" variant="h5" className={classes.titlecolor}>
-          Sign in
-        </Typography>
-        <form className={classes.form} onSubmit={handleLogin}>
-          <TextField
-            required
-            fullWidth
-            variant="outlined"
-            label="Username"
-            name="username"
-            className={classes.root}
-            value={state.username}
-            onChange={handleChange}
-          />
-          <FormControl variant="outlined" fullWidth className={classes.root}>
-            <InputLabel htmlFor="pass">Password</InputLabel>
-            <OutlinedInput
-              required
-              id="pass"
-              type={state.show ? "text" : "password"}
-              name="password"
-              value={state.password}
-              onChange={handleChange}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton type="button" onClick={handleShow}>
-                    {state.show ? <Visibility /> : <VisibilityOff />}
-                  </IconButton>
-                </InputAdornment>
-              }
-              labelWidth={70}
-            />
-          </FormControl>
-
-          <LinkNative
-            onClick={handleLogin}
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.ddBoxIconBtnLink}
+    <div className="miniContainer">
+      <Container component="main" maxWidth="xs" className={classes.container}>
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlined />
+          </Avatar>
+          <Typography
+            component="h1"
+            variant="h5"
+            className={classes.titlecolor}
           >
-            <Paper align="center" className={classes.ddBoxIconBtn}>
-              <LockOpenIcon className={classes.ddBoxIcon}></LockOpenIcon>Sign In
-            </Paper>
-          </LinkNative>
-          
-          <Grid container justifyContent="center">
-            <Grid item className={classes.linkTo}>
-              Don't have an account?{"    "}
-              <Link to="/register" className="linkSing" variant="body2">
-                Sign Up
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-    </Container>
+            Sign in
+          </Typography>
+          <form className={classes.form} onSubmit={handleLogin}>
+            <TextField
+              required
+              fullWidth
+              variant="outlined"
+              label="Username"
+              name="username"
+              className={classes.root}
+              value={state.username}
+              onChange={handleChange}
+            />
+            <FormControl variant="outlined" fullWidth className={classes.root}>
+              <InputLabel htmlFor="pass">Password</InputLabel>
+              <OutlinedInput
+                required
+                id="pass"
+                type={state.show ? "text" : "password"}
+                name="password"
+                value={state.password}
+                onChange={handleChange}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton type="button" onClick={handleShow}>
+                      {state.show ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                labelWidth={70}
+              />
+            </FormControl>
 
-    // <form onSubmit={handleLogin}>
-    //   <input name="username" value={state.username} onChange={handleChange} />
-    //   <input name="password" value={state.password} onChange={handleChange} />
-    //   <button type="submit"> Login </button>
-    //   <h2>Don't have an account?</h2>
-    //   <button onClick={() => history.push({ pathname: `/register` })}>
-    //     Register{" "}
-    //   </button>
-    // </form>
+            <LinkNative
+              onClick={handleLogin}
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.ddBoxIconBtnLink}
+            >
+              <Paper align="center" className={classes.ddBoxIconBtn}>
+                <LockOpenIcon className={classes.ddBoxIcon}></LockOpenIcon>Sign
+                In
+              </Paper>
+            </LinkNative>
+
+            <Grid container justifyContent="center">
+              <Grid item className={classes.linkTo}>
+                Don't have an account?{"    "}
+                <Link to="/register" className="linkSing" variant="body2">
+                  Sign Up
+                </Link>
+              </Grid>
+            </Grid>
+          </form>
+        </div>
+      </Container>
+    </div>
   );
 }
