@@ -1,23 +1,74 @@
 * {
-    font-family: "Roboto", sans-serif;
-    margin: 0;
+  font-family: "Roboto", sans-serif;
+  margin: 0;
 }
 
 *:focus {
-    outline: none !important;
+  outline: none !important;
 }
 
 *::selection {
-    color: #FFFFFF;
-    background: #8BE3D9;
+  color: #ffffff;
+  background: #a2b29f;
 }
 
 .superContainer {
-    display: flex;
+  display: flex;
+  background-color: #a2b29f;
 }
 
 .miniContainer {
-    flex: 10;
-    margin-left: auto;
-    margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (max-width: 960px) {
+  .miniContainer {
+    margin-top: 80px;
+    margin-bottom: 50px;
+  }
+}
+
+@media screen and (min-width: 959px) {
+  .miniContainer {
+    margin-top: 40px;
+    margin-bottom: 50px;
+  }
+}
+
+.MuiIconButton-label {
+  color: #a2b29f !important;
+}
+
+.MuiIconButton-labe > .MuiTypography-root {
+  color: white !important;
+}
+
+.MuiButtonBase-root,
+.MuiIconButton-root {
+  outline: none !important;
+}
+
+.MuiTypography-colorInherit {
+  color: #a2b29f !important;
+}
+.MuiPickersDatePickerRoot-toolbar {
+  background-color: #a2b29f !important;
+}
+
+.MuiPickersDay-daySelected {
+  background-color: transparent !important;
+  border: 2px solid #a2b29f !important;
+}
+
+.MuiPickersSlideTransition-transitionContainer .MuiTypography-alignCenter {
+  color: #a2b29f !important;
+}
+
+.MuiPickersDay-day {
+  color: #a2b29f !important;
+}
+
+.MuiButton-textPrimary {
+  color: #a2b29f !important;
 }

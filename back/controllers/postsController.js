@@ -7,28 +7,44 @@ class PostsController {
     getAll(req, res, next) {
         let { isPost, _user } = req.body;
 
-        (isPost != undefined && _user != undefined) ?
+        if (isPost != undefined && _user != undefined) {
             Post
                 .find({ isPost, _user, isActive: true })
                 .populate('_user')
                 .exec((err, response) => {
                     if (err) return next(err); ``
                     res.status(200).send(response);
-                })
-            :
-            (isPost != undefined) ?
-                Post
-                    .find({ isPost, isActive: true })
-                    .populate('_user')
-                    .exec((err, response) => {
-                        if (err) return next(err);
-                        res.status(200).send(response);
-                    })
-                :
-                Post.find({}).populate('_user').exec((err, response) => {
+                });
+        }
+
+
+        if (isPost != undefined && _user == undefined) {
+            Post
+                .find({ isPost, isActive: true })
+                .populate('_user')
+                .exec((err, response) => {
                     if (err) return next(err);
                     res.status(200).send(response);
-                });
+                })
+        }
+
+        if (isPost == undefined && _user != undefined) {
+            Post
+                .find({ _user })
+                .populate('_user')
+                .exec((err, response) => {
+                    if (err) return next(err);
+                    res.status(200).send(response);
+                })
+        }
+
+        if (isPost == undefined && _user == undefined) {
+            Post.find({}).populate('_user').exec((err, response) => {
+                if (err) return next(err);
+                res.status(200).send(response);
+            });
+        }
+
     }
 
     getFiltration(req, res, next) {
@@ -51,24 +67,13 @@ class PostsController {
 
     post(req, res, next) {
         let body = req.body;
-        // body['image'] = req.file && req.file.filename;
-        // console.log(body.image);
-        let user = new Post(body);
-        user.save((err, response) => {
+        let image = [req.file.filename].toString();
+        let post = new Post({ ...body, image });
+        post.save((err, response) => {
             if (err) return next(err);
             res.status(200).send(response);
-        })
+        });
     }
-
-    // post(req, res, next) {
-    //     let body = req.body;
-    //     let image = [req.file.filename].toString();
-    //     let post = new Post({ ...body, image });
-    //     post.save((err, response) => {
-    //         if (err) return next(err);
-    //         res.status(200).send(response);
-    //     });
-    // }
 
     // put(req, res, next) {
     //     let { id } = req.params;

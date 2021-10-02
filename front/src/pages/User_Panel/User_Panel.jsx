@@ -65,14 +65,17 @@ const useStyles = makeStyles((theme) => ({
     padding: 6,
     paddingBottom: 10,
     margin: 10,
+    border: "2px solid transparent",
     backgroundColor: "#FFFFFF",
-    color: "#8BE3D9",
+    color: "#A2B29F",
     "&:hover": {
+      border: "2px solid #FFFFFF",
       color: "#FFFFFF",
-      backgroundColor: "#8BE3D9",
+      backgroundColor: "#A2B29F",
     },
   },
   ddBoxIconBtnLink: {
+    marginTop: 30,
     width: 160,
     textDecoration: "none",
     fontSize: 16,
@@ -138,6 +141,9 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "none",
     fontSize: 12,
   },
+  titlePage:{
+    color:"white",
+  }
 }));
 
 export default function User_Panel() {
@@ -155,16 +161,9 @@ export default function User_Panel() {
   return (
     <>
       <Container className={classes.container}>
-      <Typography variant="h3" align="center" className="titlePage">Welcome {username}</Typography>
-        <Link onClick={signOut} className={classes.ddBoxIconBtnLink}>
-          <Paper align="center" className={classes.ddBoxIconBtn}>
-            <AddBoxIcon className={classes.ddBoxIcon} />
-            Logout
-          </Paper>
-        </Link>
-
+      <Typography variant="h3" align="center" className={classes.titlePage}>Welcome {username}</Typography>          
         <Link
-          onClick={() => history.push({ pathname: `/list/post` })}
+          to={`/list/post` }
           className={classes.ddBoxIconBtnLink}
         >
           <Paper align="center" className={classes.ddBoxIconBtn}>
@@ -173,7 +172,7 @@ export default function User_Panel() {
           </Paper>
         </Link>
         <Link
-          onClick={() => history.push({ pathname: `/list/myposts` })}
+          to= {`/list/myposts` }
           className={classes.ddBoxIconBtnLink}
         >
           <Paper align="center" className={classes.ddBoxIconBtn}>
@@ -182,7 +181,7 @@ export default function User_Panel() {
           </Paper>{" "}
         </Link>
         <Link
-          onClick={() => history.push({ pathname: `/myrequests` })}
+         to={`/myrequests`}
           className={classes.ddBoxIconBtnLink}
         >
           <Paper align="center" className={classes.ddBoxIconBtn}>
@@ -191,7 +190,7 @@ export default function User_Panel() {
           </Paper>{" "}
         </Link>
         <Link
-          onClick={() => history.push({ pathname: `/myprofile` })}
+          to={`/myprofile` }
           className={classes.ddBoxIconBtnLink}
         >
           <Paper align="center" className={classes.ddBoxIconBtn}>

@@ -23,7 +23,7 @@ class RequestsController {
         let { userId } = req.params;
         Request
             .find({ senderId: mongoose.Types.ObjectId(userId) })
-            .populate('receiverId')
+            .populate('receiverId','username')
             .populate('_post')
             .exec((err, response) => {
                 if (err) return next(err);
@@ -35,7 +35,7 @@ class RequestsController {
         let { userId } = req.params;
         Request
             .find({ receiverId: mongoose.Types.ObjectId(userId) })
-            .populate('senderId')
+            .populate('senderId','username')
             .populate('_post')
             .exec((err, response) => {
                 if (err) return next(err);

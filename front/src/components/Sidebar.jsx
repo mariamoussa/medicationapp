@@ -13,34 +13,25 @@ import {
 } from "@material-ui/core";
 
 import {
-  Bookmark,
   List,
   ExitToApp,
   Home,
   Person,
   Settings,
-  Storefront,
   Group,
-  EventNote,
   Menu,
   ClearAll,
-  MonetizationOn,
-  InsertInvitation,
-  AssignmentTurnedIn,
-  AssignmentInd,
-  AddBox,
-  Timer,
 } from "@material-ui/icons";
 
-import Logo from "../images/LOGO.jpg";
+import Logo from "../images/LOGO.png";
 
 const useStyles = makeStyles((theme) => ({
   container: {
     position: "absolute",
     height: "100vh",
-    color: "#FFFFFF",
-    paddingTop: theme.spacing(20),
-    backgroundColor: "#8BE3D9",
+    color: "#A2B29F",
+    paddingTop: theme.spacing(15),
+    backgroundColor: "#FFFFFF",
     position: "sticky",
     top: 0,
     [theme.breakpoints.down("sm")]: {
@@ -55,41 +46,41 @@ const useStyles = makeStyles((theme) => ({
   item: {
     display: "flex",
     alignItems: "center",
-    color: "#FFFFFF",
+    color: "#A2B29F",
     cursor: "pointer",
     borderRadius: "5px",
     textDecoration: "none",
     padding: "10px",
     "&:hover": {
-      backgroundColor: "#FFFFFF",
-      color: "#000000",
+      color: "#FFFFFF",
+      backgroundColor: "#A2B29F",
     },
   },
   item2: {
     display: "flex",
     alignItems: "center",
-    color: "#FFFFFF",
+    color: "#A2B29F",
     cursor: "pointer",
     borderRadius: "5px",
     textDecoration: "none",
     padding: "6px",
     "&:hover": {
-      backgroundColor: "#FFFFFF",
-      color: "#000000",
+      color: "#FFFFFF",
+      backgroundColor: "#A2B29F",
     },
   },
   options: {
     display: "flex",
     alignItems: "center",
-    color: "#FFFFFF",
+    color: "#A2B29F",
     cursor: "pointer",
     borderRadius: "5px",
     textDecoration: "none",
     padding: "5px",
     marginLeft: "10px",
     "&:hover": {
-      backgroundColor: "#000000",
       color: "#FFFFFF",
+      backgroundColor: "#A2B29F",
     },
   },
   icon: {
@@ -97,19 +88,19 @@ const useStyles = makeStyles((theme) => ({
   },
   text: {
     fontSize: 15,
-    fontWeight: 400,
+    fontWeight: "bold",
   },
   bottomDiv: {
     paddingTop: theme.spacing(1),
     position: "absolute",
     bottom: 0,
     width: "80%",
-    borderTop: "2px solid #FFFFFF ",
+    borderTop: "2px solid #A2B29F ",
     marginBottom: 10,
     marginTop: 10,
     marginLeft: 3,
     marginRight: 3,
-    backgroundColor: "#8BE3D9",
+    backgroundColor: "#FFFFFF",
   },
   topDiv: {
     height: "70%",
@@ -124,13 +115,14 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   smallLogo: {
-    width: "10px",
+    position: "absolute",
+    width: "150px",
   },
   bigLogo: {
     position: "absolute",
-    top: 5,
-    left: 20,
-    width: "200px",
+    top: 10,
+    left: 10,
+    width: "190px",
     padding: 5,
     [theme.breakpoints.down("sm")]: {
       display: "none",
@@ -148,7 +140,7 @@ const useStyles = makeStyles((theme) => ({
   toolbar: {
     display: "none",
     justifyContent: "space-between",
-    backgroundColor: "#8BE3D9",
+    backgroundColor: "#FFFFFF",
     [theme.breakpoints.down("sm")]: {
       display: "flex",
     },
@@ -156,13 +148,12 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     display: "block",
   },
-  showIcon: {
-    alignItems: "center",
-    display: (props) => (props.show ? "none" : "block"),
-  },
-  hideIcon: {
-    alignItems: "center",
-    display: (props) => (props.show ? "block" : "none"),
+  showHideIcon: {
+    position: "absolute",
+    top: 20,
+    right: 15,
+    color: "#A2B29F",
+    fontSize: 30,
   },
 }));
 
@@ -170,10 +161,7 @@ export default function Sidebar(props) {
   let view = props.view;
 
   const [show, setShow] = useState(true);
-  const [postOptions, setPostOptions] = useState(false);
-  const [postOptionsUser, setPostOptionsUser] = useState(false);
-
-  const classes = useStyles({ show });
+  const classes = useStyles();
 
   const {
     session: { user },
@@ -195,12 +183,15 @@ export default function Sidebar(props) {
       {user.role_id === "admin" || user.role_id === "user" ? (
         <AppBar style={{ display: view ? "block" : "none" }}>
           <Toolbar className={classes.toolbar}>
-            {/* <img src={Logo} className={classes.smallLogo} alt="MOBAYED" /> */}
+            <img src={Logo} className={classes.smallLogo} alt="MEDONATIONS" />
 
-            <div className={classes.icons}>
+            <div>
               <a onClick={handleHideShow}>
-                <Menu className={classes.showIcon} />
-                <ClearAll className={classes.hideIcon} />
+                {show ? (
+                  <ClearAll className={classes.showHideIcon} />
+                ) : (
+                  <Menu className={classes.showHideIcon} />
+                )}
               </a>
             </div>
           </Toolbar>
@@ -212,7 +203,7 @@ export default function Sidebar(props) {
           className={classes.container}
           style={{ display: show ? "block" : "none" }}
         >
-          {/* <img src={Logo} className={classes.bigLogo} alt="MOBAYED" /> */}
+          <img src={Logo} className={classes.bigLogo} alt="MEDonations" />
 
           {user.role_id === "admin" ? (
             <div className={classes.topDiv}>
@@ -221,21 +212,16 @@ export default function Sidebar(props) {
                 <Typography className={classes.text}>HOME</Typography>
               </Link>
 
-              <div
-                onMouseOver={() => setPostOptions(true)}
-                onMouseLeave={() => setPostOptions(false)}
-              >
-                <Link to="/all/post" className={classes.item}>
+              <Link to="/all/post" className={classes.item}>
+                <List className={classes.icon} />
+                <Typography className={classes.text}>POSTS</Typography>
+              </Link>
+
+              <div>
+                <Link to="/all/post" className={classes.options}>
                   <List className={classes.icon} />
                   <Typography className={classes.text}>POSTS</Typography>
                 </Link>
-
-                <div style={{ display: postOptions ? "block" : "none" }}>
-                  <Link to="/all/post" className={classes.options}>
-                    <List className={classes.icon} />
-                    <Typography className={classes.text}>POSTS</Typography>
-                  </Link>
-                </div>
               </div>
 
               <Link to="/list/requests" className={classes.item}>
@@ -279,11 +265,6 @@ export default function Sidebar(props) {
                 </Link>
               </div>
 
-              {/* <Link to="/list/post" className={classes.item}>
-                <Home className={classes.icon} />
-                <Typography className={classes.text}>POSTS</Typography>
-              </Link> */}
-
               <Link to="/list/mymedications" className={classes.item}>
                 <List className={classes.icon} />
                 <Typography className={classes.text}>MY MEDICATIONS</Typography>
@@ -301,15 +282,10 @@ export default function Sidebar(props) {
                 </Link>
               </div>
 
-              {/* <Link to="/list/myposts" className={classes.item}>
-                <Home className={classes.icon} />
-                <Typography className={classes.text}>MY POSTS</Typography>
-              </Link>
-
-              <Link to="/myrequests" className={classes.item}>
+              <Link to="/myrequests" className={classes.options}>
                 <Home className={classes.icon} />
                 <Typography className={classes.text}>MY REQUESTS</Typography>
-              </Link> */}
+              </Link>
             </div>
           ) : null}
 

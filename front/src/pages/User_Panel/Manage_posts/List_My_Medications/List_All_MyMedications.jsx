@@ -24,57 +24,123 @@ import {
   Button,
 } from "@material-ui/core";
 
+import Image from "material-ui-image";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import EditIcon from "@material-ui/icons/Edit";
-
+import DeleteIcon from '@material-ui/icons/Delete';
 import { ArrowDropUp, ArrowDropDown } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
-  container: {
-    width: "100%",
-    margin: 5,
-    marginBottom: 30,
-  },
-  paperFilter: {
-    backgroundColor: "#FFFFFF",
-    padding: 12,
-    marginBottom: 10,
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-around",
-  },
+  // container: {
+  //   width: "100%",
+  //   margin: 5,
+  //   marginBottom: 30,
+  // },
+  // paperFilter: {
+  //   backgroundColor: "#FFFFFF",
+  //   padding: 12,
+  //   marginBottom: 10,
+  //   display: "flex",
+  //   flexDirection: "row",
+  //   justifyContent: "space-around",
+  // },
   root: {
     "& label.Mui-focused": {
-      color: theme.palette.primary.main,
+      color: "#A2B29F",
     },
     "& .MuiInput-underline:after": {
-      borderBottomColor: theme.palette.primary.main,
+      borderBottomColor: "#A2B29F",
     },
     "& .MuiOutlinedInput-root": {
       "& fieldset": {
-        borderColor: theme.palette.primary.main,
+        borderColor: "#A2B29F",
       },
       "&:hover fieldset": {
-        borderColor: theme.palette.primary.main,
+        borderColor: "#A2B29F",
       },
       "&.Mui-focused fieldset": {
-        borderColor: theme.palette.primary.main,
+        borderColor: "#A2B29F",
       },
     },
+    marginTop: 15,
+  },
+  paper: {
+    marginTop: theme.spacing(3),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: "#A2B29F",
+    color: "white !important",
+  },
+  form: {
+    width: "100%",
+    marginTop: theme.spacing(4),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  submit: {
+    width: 120,
+    marginBottom: 20,
+    marginTop: 50,
+  },
+  container: {
+    width: "100%",
+    backgroundColor: "white",
+    paddingBottom: "10px",
+    borderRadius: "5px",
+  },
+  FormLabel: {
+    color: "#A2B29F",
+    textAlign: "center",
+    marginTop: 12,
+  },
+  FormControl: {
+    display: "flex",
+    flexFlow: "row",
+    justifyContent: "space-around",
+    "& .radioR1": {
+      display: "flex",
+      flexFlow: "row",
+      justifyContent: "space-between",
+    },
+    "& .radioR2": {
+      display: "flex",
+      flexFlow: "row",
+    },
+  },
+  flexDiv: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around",
+  },
+  postImage: {
+    width: 300,
+    height: "300px",
+    padding: 10,
+    alignItems: "center",
+    justifyContent: "space-around",
   },
   ddBoxIconBtn: {
     width: 160,
     padding: 6,
     paddingBottom: 10,
     margin: 10,
-    backgroundColor: "#FFFFFF",
-    color: "#8BE3D9",
+    border: "2px solid transparent",
+    backgroundColor: "#A2B29F",
+    color: "#FFFFFF",
     "&:hover": {
-      color: "#FFFFFF",
-      backgroundColor: "#8BE3D9",
+      border: "2px solid #A2B29F",
+      color: "#A2B29F",
+      backgroundColor: "#FFFFFF",
     },
   },
   ddBoxIconBtnLink: {
+    marginTop: 30,
     width: 160,
     textDecoration: "none",
     fontSize: 16,
@@ -84,61 +150,31 @@ const useStyles = makeStyles((theme) => ({
     top: 6,
     right: 10,
   },
-  widthBtn: {
-    width: 20,
+  stylebutton: {
+    paddingLeft: 750,
+    paddingTop: 10,
   },
-  editIcon: {
-    color: "#8BE3D9",
-    "&:hover": {
-      color: "#BEF4F4",
-    },
+  headerstyle: {
+    color: "#FFFFFF",
+    fontWeight: "bold",
+    fontSize: 17,
   },
-  deleteIcon: {
-    color: "#ed4f1c",
-    "&:hover": {
-      color: "#e24414",
-    },
+  headercolor: {
+    backgroundColor: "#A2B29F",
   },
-  iconDownUp: {
-    position: "relative",
-    top: 6,
-    textDecoration: "none",
-    color: "#272727",
+  titlePage: {
+    color: "#FFFFFF",
+    fontWeight: "bold",
+    fontSize: 40,
+    paddingTop: 10,
+    paddingBottom: 10,
   },
-  iconDU: {
-    fontSize: 26,
+  bodycolor: {
+    color: "black",
+    fontWeight: "strong",
   },
-  linkOrder: {
-    textDecoration: "none",
-    color: "#272727",
-  },
-  paginationDiv: {
-    marginTop: 10,
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    padding: 10,
-  },
-  btnPagination: {
-    display: "flex",
-    flexDirection: "row",
-    "& Button": {
-      marginLeft: 4,
-    },
-    "& .BtnPageActive": {
-      backgroundColor: "#BEF4F4",
-    },
-    "& .BtnPage": {
-      "&:hover": {
-        backgroundColor: "#e0e0e0",
-      },
-    },
-  },
-  buttonNextPrev: {
-    width: 100,
-    padding: 3,
-    fontWeight: "none",
-    fontSize: 12,
+  ddBoxIconColor:{
+    color: "#A2B29F",
   },
 }));
 
@@ -177,47 +213,128 @@ export default function List_All_MyMedications() {
   return (
     <>
       <CssBaseline />
-      <Typography variant="h3" align="center" className="titlePage">
-        Posts
+      <Typography variant="h3" align="center" className={classes.titlePage}>
+        ALL MEDICATIONS POSTS
       </Typography>
       <Container className={classes.container}>
-        <Link to={`/add/post`} className={classes.ddBoxIconBtnLink}>
-          <Paper align="center" className={classes.ddBoxIconBtn}>
-            <AddBoxIcon className={classes.ddBoxIcon} />
-            Add Post
-          </Paper>
-        </Link>
+        <div className={classes.stylebutton}>
+          <Link to={`/add/post`} className={classes.ddBoxIconBtnLink}>
+            <Paper align="center" className={classes.ddBoxIconBtn}>
+              <AddBoxIcon className={classes.ddBoxIcon} />
+              Add Post
+            </Paper>
+          </Link>
+        </div>
         <TableContainer component={Paper}>
           <Table>
-            <TableHead>
+            <TableHead className={classes.headercolor}>
               <TableRow>
-                <TableCell align="center">Medication Name</TableCell>
-                <TableCell align="center">Type</TableCell>
-                <TableCell align="center">Quantity</TableCell>
-                <TableCell align="center">Description</TableCell>
-                <TableCell align="center">Date Posted</TableCell>
-                <TableCell align="center">Manage</TableCell>
+                <TableCell className={classes.headerstyle} align="center">
+                  Image
+                </TableCell>
+                <TableCell className={classes.headerstyle} align="center">
+                  Name
+                </TableCell>
+                <TableCell className={classes.headerstyle} align="center">
+                  Type
+                </TableCell>
+                <TableCell className={classes.headerstyle} align="center">
+                  Quantity
+                </TableCell>
+                <TableCell className={classes.headerstyle} align="center">
+                  Description
+                </TableCell>
+                <TableCell className={classes.headerstyle} align="center">
+                  Date
+                </TableCell>
+                <TableCell className={classes.headerstyle} align="center">
+                  Manage
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {posts.map((post) => (
-                <TableRow key={post.id}>
-                  <TableCell align="center">{post.medicationName}</TableCell>
-                  <TableCell align="center">{post.medicationType}</TableCell>
-                  <TableCell align="center">{post.quantity}</TableCell>
-                  <TableCell align="center">{post.description}</TableCell>
-                  <TableCell align="center">{post.date}</TableCell>
-                  <TableCell align="center">
-                    <Link to={`/edit/post/${post._id}`}>Edit</Link>
-                    <Link to={deletePost(post._id)}>Delete</Link>
-                  </TableCell>
-                </TableRow>
-              ))}
+              {posts.map((post) =>
+                post._user ? (
+                  <TableRow key={post.id}>
+                    <TableCell align="center">
+                      <Image
+                        src={`http://localhost:3000/uploads/${post.image}`}
+                      />
+                    </TableCell>
+                    <TableCell className={classes.bodycolor} align="center">
+                      {post.medicationName}
+                    </TableCell>
+                    <TableCell className={classes.bodycolor} align="center">
+                      {post.medicationType}
+                    </TableCell>
+                    <TableCell className={classes.bodycolor} align="center">
+                      {post.quantity}
+                    </TableCell>
+                    <TableCell className={classes.bodycolor} align="center">
+                      {post.description}
+                    </TableCell>
+                    <TableCell className={classes.bodycolor} align="center">
+                      {post.date}
+                    </TableCell>
+                    <TableCell align="center">
+                      <Link to={`/edit/post/${post._id}`}><EditIcon  className={classes.ddBoxIconColor}></EditIcon></Link>{"     "}
+                      <LinkNative onClick={() => deletePost(post._id)}><DeleteIcon  className={classes.ddBoxIconColor}></DeleteIcon>
+                      </LinkNative>
+                    </TableCell>
+                  </TableRow>
+                ) : null
+              )}
             </TableBody>
-          </Table> 
-        </TableContainer> 
-        {/* // <button onClick={() => deletePost(post._id)}>Delete</button> */}
+          </Table>
+        </TableContainer>
       </Container>
     </>
+
+    // <>
+    //   <CssBaseline />
+    //   <Typography variant="h3" align="center" className="titlePage">
+    //     Posts
+    //   </Typography>
+    //   <Container className={classes.container}>
+    //     <Link to={`/add/post`} className={classes.ddBoxIconBtnLink}>
+    //       <Paper align="center" className={classes.ddBoxIconBtn}>
+    //         <AddBoxIcon className={classes.ddBoxIcon} />
+    //         Add Post
+    //       </Paper>
+    //     </Link>
+    //     <TableContainer component={Paper}>
+    //       <Table>
+    //         <TableHead>
+    //           <TableRow>
+    //             <TableCell align="center">Medication Name</TableCell>
+    //             <TableCell align="center">Type</TableCell>
+    //             <TableCell align="center">Quantity</TableCell>
+    //             <TableCell align="center">Description</TableCell>
+    //             <TableCell align="center">Date Posted</TableCell>
+    //             <TableCell align="center">Manage</TableCell>
+    //           </TableRow>
+    //         </TableHead>
+    //         <TableBody>
+    //           {posts.map((post) => (
+    //             <TableRow key={post.id}>
+    //               <TableCell align="center">{post.medicationName}</TableCell>
+    //               <TableCell align="center">{post.medicationType}</TableCell>
+    //               <TableCell align="center">{post.quantity}</TableCell>
+    //               <TableCell align="center">{post.description}</TableCell>
+    //               <TableCell align="center">{post.date}</TableCell>
+    //               <TableCell align="center">
+    //                 <Link to={`/edit/post/${post._id}`}>Edit</Link>
+    //                 <LinkNative onClick={() => deletePost(post._id)}>
+    //                   Delete
+    //                 </LinkNative >
+    //               </TableCell>
+    //             </TableRow>
+    //           ))}
+    //         </TableBody>
+    //       </Table>
+    //     </TableContainer>
+    //     {/* // <button onClick={() => deletePost(post._id)}>Delete</button> */}
+    //   </Container>
+    // </>
   );
 }

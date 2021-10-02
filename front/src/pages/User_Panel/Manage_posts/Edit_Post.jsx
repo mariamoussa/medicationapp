@@ -1,12 +1,15 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useHistory, useParams } from "react-router";
 import API from "../../../API";
+import { Link } from "react-router-dom";
 
 import {
   FormControl,
   InputLabel,
   OutlinedInput,
+  Link as LinkNative,
   IconButton,
+  Paper,
   Avatar,
   Button,
   CssBaseline,
@@ -22,29 +25,36 @@ import {
   Radio,
 } from "@material-ui/core";
 
+import Image from "material-ui-image";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 
+import AssignmentIcon from "@material-ui/icons/Assignment";
+import AddBoxIcon from "@material-ui/icons/AddBox";
+
+import { AddPhotoAlternate } from "@material-ui/icons";
 import PersonIcon from "@material-ui/icons/Person";
+import UNKNOWN from "../../../images/UNKNOWN.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     "& label.Mui-focused": {
-      color: theme.palette.primary.main,
+      color: "#A2B29F",
     },
     "& .MuiInput-underline:after": {
-      borderBottomColor: theme.palette.primary.main,
+      borderBottomColor: "#A2B29F",
     },
     "& .MuiOutlinedInput-root": {
       "& fieldset": {
-        borderColor: theme.palette.primary.main,
+        borderColor: "#A2B29F",
       },
       "&:hover fieldset": {
-        borderColor: theme.palette.primary.main,
+        borderColor: "#A2B29F",
       },
       "&.Mui-focused fieldset": {
-        borderColor: theme.palette.primary.main,
+        borderColor: "#A2B29F",
       },
     },
+    marginTop: 15,
   },
   paper: {
     marginTop: theme.spacing(3),
@@ -54,26 +64,29 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: "#A2B29F",
     color: "white !important",
   },
   form: {
     width: "100%",
     marginTop: theme.spacing(4),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
   submit: {
     width: 120,
     marginBottom: 20,
-    marginTop: 20,
+    marginTop: 50,
   },
   container: {
-    width: "80%",
+    width: "100%",
     backgroundColor: "white",
     paddingBottom: "10px",
-    marginBottom: "70px",
     borderRadius: "5px",
   },
   FormLabel: {
+    color: "#A2B29F",
     textAlign: "center",
     marginTop: 12,
   },
@@ -85,16 +98,10 @@ const useStyles = makeStyles((theme) => ({
       display: "flex",
       flexFlow: "row",
       justifyContent: "space-between",
-      "& .MuiFormControlLabel-root:nth-child(2)": {
-        // marginLeft: "9%"
-      },
     },
     "& .radioR2": {
       display: "flex",
       flexFlow: "row",
-      "& .MuiFormControlLabel-root:nth-child(2)": {
-        // marginLeft: "8%"
-      },
     },
   },
   flexDiv: {
@@ -103,6 +110,43 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "space-around",
   },
+  postImage: {
+    width: 300,
+    height: "300px",
+    padding: 10,
+    alignItems: "center",
+    justifyContent: "space-around",
+  },
+  ddBoxIconBtn: {
+    width: 170,
+    padding: 6,
+    paddingBottom: 10,
+    border: "2px solid transparent",
+    backgroundColor: "#A2B29F",
+    color: "#FFFFFF",
+    fontWeight:"bold",
+    "&:hover": {
+      border: "2px solid #A2B29F",
+      color: "#A2B29F",
+      backgroundColor: "#FFFFFF",
+    },
+  },
+  ddBoxIconBtnLink: {
+    marginTop: 40,
+    marginBottom: 30,
+    width: 160,
+    marginLeft:30,
+    marginRight:30,
+
+    textDecoration: "none !important",
+    fontSize: 16,
+  },
+  ddBoxIcon: {
+    position: "relative",
+    top: 6,
+    right: 10,
+  },
+  
 }));
 
 export default function Edit_Post() {
@@ -117,6 +161,7 @@ export default function Edit_Post() {
     quantity: "",
     description: "",
     image: "",
+    newImage: "",
     isPost: "",
     isActive: "",
   });
@@ -133,18 +178,24 @@ export default function Edit_Post() {
     setState({ [name]: value });
   }
 
+  const onChangeFile = (e) => {
+    var file = e.target.files[0];
+    if (!file) return;
+    console.log(e.target.files);
+    setState({ newImage: file });
+  };
+
   function handleSave(e) {
     e.preventDefault();
 
-    let reqBody = {
-      medicationName: state.medicationName,
-      medicationType: state.medicationType,
-      quantity: state.quantity,
-      description: state.description,
-      image: state.image,
-      isPost: state.isPost == "Post" ? true : false,
-      isActive: state.isActive == "Active" ? true : false,
-    };
+    let reqBody = new FormData();
+    reqBody.append("medicationName", state.medicationName);
+    reqBody.append("medicationType", state.medicationType);
+    reqBody.append("quantity", state.quantity);
+    reqBody.append("description", state.description);
+    reqBody.append("isPost", state.isPost == "Post" ? true : false);
+    reqBody.append("isActive", state.isActive == "Active" ? true : false);
+    if (state.newImage) reqBody.append("image", state.newImage);
 
     API.put(`posts/${id}`, reqBody).then(() => {
       history.push({ pathname: "/list/mymedications" });
@@ -177,163 +228,157 @@ export default function Edit_Post() {
         align="center"
         className="titlePage"
       ></Typography>
-
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <PersonIcon />
+          <AssignmentIcon />
         </Avatar>
-
         <Typography component="h1" variant="h5">
-          Edit Medication
+          Medication Infos
         </Typography>
-
         <form className={classes.form} onSubmit={handleSave}>
-          <Grid container spacing={1}>
-            <Grid item xs={6}>
-              <TextField
-                required
-                fullWidth
-                variant="outlined"
-                label="Medication Name"
-                name="medicationName"
-                value={state.medicationName}
-                onChange={handleChange}
-                className={classes.root}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <FormControl fullWidth className={classes.FormControl}>
-                <FormLabel className={classes.FormLabel}>
-                  Medication Type
-                </FormLabel>
-                <RadioGroup
-                  name="medicationType"
-                  value={state.medicationType}
-                  onChange={handleChange}
-                  className="radioR1"
-                >
-                  <FormControlLabel
-                    value="Pill"
-                    control={<Radio />}
-                    label="Pill"
-                    checked={state.medicationType === "Pill"}
-                  />
-                  <FormControlLabel
-                    value="Tablet"
-                    control={<Radio />}
-                    label="Tablet"
-                    checked={state.medicationType === "Tablet"}
-                  />
-                </RadioGroup>
-              </FormControl>
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                required
-                fullWidth
-                variant="outlined"
-                label="Quantity"
-                name="quantity"
-                value={state.quantity}
-                onChange={handleChange}
-                className={classes.root}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                required
-                fullWidth
-                variant="outlined"
-                label="Description"
-                name="description"
-                value={state.description}
-                onChange={handleChange}
-                className={classes.root}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <FormControl fullWidth className={classes.FormControl}>
-                <FormLabel className={classes.FormLabel}>Post Type</FormLabel>
-                <RadioGroup
-                  name="isPost"
-                  value={state.isPost}
-                  onChange={handleChange}
-                  className="radioR1"
-                >
-                  <FormControlLabel
-                    value="Post"
-                    control={<Radio />}
-                    label="Post"
-                    checked={state.isPost === "Post"}
-                  />
-                  <FormControlLabel
-                    value="Request"
-                    control={<Radio />}
-                    label="Request"
-                    checked={state.isPost === "Request"}
-                  />
-                </RadioGroup>
-              </FormControl>
-            </Grid>
-
-            <Grid item xs={6}>
-              <FormControl fullWidth className={classes.FormControl}>
-                <FormLabel className={classes.FormLabel}>Status</FormLabel>
-                <RadioGroup
-                  name="isActive"
-                  value={state.isActive}
-                  onChange={handleChange}
-                  className="radioR1"
-                >
-                  <FormControlLabel
-                    value="Active"
-                    control={<Radio />}
-                    label="Active"
-                    checked={state.isActive === "Active"}
-                  />
-                  <FormControlLabel
-                    value="Cloded"
-                    control={<Radio />}
-                    label="Closed"
-                    checked={state.isActive === "Closed"}
-                  />
-                </RadioGroup>
-              </FormControl>
-            </Grid>
-            {/* <tr>
-              <th>Image</th>
-              <td>
-                <input
-                  name="image"
-                  value={state.image}
-                  placeholder="Image"
-                  onChange={handleChange}
-                />
-              </td>
-            </tr> */}
-          </Grid>
           <div className={classes.flexDiv}>
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              Save Changes
-            </Button>
+            <div className={classes.postImage}>
+              <Grid spacing={1}>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    variant="outlined"
+                    label="Medication Name"
+                    name="medicationName"
+                    value={state.medicationName}
+                    onChange={handleChange}
+                    className={classes.root}
+                  />
+                </Grid>
 
-            <Button
-              type="button"
-              variant="contained"
-              className={classes.submit}
-              onClick={() => history.push(`/list/post`)}
-            >
-              Cancel
-            </Button>
+                <Grid item xs={12}>
+                  <FormControl fullWidth className={classes.FormControl}>
+                    <FormLabel className={classes.FormLabel}>
+                      Medication Type
+                    </FormLabel>
+                    <RadioGroup
+                      name="medicationType"
+                      value={state.medicationType}
+                      onChange={handleChange}
+                      className="radioR1"
+                    >
+                      <FormControlLabel
+                        value="Pill"
+                        control={<Radio />}
+                        label="Pill"
+                        checked={state.medicationType === "Pill"}
+                      />
+                      <FormControlLabel
+                        value="Tablet"
+                        control={<Radio />}
+                        label="Tablet"
+                        checked={state.medicationType === "Tablet"}
+                      />
+                    </RadioGroup>
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    variant="outlined"
+                    label="Quantity"
+                    name="quantity"
+                    value={state.quantity}
+                    onChange={handleChange}
+                    className={classes.root}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    variant="outlined"
+                    label="Description"
+                    name="description"
+                    value={state.description}
+                    onChange={handleChange}
+                    className={classes.root}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <FormControl fullWidth className={classes.FormControl}>
+                    <FormLabel className={classes.FormLabel}>
+                      Post Type
+                    </FormLabel>
+                    <RadioGroup
+                      name="isPost"
+                      value={state.isPost}
+                      onChange={handleChange}
+                      className="radioR1"
+                    >
+                      <FormControlLabel
+                        value="Post"
+                        control={<Radio />}
+                        label="Post"
+                        checked={state.isPost === "Post"}
+                      />
+                      <FormControlLabel
+                        value="Request"
+                        control={<Radio />}
+                        label="Request"
+                        checked={state.isPost === "Request"}
+                      />
+                    </RadioGroup>
+                  </FormControl>
+                </Grid>
+              </Grid>
+            </div>
+
+            <div className={classes.postImage}>
+              {" "}
+              <input
+                type="file"
+                required
+                fullWidth
+                id="file"
+                variant="outlined"
+                label="Image"
+                name="image"
+                style={{ display: "none" }}
+                onChange={onChangeFile}
+                className={classes.inputFile}
+              />
+              <label for="file">
+                <div className={classes.styleImage}>
+                  {!state.newImage ? (
+                    <Image
+                      className={classes.iconImage}
+                      src={`http://localhost:3000/uploads/${state.image}`}
+                    />
+                  ) : (
+                    <Image
+                      src={URL.createObjectURL(state.newImage)}
+                      style={{ borderRadius: 30 }}
+                    />
+                  )}
+                </div>
+              </label>
+            </div>
           </div>
 
-          {/* <button type="submit">update</button> */}
+          <div className={classes.flexDiv}>
+            <LinkNative type="submit" className={classes.ddBoxIconBtnLink}>
+              <Paper align="center" className={classes.ddBoxIconBtn}>
+                <AddBoxIcon className={classes.ddBoxIcon} />
+                Save Changes
+              </Paper>
+            </LinkNative>
+
+            <Link to={`/list/post`} className={classes.ddBoxIconBtnLink}>
+              <Paper align="center" className={classes.ddBoxIconBtn}>
+                <AddBoxIcon className={classes.ddBoxIcon} />
+                Cancel
+              </Paper>
+            </Link>
+          </div>
         </form>
       </div>
     </Container>
