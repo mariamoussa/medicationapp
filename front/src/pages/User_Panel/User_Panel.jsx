@@ -122,7 +122,7 @@ export default function User_Panel() {
   return (
     <div className="miniContainer">
       <Typography variant="h3" align="center" className={classes.titlePage}>
-        Welcome {username}
+        WELCOME {username}
       </Typography>
       <Grid container spacing={1}>
         <Grid item xs={6}>

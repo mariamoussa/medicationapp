@@ -200,7 +200,7 @@ export default function List_Users() {
 
       <CssBaseline />
       <Typography variant="h3" align="center" className={classes.titlePage}>
-        ALL Users
+        ALL USERS
       </Typography>
       <Container className={classes.container}>
         <div className={classes.stylebutton}></div>

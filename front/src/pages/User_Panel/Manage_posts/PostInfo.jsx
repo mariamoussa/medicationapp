@@ -257,10 +257,10 @@ export default function PostInfo() {
                         checked={state.medicationType === "Pill"}
                       />
                       <FormControlLabel
-                        value="Tablet"
+                        value="Box"
                         control={<Radio />}
-                        label="Tablet"
-                        checked={state.medicationType === "Tablet"}
+                        label="Box"
+                        checked={state.medicationType === "Box"}
                       />
                     </RadioGroup>
                   </FormControl>

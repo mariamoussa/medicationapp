@@ -226,7 +226,7 @@ export default function List_Posts() {
                   Image
                 </TableCell>{" "}
                 <TableCell className={classes.headerstyle} align="center">
-                  Name
+                  Medication
                 </TableCell>
                 <TableCell className={classes.headerstyle} align="center">
                   Type
@@ -235,13 +235,13 @@ export default function List_Posts() {
                   Quantity
                 </TableCell>
                 <TableCell className={classes.headerstyle} align="center">
-                  description
+                  Description
                 </TableCell>
-                <TableCell className={classes.headerstyle} align="center">
+                {/* <TableCell className={classes.headerstyle} align="center">
                   date
-                </TableCell>
+                </TableCell> */}
                 <TableCell className={classes.headerstyle} align="center">
-                  user
+                  User
                 </TableCell>
                 <TableCell className={classes.headerstyle} align="center">
                   Manage
@@ -269,9 +269,9 @@ export default function List_Posts() {
                     <TableCell className={classes.bodycolor} align="center">
                       {post.description}
                     </TableCell>
-                    <TableCell className={classes.bodycolor} align="center">
+                    {/* <TableCell className={classes.bodycolor} align="center">
                       {post.date}
-                    </TableCell>
+                    </TableCell> */}
                     <TableCell className={classes.bodycolor} align="center">
                       {post._user && post._user.firstName}{" "}
                       {post._user && post._user.lastName}

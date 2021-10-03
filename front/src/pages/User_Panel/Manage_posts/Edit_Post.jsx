@@ -86,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "5px",
   },
   FormLabel: {
-    color: "#A2B29F",
+    color: "#A2B29F !important",
     textAlign: "center",
     marginTop: 12,
   },
@@ -125,6 +125,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#A2B29F",
     color: "#FFFFFF",
     fontWeight:"bold",
+    cursor:"pointer",
     "&:hover": {
       border: "2px solid #A2B29F",
       color: "#A2B29F",
@@ -273,10 +274,10 @@ export default function Edit_Post() {
                         checked={state.medicationType === "Pill"}
                       />
                       <FormControlLabel
-                        value="Tablet"
+                        value="Box"
                         control={<Radio />}
-                        label="Tablet"
-                        checked={state.medicationType === "Tablet"}
+                        label="Box"
+                        checked={state.medicationType === "Box"}
                       />
                     </RadioGroup>
                   </FormControl>
@@ -367,12 +368,25 @@ export default function Edit_Post() {
           </div>
 
           <div className={classes.flexDiv}>
-            <LinkNative type="submit" className={classes.ddBoxIconBtnLink}>
+            <LinkNative to={`/list/post`}
+                onClick={handleSave} className={classes.ddBoxIconBtnLink}>
               <Paper align="center" className={classes.ddBoxIconBtn}>
                 <AddBoxIcon className={classes.ddBoxIcon} />
                 Save Changes
               </Paper>
             </LinkNative>
+
+{/* 
+            <LinkNative
+                to={`/list/post`}
+                onClick={handleSave}
+                className={classes.ddBoxIconBtnLink}
+              >
+                <Paper align="center" className={classes.ddBoxIconBtn}>
+                  <AddBoxIcon className={classes.ddBoxIcon} />
+                  Save Changes
+                </Paper>
+              </LinkNative> */}
 
             <Link to={`/list/post`} className={classes.ddBoxIconBtnLink}>
               <Paper align="center" className={classes.ddBoxIconBtn}>

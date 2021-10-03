@@ -230,9 +230,9 @@ export default function All_Posts() {
                 <TableCell className={classes.headerstyle} align="center">
                   Quantity
                 </TableCell>
-                <TableCell className={classes.headerstyle} align="center">
+                {/* <TableCell className={classes.headerstyle} align="center">
                   Description
-                </TableCell>
+                </TableCell> */}
                 <TableCell className={classes.headerstyle} align="center">
                   Post Type
                 </TableCell>
@@ -262,9 +262,9 @@ export default function All_Posts() {
                     <TableCell className={classes.bodycolor} align="center">
                       {post.quantity}
                     </TableCell>
-                    <TableCell className={classes.bodycolor} align="center">
+                    {/* <TableCell className={classes.bodycolor} align="center">
                       {post.description}
-                    </TableCell>
+                    </TableCell> */}
                     {post.isPost ? (
                       <TableCell className={classes.bodycolor} align="center">
                         Available

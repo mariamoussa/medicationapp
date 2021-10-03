@@ -233,7 +233,7 @@ export default function List_All_MyMedications() {
                   Image
                 </TableCell>
                 <TableCell className={classes.headerstyle} align="center">
-                  Name
+                  Medication
                 </TableCell>
                 <TableCell className={classes.headerstyle} align="center">
                   Type
@@ -244,9 +244,9 @@ export default function List_All_MyMedications() {
                 <TableCell className={classes.headerstyle} align="center">
                   Description
                 </TableCell>
-                <TableCell className={classes.headerstyle} align="center">
+                {/* <TableCell className={classes.headerstyle} align="center">
                   Date
-                </TableCell>
+                </TableCell> */}
                 <TableCell className={classes.headerstyle} align="center">
                   Manage
                 </TableCell>
@@ -273,9 +273,9 @@ export default function List_All_MyMedications() {
                     <TableCell className={classes.bodycolor} align="center">
                       {post.description}
                     </TableCell>
-                    <TableCell className={classes.bodycolor} align="center">
+                    {/* <TableCell className={classes.bodycolor} align="center">
                       {post.date}
-                    </TableCell>
+                    </TableCell> */}
                     <TableCell align="center">
                       <Link to={`/edit/post/${post._id}`}>
                         <EditIcon className={classes.ddBoxIconColor}></EditIcon>

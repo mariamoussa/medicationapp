@@ -202,7 +202,7 @@ export default function List_Reports() {
     <div className="miniContainer">
       <CssBaseline />
       <Typography variant="h3" align="center" className={classes.titlePage}>
-        ALL Users
+        ALL REPORTS
       </Typography>
       <Container className={classes.container}>
         <div className={classes.stylebutton}></div>

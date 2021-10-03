@@ -91,9 +91,12 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "5px",
   },
   FormLabel: {
-    color: "#A2B29F",
+    color: "#A2B29F !important",
     textAlign: "center",
     marginTop: 12,
+    // "&:select": {
+    //   color: "#A2B29F",
+    // },
   },
   FormControl: {
     display: "flex",
@@ -130,6 +133,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#A2B29F",
     color: "#FFFFFF",
     fontWeight: "bold",
+    cursor:"pointer",
     "&:hover": {
       border: "2px solid #A2B29F",
       color: "#A2B29F",
@@ -283,10 +287,10 @@ export default function Add_Post() {
                           checked={state.medicationType === "Pill"}
                         />
                         <FormControlLabel
-                          value="Tablet"
+                          value="Box"
                           control={<Radio />}
-                          label="Tablet"
-                          checked={state.medicationType === "Tablet"}
+                          label="Box"
+                          checked={state.medicationType === "Box"}
                         />
                       </RadioGroup>
                     </FormControl>

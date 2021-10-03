@@ -258,7 +258,7 @@ export default function List_Requests() {
 
     <Container>
       <Typography variant="h3" align="center" className={classes.titlePage}>
-        My Requests
+        MY REQUESTS
       </Typography>
 
       <Container className={classes.container}>

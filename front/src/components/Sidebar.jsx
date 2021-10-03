@@ -254,7 +254,7 @@ export default function Sidebar(props) {
               </Link>
 
               <Link to="/list/post" className={classes.item}>
-                <EnhancedEncryption className={classes.icon} />
+                <List className={classes.icon} />
                 <Typography className={classes.text}>MEDICATIONS</Typography>
               </Link>
 
@@ -271,7 +271,7 @@ export default function Sidebar(props) {
               </div>
 
               <Link to="/list/mymedications" className={classes.item}>
-                <EnhancedEncryption className={classes.icon} />
+                <List  className={classes.icon} />
                 <Typography className={classes.text}>MY MEDICATIONS</Typography>
               </Link>
 

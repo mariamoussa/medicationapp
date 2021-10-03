@@ -4,12 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Logo from "../../images/LOGO.png";
 
 import { Typography } from "@material-ui/core";
-import {
-  Facebook,
-  Instagram,
-  WhatsApp,
-  Email,
-} from "@material-ui/icons";
+import { Facebook, Instagram, WhatsApp, Email } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   pageStyle: {
@@ -68,14 +63,12 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 15,
     marginBottom: 15,
     // marginTop: 15,
-
   },
   contentStyle: {
     fontSize: 24,
     color: "black",
     marginLeft: 15,
     marginRight: 55,
-
   },
   styleDivText: {
     width: "60%",
@@ -109,9 +102,10 @@ const useStyles = makeStyles((theme) => ({
   styleOfIcon: {
     // color: "red",
     position: "absolute",
-    marginTop: 5,
+    marginTop: 75,
     fontSize: 200,
-    right: 20,
+    right: 70,
+    width:"30%"
   },
   aboutstyle: {
     position: "absolute",
@@ -186,16 +180,19 @@ export default function Home() {
           <Typography className={classes.titleStyle}>About Us</Typography>
           <Typography className={classes.contentStyle}>
             With every passing day, more Lebanese lives are being put at risk
-            due to the shortage in medicine.
-  
-            This is why, now more than ever, we need your help to face this
-            crisis. Whether you have one spare pill, or several boxes; whether
-            you are in Lebanon or abroad, your donations make a difference.
-            Donate and be part of this initiative <br/>by spreading hope and
-            restoring faith in humanity.
+            due to the shortage in medicine. This is why, now more than ever, we
+            need your help to face this crisis. Whether you have one spare pill,
+            or several boxes; whether you are in Lebanon or abroad, your
+            donations make a difference. Donate and be part of this initiative{" "}
+            <br />
+            by spreading hope and restoring faith in humanity.
           </Typography>
         </div>
-<img className={classes.styleOfIcon} src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDY0IDY0IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIiBjbGFzcz0iIj48Zz48ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGlkPSJoZWFsdGhjYXJlLWNvdmlkMTktY29yb25hdmlydXMtaGFuZC1oZWFydGgiPjxwYXRoIGQ9Im0xNS43MSAzMC4yNy00LjUzLTEzLjA1YTMuMTI1IDMuMTI1IDAgMCAwIC0zLjU2LTIuMzIgMy4wMDcgMy4wMDcgMCAwIDAgLTIuMjggMy43MWw0LjY2IDE0LjM5eiIgZmlsbD0iIzgzOWY4NSIgZGF0YS1vcmlnaW5hbD0iI2ZmYWM5NiIgc3R5bGU9IiIgY2xhc3M9IiI+PC9wYXRoPjxwYXRoIGQ9Im00OC4yOSAzMC4yNyA0LjUzLTEzLjA1YTMuMTI1IDMuMTI1IDAgMCAxIDMuNTYtMi4zMiAzLjAwNyAzLjAwNyAwIDAgMSAyLjI4IDMuNzFsLTQuNjYgMTQuMzl6IiBmaWxsPSIjODM5Zjg1IiBkYXRhLW9yaWdpbmFsPSIjZmZhYzk2IiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+PHBhdGggZD0ibTI1LjA0NiAzNS42ODItOC44NC01LjE4MmEyLjk5NCAyLjk5NCAwIDAgMCAtMy44LjY3OWwtMy4yMjYtOS45NTlhMy4xMjUgMy4xMjUgMCAwIDAgLTMuNTYtMi4zMiAzLjAwNyAzLjAwNyAwIDAgMCAtMi4yOCAzLjcxbDQuMzUgMTYuMjNhMy45NDggMy45NDggMCAwIDAgMS4yMSAxLjk2bDYuNzYgNi4wMWE0IDQgMCAwIDEgMS4zNCAyLjk5djMuMmgxMnYtMTAuNDE2YTggOCAwIDAgMCAtMy45NTQtNi45MDJ6IiBmaWxsPSIjOWFhYTliIiBkYXRhLW9yaWdpbmFsPSIjZmZiY2FiIiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+PHBhdGggZD0ibTU4LjM4IDE4LjlhMy4xMjUgMy4xMjUgMCAwIDAgLTMuNTYgMi4zMmwtMy4yMyA5Ljk1OWEyLjk5NCAyLjk5NCAwIDAgMCAtMy44LS42NzlsLTguODQgNS4xODJhOCA4IDAgMCAwIC0zLjk1IDYuOTAydjEwLjQxNmgxMnYtMy4yYTQgNCAwIDAgMSAxLjM0LTIuOTlsNi43Ni02LjAxYTMuOTQ4IDMuOTQ4IDAgMCAwIDEuMjEtMS45Nmw0LjM1LTE2LjIzYTMuMDA3IDMuMDA3IDAgMCAwIC0yLjI4LTMuNzF6IiBmaWxsPSIjOWFhYTliIiBkYXRhLW9yaWdpbmFsPSIjZmZiY2FiIiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+PHBhdGggZD0ibTM0IDUzdjhoMTR2LThoLTEtMTJ6IiBmaWxsPSIjODM5Zjg1IiBkYXRhLW9yaWdpbmFsPSIjMDA2ZGYwIiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+PHBhdGggZD0ibTMwIDUzaC0xLTEyLTF2OGgxNHoiIGZpbGw9IiM4MzlmODUiIGRhdGEtb3JpZ2luYWw9IiMwMDZkZjAiIHN0eWxlPSIiIGNsYXNzPSIiPjwvcGF0aD48cGF0aCBkPSJtNDUuNDQgMTguNTYtLjcxLjcxLTEyLjczIDEyLjczLTEyLjczLTEyLjczLS43MS0uNzFhOSA5IDAgMSAxIDEyLjczLTEyLjcybC43MS43MS43MS0uNzFhOSA5IDAgMSAxIDEyLjczIDEyLjcyeiIgZmlsbD0iI2Q4MDAyNyIgZGF0YS1vcmlnaW5hbD0iI2Q4MDAyNyIgc3R5bGU9IiIgY2xhc3M9IiI+PC9wYXRoPjxwYXRoIGQ9Im00NS40NCA1Ljg0YTguOSA4LjkgMCAwIDAgLTcuMzY4LTIuNTc5IDguOTk0IDguOTk0IDAgMCAxIDUuMzY4IDE1LjNsLS43MS43MS0xMS43MyAxMS43MjkgMSAxIDEyLjczLTEyLjczLjcxLS43MWE5IDkgMCAwIDAgMC0xMi43MnoiIGZpbGw9IiNiZDAwMjIiIGRhdGEtb3JpZ2luYWw9IiNiZDAwMjIiIHN0eWxlPSIiIGNsYXNzPSIiPjwvcGF0aD48cGF0aCBkPSJtMzQgMjJ2LTRoNHYtNGgtNHYtNGgtNHY0aC00djRoNHY0eiIgZmlsbD0iI2YxZjJmMiIgZGF0YS1vcmlnaW5hbD0iI2YxZjJmMiIgc3R5bGU9IiIgY2xhc3M9IiI+PC9wYXRoPjxnIGZpbGw9IiNmZmFjOTYiPjxwYXRoIGQ9Im01MC43OTQgMzMuNy02LjY4NCAzLjdhLjg2Ny44NjcgMCAwIDAgLS4zNDEgMS4xMzguODY1Ljg2NSAwIDAgMCAxLjIwNy4zNjJsNS44MTgtMy4yYTMgMyAwIDAgMCAxLjMxOS0zLjYwOSAyLjk3MSAyLjk3MSAwIDAgMSAtMS4zMTkgMS42MDl6IiBmaWxsPSIjODM5Zjg1IiBkYXRhLW9yaWdpbmFsPSIjZmZhYzk2IiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+PHBhdGggZD0ibTEzLjIwNiAzMy43IDYuNjg0IDMuN2EuODY3Ljg2NyAwIDAgMSAuMzQxIDEuMTM4Ljg2NS44NjUgMCAwIDEgLTEuMjA3LjM2MmwtNS44MTgtMy4yYTMgMyAwIDAgMSAtMS4zMTktMy42MDkgMi45NzEgMi45NzEgMCAwIDAgMS4zMTkgMS42MDl6IiBmaWxsPSIjODM5Zjg1IiBkYXRhLW9yaWdpbmFsPSIjZmZhYzk2IiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+PC9nPjwvZz48L2c+PC9zdmc+" />        {/* <FontAwesomeIcon
+        <img
+          className={classes.styleOfIcon}
+          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDY0IDY0IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIiBjbGFzcz0iIj48Zz48ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGlkPSJoZWFsdGhjYXJlLWNvdmlkMTktY29yb25hdmlydXMtaGFuZC1oZWFydGgiPjxwYXRoIGQ9Im0xNS43MSAzMC4yNy00LjUzLTEzLjA1YTMuMTI1IDMuMTI1IDAgMCAwIC0zLjU2LTIuMzIgMy4wMDcgMy4wMDcgMCAwIDAgLTIuMjggMy43MWw0LjY2IDE0LjM5eiIgZmlsbD0iIzgzOWY4NSIgZGF0YS1vcmlnaW5hbD0iI2ZmYWM5NiIgc3R5bGU9IiIgY2xhc3M9IiI+PC9wYXRoPjxwYXRoIGQ9Im00OC4yOSAzMC4yNyA0LjUzLTEzLjA1YTMuMTI1IDMuMTI1IDAgMCAxIDMuNTYtMi4zMiAzLjAwNyAzLjAwNyAwIDAgMSAyLjI4IDMuNzFsLTQuNjYgMTQuMzl6IiBmaWxsPSIjODM5Zjg1IiBkYXRhLW9yaWdpbmFsPSIjZmZhYzk2IiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+PHBhdGggZD0ibTI1LjA0NiAzNS42ODItOC44NC01LjE4MmEyLjk5NCAyLjk5NCAwIDAgMCAtMy44LjY3OWwtMy4yMjYtOS45NTlhMy4xMjUgMy4xMjUgMCAwIDAgLTMuNTYtMi4zMiAzLjAwNyAzLjAwNyAwIDAgMCAtMi4yOCAzLjcxbDQuMzUgMTYuMjNhMy45NDggMy45NDggMCAwIDAgMS4yMSAxLjk2bDYuNzYgNi4wMWE0IDQgMCAwIDEgMS4zNCAyLjk5djMuMmgxMnYtMTAuNDE2YTggOCAwIDAgMCAtMy45NTQtNi45MDJ6IiBmaWxsPSIjOWFhYTliIiBkYXRhLW9yaWdpbmFsPSIjZmZiY2FiIiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+PHBhdGggZD0ibTU4LjM4IDE4LjlhMy4xMjUgMy4xMjUgMCAwIDAgLTMuNTYgMi4zMmwtMy4yMyA5Ljk1OWEyLjk5NCAyLjk5NCAwIDAgMCAtMy44LS42NzlsLTguODQgNS4xODJhOCA4IDAgMCAwIC0zLjk1IDYuOTAydjEwLjQxNmgxMnYtMy4yYTQgNCAwIDAgMSAxLjM0LTIuOTlsNi43Ni02LjAxYTMuOTQ4IDMuOTQ4IDAgMCAwIDEuMjEtMS45Nmw0LjM1LTE2LjIzYTMuMDA3IDMuMDA3IDAgMCAwIC0yLjI4LTMuNzF6IiBmaWxsPSIjOWFhYTliIiBkYXRhLW9yaWdpbmFsPSIjZmZiY2FiIiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+PHBhdGggZD0ibTM0IDUzdjhoMTR2LThoLTEtMTJ6IiBmaWxsPSIjODM5Zjg1IiBkYXRhLW9yaWdpbmFsPSIjMDA2ZGYwIiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+PHBhdGggZD0ibTMwIDUzaC0xLTEyLTF2OGgxNHoiIGZpbGw9IiM4MzlmODUiIGRhdGEtb3JpZ2luYWw9IiMwMDZkZjAiIHN0eWxlPSIiIGNsYXNzPSIiPjwvcGF0aD48cGF0aCBkPSJtNDUuNDQgMTguNTYtLjcxLjcxLTEyLjczIDEyLjczLTEyLjczLTEyLjczLS43MS0uNzFhOSA5IDAgMSAxIDEyLjczLTEyLjcybC43MS43MS43MS0uNzFhOSA5IDAgMSAxIDEyLjczIDEyLjcyeiIgZmlsbD0iI2Q4MDAyNyIgZGF0YS1vcmlnaW5hbD0iI2Q4MDAyNyIgc3R5bGU9IiIgY2xhc3M9IiI+PC9wYXRoPjxwYXRoIGQ9Im00NS40NCA1Ljg0YTguOSA4LjkgMCAwIDAgLTcuMzY4LTIuNTc5IDguOTk0IDguOTk0IDAgMCAxIDUuMzY4IDE1LjNsLS43MS43MS0xMS43MyAxMS43MjkgMSAxIDEyLjczLTEyLjczLjcxLS43MWE5IDkgMCAwIDAgMC0xMi43MnoiIGZpbGw9IiNiZDAwMjIiIGRhdGEtb3JpZ2luYWw9IiNiZDAwMjIiIHN0eWxlPSIiIGNsYXNzPSIiPjwvcGF0aD48cGF0aCBkPSJtMzQgMjJ2LTRoNHYtNGgtNHYtNGgtNHY0aC00djRoNHY0eiIgZmlsbD0iI2YxZjJmMiIgZGF0YS1vcmlnaW5hbD0iI2YxZjJmMiIgc3R5bGU9IiIgY2xhc3M9IiI+PC9wYXRoPjxnIGZpbGw9IiNmZmFjOTYiPjxwYXRoIGQ9Im01MC43OTQgMzMuNy02LjY4NCAzLjdhLjg2Ny44NjcgMCAwIDAgLS4zNDEgMS4xMzguODY1Ljg2NSAwIDAgMCAxLjIwNy4zNjJsNS44MTgtMy4yYTMgMyAwIDAgMCAxLjMxOS0zLjYwOSAyLjk3MSAyLjk3MSAwIDAgMSAtMS4zMTkgMS42MDl6IiBmaWxsPSIjODM5Zjg1IiBkYXRhLW9yaWdpbmFsPSIjZmZhYzk2IiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+PHBhdGggZD0ibTEzLjIwNiAzMy43IDYuNjg0IDMuN2EuODY3Ljg2NyAwIDAgMSAuMzQxIDEuMTM4Ljg2NS44NjUgMCAwIDEgLTEuMjA3LjM2MmwtNS44MTgtMy4yYTMgMyAwIDAgMSAtMS4zMTktMy42MDkgMi45NzEgMi45NzEgMCAwIDAgMS4zMTkgMS42MDl6IiBmaWxsPSIjODM5Zjg1IiBkYXRhLW9yaWdpbmFsPSIjZmZhYzk2IiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+PC9nPjwvZz48L2c+PC9zdmc+"
+        />
+        {/* <FontAwesomeIcon
           icon={faHandHoldingHeart}
           className={classes.styleOfIcon}
         />

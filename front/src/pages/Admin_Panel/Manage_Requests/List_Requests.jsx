@@ -199,7 +199,7 @@ export default function List_Requests() {
     <div className="miniContainer">
       <CssBaseline />
       <Typography variant="h3" align="center" className={classes.titlePage}>
-        REQUESTS LIST
+        REQUESTS BETWEEN USERS
       </Typography>
       <Container className={classes.container}>
         <div className={classes.stylebutton}>
