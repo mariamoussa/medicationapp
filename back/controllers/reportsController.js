@@ -21,6 +21,7 @@ class ReportsController {
     post(req, res, next) {
         let body = req.body;
         let user = new Report(body);
+        console.log(user);
         user.save((err, response) => {
             if (err) return next(err);
             res.status(200).send(response);

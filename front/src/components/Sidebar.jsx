@@ -60,6 +60,10 @@ const useStyles = makeStyles((theme) => ({
       color: "#FFFFFF",
       backgroundColor: "#A2B29F",
     },
+    "&:focus": {
+      color: "#FFFFFF",
+      backgroundColor: "#A2B29F",
+    },
   },
   item2: {
     display: "flex",
@@ -73,6 +77,10 @@ const useStyles = makeStyles((theme) => ({
       color: "#FFFFFF",
       backgroundColor: "#A2B29F",
     },
+    "&:focus": {
+      color: "#FFFFFF",
+      backgroundColor: "#A2B29F",
+    },
   },
   options: {
     display: "flex",
@@ -83,6 +91,10 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "none",
     padding: "5px",
     marginLeft: "10px",
+    "&:focus": {
+      color: "#FFFFFF",
+      backgroundColor: "#A2B29F",
+    },
     "&:hover": {
       color: "#FFFFFF",
       backgroundColor: "#A2B29F",

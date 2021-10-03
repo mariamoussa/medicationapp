@@ -145,6 +145,7 @@ export default function Report_User() {
       _Reported: id,
       description: state.description,
     };
+    console.log(reqBody);
     await API.post(`report`, reqBody).then(() => {
       history.push({ pathname: "/" });
     });
@@ -168,50 +169,49 @@ export default function Report_User() {
 
   return (
     <div className="miniContainer">
+      <Container component="main" className={classes.container}>
+        <Typography
+          variant="h3"
+          align="center"
+          className="titlePage"
+        ></Typography>
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <ReportIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5" className={classes.titlePage}>
+            Report {state.user_Reported}
+          </Typography>
 
-    <Container component="main" className={classes.container}>
-      <Typography
-        variant="h3"
-        align="center"
-        className="titlePage"
-      ></Typography>
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <ReportIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5" className={classes.titlePage}>
-          Report {state.user_Reported}
-        </Typography>
-
-        <form className={classes.form} onSubmit={handleSave}>
-          <Grid container spacing={1}>
-            <Grid item xs={12}>
-              <TextareaAutosize
-                maxRows={6}
-                name="description"
-                value={state.description}
-                onChange={handleChange}
-                placeholder="Add Note"
-                className={classes.textAresDex}
-              />
-            </Grid>
-          </Grid>
-
-          <div className={classes.ddBoxIconBtnLink}>
-            <Link to={`/list/post`} className={classes.ddBoxIconBtnLink}>
-              <Paper align="center" className={classes.ddBoxIconBtn}>
-                <AddBoxIcon
-                  className={classes.ddBoxIcon}
-                  onClick={handleSave}
+          <form className={classes.form} onSubmit={handleSave}>
+            <Grid container spacing={1}>
+              <Grid item xs={12}>
+                <TextareaAutosize
+                  maxRows={6}
+                  name="description"
+                  value={state.description}
+                  onChange={handleChange}
+                  placeholder="Add Reason"
+                  className={classes.textAresDex}
                 />
-                Report User
-              </Paper>
-            </Link>
-          </div>
-        </form>
-      </div>
-    </Container>
-    </div>
+              </Grid>
+            </Grid>
 
+            <div className={classes.ddBoxIconBtnLink}>
+              <Link
+                to={`/list/post`}
+                onClick={handleSave}
+                className={classes.ddBoxIconBtnLink}
+              >
+                <Paper align="center" className={classes.ddBoxIconBtn}>
+                  <AddBoxIcon className={classes.ddBoxIcon} />
+                  Report User
+                </Paper>
+              </Link>
+            </div>
+          </form>
+        </div>
+      </Container>
+    </div>
   );
 }
