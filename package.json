@@ -7,6 +7,7 @@
     "start": "concurrently --kill-others-on-fail --names 'back,front' 'npm run back' 'npm run front'"
   },
   "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "concurrently": "^6.2.1"
   }
 }
