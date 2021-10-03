@@ -121,7 +121,7 @@ const useStyles = makeStyles((theme) => ({
   ddBoxIconBtn: {
     fontSize: 15,
     fontWeight: "bold",
-    width: 180,
+    width: 190,
     padding: 6,
     paddingBottom: 10,
     margin: 10,
@@ -136,7 +136,7 @@ const useStyles = makeStyles((theme) => ({
   },
   ddBoxIconBtnLink: {
     marginTop: 30,
-    width: 170,
+    width: 210,
     textDecoration: "none !important",
     cursor: "pointer",
     fontSize: 16,
@@ -507,17 +507,18 @@ export default function My_Profile() {
                   </Paper>
                 </LinkNative>
               )}
-              <Link to={`/user/panel`} className={classes.ddBoxIconBtnLink}>
-                <Paper align="center" className={classes.ddBoxIconBtn}>
-                  <CancelIcon className={classes.ddBoxIcon} />
-                  Cancel
-                </Paper>
-              </Link>
 
               <Link to={`/changepassword`} className={classes.ddBoxIconBtnLink}>
                 <Paper align="center" className={classes.ddBoxIconBtn}>
                   <LockIcon className={classes.ddBoxIcon} />
                   Change Password
+                </Paper>
+              </Link>
+
+              <Link to={`/user/panel`} className={classes.ddBoxIconBtnLink}>
+                <Paper align="center" className={classes.ddBoxIconBtn}>
+                  <CancelIcon className={classes.ddBoxIcon} />
+                  Cancel
                 </Paper>
               </Link>
             </div>

@@ -67,6 +67,8 @@ const useStyles = makeStyles((theme) => ({
     color: "#839F85",
     marginLeft: 15,
     marginBottom: 15,
+    // marginTop: 15,
+
   },
   contentStyle: {
     fontSize: 24,
@@ -78,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
   styleDivText: {
     width: "60%",
     marginLeft: 100,
-    marginTop: 50,
+    marginTop: 80,
   },
   styleFooter: {
     paddingTop: 40,

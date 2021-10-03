@@ -145,7 +145,7 @@ const useStyles = makeStyles((theme) => ({
   },
   stylebutton: {
     paddingLeft: 750,
-    paddingTop: 10,
+    paddingTop: 35,
   },
   headerstyle: {
     color: "#FFFFFF",
